@@ -47,6 +47,20 @@
           sans-serif;
         background: var(--bg);
         color: var(--fg);
+        /* `overflow-x: clip` (not `hidden`) so no rogue wide child can
+           force a horizontal page scrollbar on narrow viewports, while
+           still not creating a "scrolling container" that would break
+           `position: sticky` on descendants (`hidden` does). */
+        overflow-x: clip;
+      }
+      /* Long unbreakable tokens (rule IDs with slashes, long URLs in
+         descriptions, etc.) shouldn't force horizontal overflow on
+         narrow viewports. */
+      .rule-head a,
+      .rule-desc {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        min-width: 0;
       }
       header {
         position: sticky;
@@ -616,17 +630,22 @@
              which previously sent the absolute-positioned popover off
              the screen. `var(--header-h)` is tracked live via the
              ResizeObserver, so the popover sits flush under whatever
-             height the header currently has. */
+             height the header currently has.
+             Set width EXPLICITLY: `left + right` with `width: auto`
+             didn't reliably shrink the box for long non-wrapping
+             content on some mobile browsers, and the popover still
+             blew past the right edge. */
           position: fixed;
           top: var(--header-h);
           left: 12px;
-          right: 12px;
-          width: auto;
+          right: auto;
+          width: calc(100vw - 24px);
           min-width: 0;
-          max-width: none;
+          max-width: calc(100vw - 24px);
           margin-top: 4px;
           white-space: normal;
           overflow-wrap: anywhere;
+          box-sizing: border-box;
         }
         header .versions[open] > .items > div {
           /* Keep each entry's name/version pair aligned even when the name
