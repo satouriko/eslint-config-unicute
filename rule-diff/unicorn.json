@@ -1,0 +1,147 @@
+{
+  "unicorn/catch-error-name": {
+    "decision": "disable"
+  },
+  "unicorn/consistent-function-scoping": {
+    "decision": "enable",
+    "options": [
+      {
+        "checkArrowFunctions": false
+      }
+    ]
+  },
+  "unicorn/custom-error-definition": {
+    "decision": "enable"
+  },
+  "unicorn/expiring-todo-comments": {
+    "decision": "disable"
+  },
+  "unicorn/explicit-length-check": {
+    "decision": "disable"
+  },
+  "unicorn/import-style": {
+    "decision": "disable"
+  },
+  "unicorn/isolated-functions": {
+    "decision": "disable"
+  },
+  "unicorn/no-array-callback-reference": {
+    "decision": "disable"
+  },
+  "unicorn/no-array-push-push": {
+    "decision": "ignore"
+  },
+  "unicorn/no-array-reduce": {
+    "decision": "disable"
+  },
+  "unicorn/no-await-expression-member": {
+    "decision": "disable"
+  },
+  "unicorn/no-immediate-mutation": {
+    "decision": "disable"
+  },
+  "unicorn/no-instanceof-array": {
+    "decision": "ignore"
+  },
+  "unicorn/no-instanceof-builtins": {
+    "decision": "disable"
+  },
+  "unicorn/no-length-as-slice-end": {
+    "decision": "ignore"
+  },
+  "unicorn/no-lonely-if": {
+    "decision": "disable"
+  },
+  "unicorn/no-negated-condition": {
+    "decision": "disable"
+  },
+  "unicorn/no-null": {
+    "decision": "disable"
+  },
+  "unicorn/no-process-exit": {
+    "decision": "disable"
+  },
+  "unicorn/no-this-assignment": {
+    "decision": "disable"
+  },
+  "unicorn/no-typeof-undefined": {
+    "decision": "disable"
+  },
+  "unicorn/no-unreadable-array-destructuring": {
+    "decision": "disable"
+  },
+  "unicorn/no-useless-undefined": {
+    "decision": "disable"
+  },
+  "unicorn/numeric-separators-style": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-array-index-of": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-at": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-dom-node-append": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-dom-node-remove": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-export-from": {
+    "decision": "enable",
+    "options": [
+      {
+        "ignoreUsedVariables": true
+      }
+    ]
+  },
+  "unicorn/prefer-global-this": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-includes": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-math-min-max": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-math-trunc": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-module": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-number-properties": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-regexp-test": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-simple-condition-first": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-spread": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-string-replace-all": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-switch": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-ternary": {
+    "decision": "enable",
+    "options": [
+      "only-single-line"
+    ]
+  },
+  "unicorn/prefer-top-level-await": {
+    "decision": "disable"
+  },
+  "unicorn/prevent-abbreviations": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-single-call": {
+    "decision": "disable"
+  }
+}

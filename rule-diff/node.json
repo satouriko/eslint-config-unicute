@@ -1,0 +1,122 @@
+{
+  "n/exports-style": {
+    "decision": "enable",
+    "options": [
+      "module.exports",
+      {
+        "allowBatchAssign": false
+      }
+    ]
+  },
+  "n/global-require": {
+    "decision": "enable"
+  },
+  "n/handle-callback-err": {
+    "decision": "enable",
+    "options": [
+      "^(err|error)$"
+    ]
+  },
+  "n/hashbang": {
+    "decision": "enable"
+  },
+  "n/no-extraneous-import": {
+    "decision": "disable"
+  },
+  "n/no-extraneous-require": {
+    "decision": "disable"
+  },
+  "n/no-missing-import": {
+    "decision": "disable"
+  },
+  "n/no-missing-require": {
+    "decision": "disable"
+  },
+  "n/no-new-require": {
+    "decision": "enable"
+  },
+  "n/no-path-concat": {
+    "decision": "enable"
+  },
+  "n/prefer-global/buffer": {
+    "decision": "enable",
+    "options": [
+      "never"
+    ]
+  },
+  "n/prefer-global/console": {
+    "decision": "enable",
+    "options": [
+      "always"
+    ]
+  },
+  "n/prefer-global/crypto": {
+    "decision": "enable",
+    "options": [
+      "never"
+    ]
+  },
+  "n/prefer-global/process": {
+    "decision": "enable",
+    "options": [
+      "never"
+    ]
+  },
+  "n/prefer-global/text-decoder": {
+    "decision": "enable",
+    "options": [
+      "always"
+    ]
+  },
+  "n/prefer-global/text-encoder": {
+    "decision": "enable",
+    "options": [
+      "always"
+    ]
+  },
+  "n/prefer-global/timers": {
+    "decision": "enable",
+    "options": [
+      "always"
+    ]
+  },
+  "n/prefer-global/url": {
+    "decision": "enable",
+    "options": [
+      "always"
+    ]
+  },
+  "n/prefer-global/url-search-params": {
+    "decision": "enable",
+    "options": [
+      "always"
+    ]
+  },
+  "n/prefer-node-protocol": {
+    "decision": "enable"
+  },
+  "n/prefer-promises/dns": {
+    "decision": "enable"
+  },
+  "n/prefer-promises/fs": {
+    "decision": "enable"
+  },
+  "n/no-process-exit": {
+    "decision": "disable"
+  },
+  "n/no-unpublished-import": {
+    "decision": "disable"
+  },
+  "n/no-unpublished-require": {
+    "decision": "disable"
+  },
+  "n/no-unsupported-features/es-syntax": {
+    "decision": "disable"
+  },
+  "n/no-unsupported-features/node-builtins": {
+    "decision": "disable"
+  },
+  "n/no-unsupported-features/es-builtins": {
+    "decision": "disable"
+  }
+}

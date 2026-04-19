@@ -1,0 +1,33 @@
+{
+  "no-only-tests/no-only-tests": {
+    "decision": "enable",
+    "level": "warn"
+  },
+  "vitest/consistent-test-it": {
+    "decision": "enable",
+    "options": [
+      {
+        "fn": "it",
+        "withinDescribe": "it"
+      }
+    ]
+  },
+  "vitest/prefer-hooks-in-order": {
+    "decision": "enable"
+  },
+  "vitest/prefer-lowercase-title": {
+    "decision": "enable",
+    "options": [
+      {
+        "ignore": [],
+        "allowedPrefixes": [],
+        "ignoreTopLevelDescribe": false,
+        "lowercaseFirstCharacterOnly": true
+      }
+    ]
+  },
+  "vitest/no-commented-out-tests": {
+    "decision": "enable",
+    "level": "warn"
+  }
+}

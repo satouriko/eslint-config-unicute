@@ -1,0 +1,32 @@
+{
+  "perfectionist/sort-exports": {
+    "decision": "enable",
+    "options": [
+      {
+        "groups": [
+          "value-export",
+          "type-export"
+        ],
+        "type": "natural"
+      }
+    ]
+  },
+  "perfectionist/sort-named-exports": {
+    "decision": "enable",
+    "options": [
+      {
+        "order": "asc",
+        "type": "natural"
+      }
+    ]
+  },
+  "perfectionist/sort-named-imports": {
+    "decision": "enable",
+    "options": [
+      {
+        "order": "asc",
+        "type": "natural"
+      }
+    ]
+  }
+}

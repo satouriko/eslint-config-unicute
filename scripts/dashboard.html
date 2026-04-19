@@ -1,0 +1,1905 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>unicute — rule decisions</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #fafafa;
+        --fg: #1f2937;
+        --panel: #ffffff;
+        --line: #e5e7eb;
+        --accent: #6a5acd;
+        --muted: #6b7280;
+        --ok: #16a34a;
+        --warn: #d97706;
+        --danger: #dc2626;
+        --chip: #f3f4f6;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b0d12;
+          --fg: #e5e7eb;
+          --panel: #141820;
+          --line: #272d38;
+          --muted: #8b94a4;
+          --chip: #1d232e;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        font:
+          14px/1.5 system-ui,
+          -apple-system,
+          sans-serif;
+        background: var(--bg);
+        color: var(--fg);
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        padding: 14px 20px;
+        background: var(--panel);
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      header h1 {
+        margin: 0;
+        font-size: 18px;
+      }
+      header .meta {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      header .versions {
+        color: var(--muted);
+        font-size: 12px;
+        position: relative;
+      }
+      header .versions > summary {
+        cursor: pointer;
+        list-style: none;
+        user-select: none;
+      }
+      header .versions > summary::-webkit-details-marker {
+        display: none;
+      }
+      header .versions > summary:hover {
+        color: var(--fg);
+      }
+      header .versions[open] > summary {
+        color: var(--fg);
+      }
+      header .versions[open] > .items {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        margin-top: 6px;
+        padding: 8px 12px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        z-index: 20;
+        min-width: 260px;
+        max-height: 60vh;
+        overflow-y: auto;
+        white-space: nowrap;
+      }
+      header .versions .items > div {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 2px 0;
+      }
+      header .versions .items .v {
+        font-family: ui-monospace, Menlo, monospace;
+        color: var(--fg);
+      }
+      header .versions .items .group-title {
+        margin-top: 6px;
+        padding-top: 4px;
+        border-top: 1px solid var(--line);
+        color: var(--fg);
+        font-weight: 600;
+      }
+      header .versions .items .group-title:first-child {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: 0;
+      }
+      header .versions .items .sub {
+        padding-left: 12px;
+      }
+      header .spacer {
+        flex: 1;
+      }
+      header .stats {
+        display: flex;
+        gap: 10px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      header .stats b {
+        color: var(--fg);
+      }
+      main {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        min-height: calc(100vh - 52px);
+      }
+      aside {
+        position: sticky;
+        top: 52px;
+        align-self: start;
+        height: calc(100vh - 52px);
+        overflow-y: auto;
+        padding: 14px;
+        background: var(--panel);
+        border-right: 1px solid var(--line);
+      }
+      aside .cat {
+        display: flex;
+        justify-content: space-between;
+        padding: 6px 10px;
+        margin: 2px 0;
+        border-radius: 6px;
+        cursor: pointer;
+        color: var(--fg);
+      }
+      aside .cat:hover {
+        background: var(--chip);
+      }
+      aside .cat.active {
+        background: var(--accent);
+        color: #fff;
+      }
+      aside .cat .badge {
+        background: var(--chip);
+        color: var(--fg);
+        font-size: 11px;
+        border-radius: 10px;
+        padding: 0 6px;
+      }
+      aside .cat.active .badge {
+        background: rgba(255, 255, 255, 0.25);
+        color: #fff;
+      }
+      aside .cat-add {
+        margin-top: 4px;
+        width: 100%;
+        padding: 4px 10px;
+        border: 1px dashed var(--line);
+        background: transparent;
+        color: var(--muted);
+        border-radius: 6px;
+        cursor: pointer;
+        font: inherit;
+        font-size: 12px;
+      }
+      aside .cat-add:hover {
+        background: var(--chip);
+        color: var(--fg);
+      }
+      .foreign-badge {
+        font-size: 10px;
+        padding: 1px 5px;
+        border-radius: 3px;
+        background: var(--accent);
+        color: #fff;
+        margin-left: 4px;
+      }
+      .picker-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+      }
+      .picker {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        width: 480px;
+        max-height: 70vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .picker h3 {
+        margin: 0;
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--line);
+        font-size: 14px;
+      }
+      .picker input {
+        margin: 10px 14px 0;
+        padding: 6px 10px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: var(--bg);
+        color: var(--fg);
+        font: inherit;
+      }
+      .picker .hits {
+        overflow-y: auto;
+        padding: 8px 0;
+      }
+      .picker .hit {
+        padding: 6px 14px;
+        font-size: 13px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .picker .hit:hover {
+        background: var(--chip);
+      }
+      .picker .hit .src {
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .picker .empty {
+        padding: 14px;
+        color: var(--muted);
+        font-size: 12px;
+        text-align: center;
+      }
+      .picker .foot {
+        padding: 8px 14px;
+        border-top: 1px solid var(--line);
+        text-align: right;
+      }
+      .picker .foot button {
+        padding: 4px 10px;
+        border: 1px solid var(--line);
+        background: transparent;
+        color: var(--fg);
+        border-radius: 4px;
+        cursor: pointer;
+        font: inherit;
+      }
+      section.main {
+        padding: 16px 20px;
+        min-width: 0;
+      }
+      .alerts {
+        margin-bottom: 14px;
+      }
+      .alert {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-left: 4px solid var(--warn);
+        padding: 8px 12px;
+        border-radius: 4px;
+        margin-bottom: 4px;
+        font-size: 13px;
+      }
+      .alert.danger {
+        border-left-color: var(--danger);
+      }
+      .alert.ok {
+        border-left-color: var(--ok);
+      }
+      .toolbar {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+      .toolbar input[type='search'] {
+        padding: 6px 10px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: var(--panel);
+        color: var(--fg);
+        min-width: 260px;
+        font: inherit;
+      }
+      .toolbar .seg {
+        display: flex;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .toolbar .seg button {
+        border: 0;
+        background: var(--panel);
+        color: var(--fg);
+        padding: 6px 10px;
+        cursor: pointer;
+        font: inherit;
+      }
+      .toolbar .seg button.on {
+        background: var(--accent);
+        color: #fff;
+      }
+      .toolbar select {
+        padding: 6px 8px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: var(--panel);
+        color: var(--fg);
+        font: inherit;
+      }
+      .toolbar .count {
+        margin-left: auto;
+        color: var(--muted);
+        font-size: 12px;
+        font-variant-numeric: tabular-nums;
+      }
+      .toolbar .count b {
+        color: var(--fg);
+      }
+      .toolbar .save {
+        background: var(--accent);
+        color: #fff;
+        border: 0;
+        padding: 6px 14px;
+        border-radius: 6px;
+        cursor: pointer;
+        font: inherit;
+      }
+      .toolbar .save[disabled] {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      .rule {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 12px 14px;
+        margin-bottom: 10px;
+      }
+      .rule.dirty {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 1px var(--accent);
+      }
+      .rule-head {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 6px;
+      }
+      .rule-head a {
+        color: var(--fg);
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .rule-head a:hover {
+        color: var(--accent);
+      }
+      .rule-head .chip {
+        font-size: 11px;
+        padding: 2px 7px;
+        border-radius: 10px;
+        background: var(--chip);
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .rule-head .chip.level-error {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+      .rule-head .chip.level-warn {
+        background: #fef3c7;
+        color: #92400e;
+      }
+      .rule-head .chip.level-off {
+        background: var(--chip);
+        color: var(--muted);
+      }
+      .rule-head .chip.pending {
+        background: #e0e7ff;
+        color: #3730a3;
+      }
+      .rule-head .chip.deprecated {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+      .rule-head .chip.type-aware {
+        background: #dbeafe;
+        color: #1e40af;
+      }
+      .rule-head .chip.drift {
+        background: #fed7aa;
+        color: #9a3412;
+        cursor: help;
+      }
+      .rule-head .chip.managed {
+        background: #dbeafe;
+        color: #1e3a8a;
+      }
+      .rule-head .chip.supersedes,
+      .rule-head .chip.superseded {
+        background: #ede9fe;
+        color: #5b21b6;
+        cursor: help;
+      }
+      @media (prefers-color-scheme: dark) {
+        .rule-head .chip.level-error {
+          background: #3f1d1d;
+          color: #fca5a5;
+        }
+        .rule-head .chip.level-warn {
+          background: #3f2d0a;
+          color: #fcd34d;
+        }
+        .rule-head .chip.pending {
+          background: #1e1b4b;
+          color: #a5b4fc;
+        }
+        .rule-head .chip.deprecated {
+          background: #3f1d1d;
+          color: #fca5a5;
+        }
+        .rule-head .chip.type-aware {
+          background: #1e3a8a;
+          color: #93c5fd;
+        }
+        .rule-head .chip.drift {
+          background: #431407;
+          color: #fdba74;
+        }
+        .rule-head .chip.supersedes,
+        .rule-head .chip.superseded {
+          background: #2e1065;
+          color: #c4b5fd;
+        }
+      }
+      .rule-desc {
+        color: var(--muted);
+        font-size: 13px;
+        margin: 2px 0 8px;
+      }
+      .refs {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin: 6px 0 8px;
+      }
+      .ref {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 11px;
+        padding: 3px 8px;
+        border-radius: 4px;
+        background: var(--chip);
+      }
+      .ref.is-recommended {
+        background: #e0e7ff;
+      }
+      @media (prefers-color-scheme: dark) {
+        .ref.is-recommended {
+          background: #1e1b4b;
+        }
+      }
+      .ref .name {
+        color: var(--muted);
+      }
+      .ref .opt-diff {
+        color: var(--warn);
+        font-weight: 600;
+        cursor: help;
+      }
+      .ref .lvl-error {
+        color: var(--danger);
+      }
+      .ref .lvl-warn {
+        color: var(--warn);
+      }
+      .ref .lvl-off {
+        color: var(--muted);
+      }
+      .ref .lvl-null {
+        color: var(--muted);
+        font-style: italic;
+      }
+      .ref button {
+        border: 0;
+        background: transparent;
+        color: var(--accent);
+        cursor: pointer;
+        font: inherit;
+        font-size: 11px;
+        padding: 0 2px;
+        text-decoration: underline;
+      }
+      .ref .alias {
+        font-size: 10px;
+        color: var(--muted);
+        font-style: italic;
+      }
+      .controls-row {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .controls-row label {
+        font-size: 13px;
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+      .options-row {
+        margin-top: 8px;
+      }
+      .options-row textarea {
+        width: 100%;
+        min-height: 32px;
+        font:
+          12px/1.4 ui-monospace,
+          Menlo,
+          monospace;
+        background: var(--bg);
+        color: var(--fg);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 6px 8px;
+        resize: none;
+        overflow: hidden;
+      }
+      .note-row {
+        margin-top: 6px;
+      }
+      .note-row input {
+        width: 100%;
+        padding: 5px 8px;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        background: var(--bg);
+        color: var(--fg);
+        font: inherit;
+      }
+      .empty {
+        padding: 40px;
+        text-align: center;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>unicute decisions</h1>
+      <span class="meta" id="meta"></span>
+      <details class="versions" id="refs-versions">
+        <summary></summary>
+        <div class="items"></div>
+      </details>
+      <details class="versions" id="packages-versions">
+        <summary></summary>
+        <div class="items"></div>
+      </details>
+      <div class="spacer"></div>
+      <div class="stats" id="stats"></div>
+    </header>
+    <main>
+      <aside id="sidebar"></aside>
+      <section class="main">
+        <div class="alerts" id="alerts"></div>
+        <div class="toolbar">
+          <input type="search" id="search" placeholder="Search rule id / description…" />
+          <div class="seg" id="filter">
+            <button data-f="action" class="on">Needs action</button>
+            <button data-f="decided">unicute decisions</button>
+            <button data-f="all">All</button>
+          </div>
+          <select id="diff-with" title="Filter to rules where unicute disagrees with the selected source">
+            <option value="">Diff with…</option>
+          </select>
+          <label title="Hide rules whose unicute decision is 'ignore'"
+            ><input type="checkbox" id="hide-ignored" /> Hide ignored</label
+          >
+          <select id="deprecated-filter" title="Filter by deprecation">
+            <option value="all">Deprecated: all</option>
+            <option value="hide">Deprecated: hidden</option>
+            <option value="only">Deprecated: only</option>
+          </select>
+          <span class="count" id="count" title="Rules matching the current filter / total in this category"></span>
+          <button class="save" id="save" disabled>Save (0)</button>
+        </div>
+        <div id="rules"></div>
+      </section>
+    </main>
+    <script>
+      const DATA = __DATA__
+
+      const state = {
+        activeCat: DATA.categories[0]?.id ?? null,
+        /** 'action' | 'decided' | 'all' — the decision-status segment. */
+        filter: 'action',
+        /** null | ref-name — when set, scopes the rule list to rules where
+         *  unicute disagrees with that source (composes AND with `filter`). */
+        diffWith: null,
+        /** Hide rules whose saved decision is `ignore`. */
+        hideIgnored: false,
+        /** 'all' | 'hide' | 'only' — deprecated-rule filter. */
+        deprecated: 'all',
+        query: '',
+        /** Map<categoryId, Map<ruleId, decision>> — pending in-memory edits */
+        dirty: new Map(),
+        /** { key: `${catId}::${ruleId}`, refName } | null — one diff panel at a time. */
+        diffOpen: null,
+      }
+
+      /** All "reference sources" the dashboard can compare against: the
+       *  plugin's own `recommended`, then the external configs. We synthesize
+       *  `recommended` into the refs row so it's visually adjacent to the
+       *  others (same apply/diff UX) even though it lives on a different
+       *  field of the rule payload. */
+      const REF_NAMES = ['recommended', ...Object.keys(DATA.refs ?? {})]
+      function rulesRefs(rule) {
+        const out = {}
+        out.recommended =
+          rule.recommended == null
+            ? null
+            : { alias: null, level: rule.recommended, options: rule.recommendedOptions ?? [] }
+        Object.assign(out, rule.refs ?? {})
+        return out
+      }
+
+      /** Current unicute effective state for a rule — what the user sees as
+       *  "this is what ships" after their in-memory edits (decision trumps
+       *  probe, probe trumps recommended). Used by the diff filter and the
+       *  per-chip option-diff marker. */
+      function unicuteState(catId, rule) {
+        const d = effectiveDecision(catId, rule)
+        if (d?.decision === 'enable') return { level: d.level ?? 'error', options: d.options ?? [] }
+        if (d?.decision === 'disable') return { level: 'off', options: [] }
+        // `pending` / `ignore` / no decision → fall through to unicute's
+        // probed state (which is recommended unless a prior decision wrote to disk).
+        return {
+          level: rule.unicuteLevel ?? rule.recommended ?? 'off',
+          options: rule.unicuteOptions ?? rule.recommendedOptions ?? [],
+        }
+      }
+
+      /** Deep canonical stringify — sort object keys and array elements so
+       *  payloads that differ only in order serialize identically. Rule
+       *  options frequently carry order-insensitive data (sets of names,
+       *  objects of switches); raw `JSON.stringify` would false-positive on
+       *  those and the diff panel / `≠opt` marker would flash for no real
+       *  reason. This is used for equality checks only — the user still
+       *  sees their original payload in the textarea / diff table. */
+      function canonicalStringify(value) {
+        if (value === undefined) return undefined
+        if (value === null || typeof value !== 'object') return JSON.stringify(value)
+        if (Array.isArray(value)) {
+          const parts = value.map(canonicalStringify)
+          // Sort by canonical form so `[1,2]` and `[2,1]` collapse.
+          parts.sort()
+          return '[' + parts.join(',') + ']'
+        }
+        const keys = Object.keys(value).sort()
+        return '{' + keys.map((k) => JSON.stringify(k) + ':' + canonicalStringify(value[k])).join(',') + '}'
+      }
+
+      function optionsDiffer(a, b) {
+        return canonicalStringify(a ?? []) !== canonicalStringify(b ?? [])
+      }
+
+      /** Options are meaningful only when the rule is actually on. ESLint's
+       *  `calculateConfigForFile` fills in rule-schema defaults even when
+       *  severity is `off`, so we'd otherwise see phantom option diffs
+       *  between two sources that both say `off`. Treat options as empty
+       *  whenever the level is off. */
+      function effectiveOptions(level, options) {
+        if (level === 'off' || level == null) return []
+        return options ?? []
+      }
+
+      /** Does unicute's effective state disagree with the given source? For
+       *  the diff filter. A null source counts as "no opinion", which is
+       *  always a diff iff unicute has one. */
+      function diffsFrom(catId, rule, refName) {
+        const cur = unicuteState(catId, rule)
+        const src = rulesRefs(rule)[refName]
+        if (!src) return cur.level !== 'off' && cur.level != null
+        if (cur.level !== src.level) return true
+        return optionsDiffer(effectiveOptions(cur.level, cur.options), effectiveOptions(src.level, src.options))
+      }
+
+      /** Rules flagged by drift detection need human attention regardless of
+       *  whether they had a previous decision or whether the plugin
+       *  recommended them. Index them once by `${catId}::${ruleId}` and
+       *  remember the per-rule messages for the card tooltip. */
+      const DRIFT_BY_RULE = new Map()
+      for (const alert of DATA.drift ?? []) {
+        if (!alert.category || !alert.rule) continue
+        const key = `${alert.category}::${alert.rule}`
+        const existing = DRIFT_BY_RULE.get(key) ?? []
+        existing.push(alert)
+        DRIFT_BY_RULE.set(key, existing)
+      }
+      function ruleDrifts(catId, ruleId) {
+        return DRIFT_BY_RULE.get(`${catId}::${ruleId}`) ?? []
+      }
+      function hasDrift(catId, ruleId) {
+        return DRIFT_BY_RULE.has(`${catId}::${ruleId}`)
+      }
+
+      /** For each rule, what's the "displayable" decision (saved + dirty merged). */
+      function effectiveDecision(catId, rule) {
+        const catDirty = state.dirty.get(catId)
+        if (catDirty?.has(rule.id)) return catDirty.get(rule.id)
+        return rule.decision ?? null
+      }
+
+      /** A rule "needs action" when either:
+       *    (a) the plugin's recommended preset didn't cover it (orphan — no
+       *        upstream default, so we have to choose), or
+       *    (b) drift detection flagged it (new upstream rule, recommended
+       *        level changed, newly deprecated, alias lost) — the old
+       *        decision, if any, is now stale and needs re-review.
+       *
+       *  Drift wins over decision state: a drifted rule always shows under
+       *  "Needs action" and never under "unicute decisions", regardless of
+       *  whether there's a saved decision.
+       *
+       *  Classification uses the *saved* decision only — in-progress edits
+       *  (`state.dirty`) don't re-bucket the card, so a rule doesn't jump
+       *  filter mid-edit. The flip happens on Save. */
+      /** A rule is "orphan" when unicute's effective composition has no
+       *  opinion on it at all — i.e. no preset across any category ever
+       *  registered a level, and the user never wrote a rule-diff entry.
+       *  Those are the rules that actually need a decision.
+       *
+       *  Using `unicuteLevel == null` (not `recommended == null`) covers
+       *  the cross-category case: a core rule like `prefer-regex-literals`
+       *  isn't in `@eslint/js.configs.recommended`, so the `javascript`
+       *  category's `recommended` is null — but `eslint-plugin-regexp`'s
+       *  `flat/recommended` does enable it on .js files. unicute's compose
+       *  already decided; not pending. */
+      function needsReview(rule) {
+        return rule.unicuteLevel == null
+      }
+      function isPending(catId, rule) {
+        // Code-managed rules are already decided — in src/configs/ — so
+        // they never count as pending regardless of recommended / drift.
+        if (rule.codeManaged) return false
+        if (hasDrift(catId, rule.id)) return true
+        if (!needsReview(rule)) return false
+        const d = rule.decision
+        return !d || d.decision === 'pending'
+      }
+      function isDecided(catId, rule) {
+        // Code-managed: decision lives in src/configs/.
+        // Drifted: goes to Needs action instead, even if decided.
+        // Any other rule with a non-pending rule-diff entry is a unicute
+        // decision — regardless of whether a plugin preset already
+        // covered the rule. Overriding an in-preset rule (e.g. turning
+        // off one of unicorn/recommended's choices) IS a decision, and
+        // needs to show up in this filter.
+        if (rule.codeManaged) return true
+        if (hasDrift(catId, rule.id)) return false
+        const d = rule.decision
+        return d && d.decision !== 'pending'
+      }
+
+      function renderMeta() {
+        const m = document.getElementById('meta')
+        const gen = new Date(DATA.generatedAt).toLocaleString()
+        m.textContent = `generated ${gen} ·`
+
+        // Collapsible version lists. Two popovers in the header:
+        //   - refs: each reference config can be backed by multiple packages
+        //     (e.g. `standard` = neostandard + @vue/eslint-config-standard,
+        //     `airbnb` = eslint-config-airbnb-extended + @vue/eslint-config-airbnb).
+        //     `DATA.refPackages` is `{ refName: [{ name, version }] }` — group
+        //     by ref so the user can see exactly what's being compared against.
+        //   - packages: every eslint plugin unicute loads, flat.
+        const refsEntries = Object.entries(DATA.refPackages ?? {})
+        const refsDetails = document.getElementById('refs-versions')
+        refsDetails.querySelector('summary').textContent =
+          `${refsEntries.length} ref${refsEntries.length === 1 ? '' : 's'}`
+        refsDetails.querySelector('.items').innerHTML = refsEntries
+          .map(([refName, pkgs]) => {
+            const header = `<div class="group-title"><span>${escapeHtml(refName)}</span></div>`
+            const rows = (pkgs ?? []).map(
+              ({ name, version }) =>
+                `<div class="sub"><span>${escapeHtml(name)}</span><span class="v">${escapeHtml(version ?? 'n/a')}</span></div>`,
+            )
+            return header + rows.join('')
+          })
+          .join('')
+
+        const pkgEntries = Object.entries(DATA.plugins)
+        const pkgDetails = document.getElementById('packages-versions')
+        pkgDetails.querySelector('summary').textContent = `${pkgEntries.length} packages`
+        pkgDetails.querySelector('.items').innerHTML = pkgEntries
+          .map(
+            ([name, version]) =>
+              `<div><span>${escapeHtml(name)}</span><span class="v">${escapeHtml(version ?? 'n/a')}</span></div>`,
+          )
+          .join('')
+
+        // Click-outside to close. Installing once per renderMeta is fine —
+        // renderMeta only runs at page load.
+        document.addEventListener('click', (event) => {
+          for (const id of ['refs-versions', 'packages-versions']) {
+            const d = document.getElementById(id)
+            if (d?.open && !d.contains(event.target)) d.open = false
+          }
+        })
+      }
+
+      function renderStats() {
+        const s = document.getElementById('stats')
+        const totals = { all: 0, pending: 0, decided: 0 }
+        for (const c of DATA.categories) {
+          for (const r of c.rules) {
+            totals.all++
+            if (isPending(c.id, r)) totals.pending++
+            else if (isDecided(c.id, r)) totals.decided++
+          }
+        }
+        s.innerHTML = `<span>pending <b>${totals.pending}</b></span><span>decided <b>${totals.decided}</b></span><span>total <b>${totals.all}</b></span>`
+      }
+
+      function renderSidebar() {
+        const root = document.getElementById('sidebar')
+        root.innerHTML = ''
+        for (const c of DATA.categories) {
+          const pending = c.rules.filter((r) => isPending(c.id, r)).length
+          const el = document.createElement('div')
+          el.className = 'cat' + (c.id === state.activeCat ? ' active' : '')
+          el.innerHTML = `<span>${escapeHtml(c.label)}</span><span class="badge">${pending}/${c.rules.length}</span>`
+          el.addEventListener('click', () => {
+            state.activeCat = c.id
+            renderSidebar()
+            renderRules()
+          })
+          root.appendChild(el)
+        }
+        // Pull an existing rule from any category into the current category's
+        // scope. After selection the rule shows up as a "foreign" card here
+        // and its decision, once saved, writes to this category's JSON.
+        const addBtn = document.createElement('button')
+        addBtn.className = 'cat-add'
+        addBtn.textContent = '+ add rule from another category'
+        addBtn.addEventListener('click', () => openRulePicker(state.activeCat))
+        root.appendChild(addBtn)
+      }
+
+      /**
+       * When the user adds a rule to a category — either by picking from the
+       * full rule universe (sidebar "+") or by cloning a card's decision to
+       * another category ("override in…") — we stage an in-memory entry
+       * until save. A staged-only rule has no persisted decision yet; it
+       * shows up as a pending card so the user can tune it before save.
+       *
+       * Implementation: state.dirty already maps (catId, ruleId) → decision,
+       * and renderRules() picks up pending entries. We just seed a decision
+       * placeholder in state.dirty[targetCat][ruleId] and add a synthetic
+       * "foreign" rule entry to state.extras[targetCat] so the render loop
+       * knows to build a card for it.
+       */
+      function addRuleToCategory(targetCatId, ruleId, initialDecision = null) {
+        // Look the rule up across all categories (native-first) so we have
+        // its meta for rendering.
+        const rule = findRuleAnywhere(ruleId)
+        if (!rule) {
+          alert(`Rule ${ruleId} not found in any category.`)
+          return
+        }
+        const targetCat = DATA.categories.find((c) => c.id === targetCatId)
+        if (!targetCat) return
+
+        // If the rule is already native to the target category (or already
+        // persisted as foreign), just focus the card.
+        if (targetCat.rules.some((r) => r.id === ruleId)) {
+          state.activeCat = targetCatId
+          renderSidebar()
+          renderRules()
+          return
+        }
+
+        // Create a synthetic foreign rule card entry. Probe data is borrowed
+        // from the rule's native category — good enough for decision making;
+        // actual effective level on save comes from this category's scope.
+        const foreign = { ...rule, foreign: true, nativeCategory: rule.nativeCategory ?? rule.__cat, decision: null }
+        targetCat.rules.push(foreign)
+        targetCat.rules.sort((a, b) => a.id.localeCompare(b.id))
+
+        // Seed a dirty entry so the rule is "live" in the save set even if
+        // the user immediately navigates away without editing.
+        if (initialDecision) {
+          const catDirty = state.dirty.get(targetCatId) ?? new Map()
+          catDirty.set(ruleId, initialDecision)
+          state.dirty.set(targetCatId, catDirty)
+        }
+
+        state.activeCat = targetCatId
+        renderSidebar()
+        renderRules()
+        renderStats()
+        renderSaveButton()
+      }
+
+      /** Look up a rule across every category — foreign cards need meta from
+       *  wherever the rule natively lives. */
+      function findRuleAnywhere(ruleId) {
+        for (const c of DATA.categories) {
+          const r = c.rules.find((x) => x.id === ruleId)
+          if (r) return { ...r, __cat: c.id }
+        }
+        return null
+      }
+
+      /** Rule-picker modal for the sidebar "+ add rule" button. A flat
+       *  searchable list of every rule across every category. Selecting a
+       *  rule calls `addRuleToCategory(targetCatId, rule.id)`. */
+      function openRulePicker(targetCatId) {
+        const overlay = document.createElement('div')
+        overlay.className = 'picker-overlay'
+        overlay.addEventListener('click', (e) => {
+          if (e.target === overlay) overlay.remove()
+        })
+
+        const box = document.createElement('div')
+        box.className = 'picker'
+        box.innerHTML =
+          `<h3>Add rule to <b>${escapeHtml(targetCatId)}</b> scope</h3>`
+          + `<input type="search" placeholder="Search rule id / description…" />`
+          + `<div class="hits"></div>`
+          + `<div class="foot"><button type="button">Cancel</button></div>`
+        overlay.appendChild(box)
+
+        const input = box.querySelector('input')
+        const hits = box.querySelector('.hits')
+        const cancel = box.querySelector('.foot button')
+        cancel.addEventListener('click', () => overlay.remove())
+
+        // Flatten universe, skip rules native to or already foreign in the
+        // target category — no point showing rules already present there.
+        const existing = new Set(DATA.categories.find((c) => c.id === targetCatId)?.rules.map((r) => r.id) ?? [])
+        const universe = []
+        for (const c of DATA.categories) {
+          for (const r of c.rules) {
+            if (existing.has(r.id)) continue
+            if (r.foreign) continue // foreign-in-another is still native somewhere else; prefer the native form
+            universe.push({ cat: c.id, rule: r })
+          }
+        }
+
+        const render = (q) => {
+          const needle = q.trim().toLowerCase()
+          const list = (
+            needle
+              ? universe.filter(
+                  ({ rule }) =>
+                    rule.id.toLowerCase().includes(needle) || (rule.description ?? '').toLowerCase().includes(needle),
+                )
+              : universe
+          ).slice(0, 200)
+          hits.innerHTML = ''
+          if (list.length === 0) {
+            const e = document.createElement('div')
+            e.className = 'empty'
+            e.textContent = 'no matches'
+            hits.appendChild(e)
+            return
+          }
+          for (const { cat, rule } of list) {
+            const el = document.createElement('div')
+            el.className = 'hit'
+            el.innerHTML = `<span>${escapeHtml(rule.id)}</span><span class="src">from ${escapeHtml(cat)}</span>`
+            el.addEventListener('click', () => {
+              overlay.remove()
+              addRuleToCategory(targetCatId, rule.id)
+            })
+            hits.appendChild(el)
+          }
+        }
+        input.addEventListener('input', () => render(input.value))
+        render('')
+
+        document.body.appendChild(overlay)
+        input.focus()
+      }
+
+      function renderAlerts() {
+        const root = document.getElementById('alerts')
+        root.innerHTML = ''
+        if (!DATA.hasBaseline) {
+          const el = document.createElement('div')
+          el.className = 'alert ok'
+          el.innerHTML =
+            '<b>First run — no baseline yet.</b> The baseline is a snapshot of upstream state '
+            + '(plugin versions, each rule\u2019s recommended level, ref alias resolutions) that future runs compare '
+            + 'against to detect <i>drift</i>. Review your decisions, click Save — a baseline gets written alongside, '
+            + 'and future `pnpm decide` runs will flag only what actually changed upstream.'
+          root.appendChild(el)
+        }
+        if (!DATA.drift || DATA.drift.length === 0) return
+
+        // Quick primer up top so the first-time reader knows what these
+        // alerts represent — drift is a change-detection signal, not a
+        // general "things to do" list.
+        const primer = document.createElement('div')
+        primer.className = 'alert'
+        primer.innerHTML =
+          '<b>Drift</b> = upstream state changed since the last baseline. '
+          + 'Drifted rules surface in <b>Needs action</b> so old decisions can be re-reviewed. '
+          + 'Once you Save, the baseline re-syncs and the alerts clear.'
+        root.appendChild(primer)
+        // Group by type for brevity.
+        const groups = {}
+        for (const a of DATA.drift) (groups[a.type] ??= []).push(a)
+        for (const [type, arr] of Object.entries(groups)) {
+          const el = document.createElement('div')
+          el.className = 'alert' + (type === 'rule-retired' || type === 'alias-lost' ? ' danger' : '')
+          const summary = document.createElement('div')
+          summary.innerHTML = `<b>${escapeHtml(type)}</b> · ${arr.length} item${arr.length === 1 ? '' : 's'}`
+          el.appendChild(summary)
+          const details = document.createElement('ul')
+          details.style.margin = '4px 0 0'
+          details.style.paddingLeft = '18px'
+          for (const a of arr.slice(0, 40)) {
+            const li = document.createElement('li')
+            li.innerHTML = escapeHtml(a.message)
+            if (a.rule && a.category) {
+              const go = document.createElement('button')
+              go.textContent = ' jump'
+              go.style.marginLeft = '6px'
+              go.style.border = '0'
+              go.style.background = 'transparent'
+              go.style.color = 'var(--accent)'
+              go.style.cursor = 'pointer'
+              go.addEventListener('click', () => {
+                state.activeCat = a.category
+                state.query = a.rule
+                document.getElementById('search').value = a.rule
+                renderSidebar()
+                renderRules()
+              })
+              li.appendChild(go)
+            }
+            details.appendChild(li)
+          }
+          if (arr.length > 40) {
+            const li = document.createElement('li')
+            li.style.fontStyle = 'italic'
+            li.textContent = `…and ${arr.length - 40} more`
+            details.appendChild(li)
+          }
+          el.appendChild(details)
+          root.appendChild(el)
+        }
+      }
+
+      function renderRules() {
+        const root = document.getElementById('rules')
+        root.innerHTML = ''
+        const countEl = document.getElementById('count')
+        const cat = DATA.categories.find((c) => c.id === state.activeCat)
+        if (!cat) {
+          root.innerHTML = '<div class="empty">No category selected.</div>'
+          countEl.innerHTML = ''
+          return
+        }
+        const q = state.query.trim().toLowerCase()
+        const filtered = cat.rules.filter((r) => {
+          // Every filter composes with AND. Combinations like
+          // "Needs action + Diff with antfu + Hide ignored" are first-class.
+          if (state.filter === 'action' && !isPending(cat.id, r)) return false
+          if (state.filter === 'decided' && !isDecided(cat.id, r)) return false
+          if (state.diffWith && !diffsFrom(cat.id, r, state.diffWith)) return false
+          if (state.hideIgnored && r.decision?.decision === 'ignore') return false
+          if (state.deprecated === 'hide' && r.deprecated) return false
+          if (state.deprecated === 'only' && !r.deprecated) return false
+          if (q) {
+            const hay = (r.id + ' ' + (r.description ?? '')).toLowerCase()
+            if (!hay.includes(q)) return false
+          }
+          return true
+        })
+        countEl.innerHTML = `<b>${filtered.length}</b> of ${cat.rules.length} rule${cat.rules.length === 1 ? '' : 's'}`
+        if (filtered.length === 0) {
+          root.innerHTML = '<div class="empty">Nothing matches the current filter.</div>'
+          return
+        }
+        for (const r of filtered) root.appendChild(renderRule(cat, r))
+      }
+
+      function renderRule(cat, rule) {
+        const el = document.createElement('div')
+        el.className = 'rule'
+        const dirty = state.dirty.get(cat.id)?.has(rule.id)
+        if (dirty) el.classList.add('dirty')
+
+        const decision = effectiveDecision(cat.id, rule)
+        const currentLevel =
+          decision?.decision === 'enable'
+            ? (decision.level ?? 'error')
+            : decision?.decision === 'disable'
+              ? 'off'
+              : (rule.unicuteLevel ?? rule.recommended ?? 'off')
+
+        // head
+        const head = document.createElement('div')
+        head.className = 'rule-head'
+        const title = document.createElement('a')
+        title.href = rule.url || '#'
+        title.target = '_blank'
+        title.rel = 'noopener'
+        title.textContent = rule.id
+        head.appendChild(title)
+        if (rule.foreign) {
+          const badge = document.createElement('span')
+          badge.className = 'foreign-badge'
+          badge.textContent = 'foreign'
+          badge.title = `This rule isn't native to the ${cat.id} category — you pulled it in so its decision applies on this scope's files. Native home: ${rule.nativeCategory ?? '?'}.`
+          head.appendChild(badge)
+        }
+        if (rule.codeManaged) {
+          const badge = document.createElement('span')
+          badge.className = 'foreign-badge managed-badge'
+          badge.textContent = 'managed in code'
+          badge.title =
+            `unicute's decision for this rule lives in src/configs/ (options come from a library) instead of rule-diff/*.json. `
+            + `The dashboard renders it read-only; to change the decision edit the source file.`
+          head.appendChild(badge)
+        }
+        head.appendChild(chip(`unicute: ${currentLevel}`, `level-${currentLevel}`))
+        head.appendChild(chip(`recommended: ${rule.recommended ?? 'n/a'}`, 'muted'))
+        if (rule.deprecated) head.appendChild(chip('deprecated', 'deprecated'))
+        if (rule.requiresTypeChecking) head.appendChild(chip('type-aware', 'type-aware'))
+        if (rule.extendsBaseRule && rule.baseRuleName) head.appendChild(chip(`ext: ${rule.baseRuleName}`, ''))
+        if (rule.codeManaged) {
+          // Don't render a "pending" chip for code-managed rules — the
+          // decision is in src/configs/, surface that specifically.
+          head.appendChild(chip('in-code', 'managed'))
+        } else if (decision) {
+          head.appendChild(chip(decision.decision, decision.decision === 'pending' ? 'pending' : ''))
+        }
+        const drifts = ruleDrifts(cat.id, rule.id)
+        if (drifts.length > 0) {
+          const c = chip(`drift: ${drifts.map((d) => d.type).join(', ')}`, 'drift')
+          c.title = drifts.map((d) => d.message).join('\n')
+          head.appendChild(c)
+        }
+        // Semantic-supersedes chips. `SUPERSEDES` is curated to be
+        // one-directional (no cycles), so `supersedes` and `supersededBy`
+        // for the same rule never overlap on a given card.
+        if (rule.supersedes?.length) {
+          const c = chip(`supersedes: ${rule.supersedes.join(', ')}`, 'supersedes')
+          c.title = `Enabling ${rule.id} auto-offs these on save:\n  ${rule.supersedes.join('\n  ')}`
+          head.appendChild(c)
+        }
+        if (rule.supersededBy?.length) {
+          const c = chip(`superseded-by: ${rule.supersededBy.join(', ')}`, 'superseded')
+          c.title =
+            `This rule is typically superseded by:\n  ${rule.supersededBy.join('\n  ')}\n\n`
+            + `If you enable any of those, this one gets auto-off'd in the same scope.`
+          head.appendChild(c)
+        }
+        el.appendChild(head)
+
+        if (rule.description) {
+          const d = document.createElement('div')
+          d.className = 'rule-desc'
+          d.textContent = rule.description
+          el.appendChild(d)
+        }
+
+        // refs row — three states to show:
+        //   info === null      → source has no opinion on this rule ("—")
+        //   info.level === off → source explicitly turned it off  ("off")
+        //   info.level other   → "error" / "warn"
+        // "recommended" is synthesized as the first chip so it sits next to
+        // the external refs; same apply/diff UX. When unicute and a source
+        // agree on level but differ on options, a "≠opt" marker flags it.
+        const refsRow = document.createElement('div')
+        refsRow.className = 'refs'
+        const cur = unicuteState(cat.id, rule)
+        for (const [name, info] of Object.entries(rulesRefs(rule))) {
+          const ref = document.createElement('span')
+          ref.className = 'ref'
+          if (name === 'recommended') ref.classList.add('is-recommended')
+          if (!info) {
+            ref.innerHTML = `<span class="name">${escapeHtml(name)}:</span> <span class="lvl-null">—</span>`
+          } else {
+            const lvl = info.level ?? 'off'
+            ref.innerHTML = `<span class="name">${escapeHtml(name)}:</span> <span class="lvl-${lvl}">${lvl}</span>`
+            if (info.alias) {
+              const a = document.createElement('span')
+              a.className = 'alias'
+              a.textContent = `via ${info.alias}`
+              ref.appendChild(a)
+            }
+            // Option-diff marker: same severity, different options payload.
+            // `off` is skipped: ESLint materializes schema defaults even
+            // for off rules, so their options are noise, not intent.
+            const curOpts = effectiveOptions(cur.level, cur.options)
+            const refOpts = effectiveOptions(lvl, info.options)
+            if (lvl !== 'off' && lvl === cur.level && optionsDiffer(refOpts, curOpts)) {
+              const m = document.createElement('span')
+              m.className = 'opt-diff'
+              m.textContent = '≠opt'
+              m.title =
+                `Same level (${lvl}) but the options differ.\n\n`
+                + `unicute:\n  ${JSON.stringify(curOpts)}\n${escapeHtml(name)}:\n  ${JSON.stringify(refOpts)}`
+              ref.appendChild(m)
+            }
+            if (!rule.codeManaged) {
+              // `apply` writes to state.dirty → rule-diff/*.json on save.
+              // Code-managed rules' decisions live in src/configs/, so
+              // applying here would be a lie — skip the button entirely.
+              // `diff` is passive, always available.
+              const apply = document.createElement('button')
+              apply.textContent = 'apply'
+              apply.addEventListener('click', () => applyRef(cat.id, rule, info))
+              ref.appendChild(apply)
+            }
+
+            const diff = document.createElement('button')
+            diff.textContent = 'diff'
+            diff.addEventListener('click', () => toggleDiff(cat.id, rule.id, name))
+            ref.appendChild(diff)
+          }
+          refsRow.appendChild(ref)
+        }
+        if (refsRow.children.length > 0) el.appendChild(refsRow)
+
+        // diff panel — inline below the refs row.
+        //   - "Diff with…" filter active: auto-render the panel against the
+        //     filter's ref on every visible card (so the user doesn't have
+        //     to click through one by one — all cards in the filter view
+        //     already have a meaningful diff by construction).
+        //   - Otherwise: render only the single panel the user toggled via
+        //     a chip's "diff" button (tracked in state.diffOpen).
+        //   - If the toggled panel targets the same ref as diffWith, skip it
+        //     to avoid rendering the panel twice on the same card.
+        const diffKey = `${cat.id}::${rule.id}`
+        if (state.diffWith) {
+          const auto = renderDiffPanel(cat, rule, state.diffWith, { closable: false })
+          if (auto) el.appendChild(auto)
+        }
+        if (state.diffOpen?.key === diffKey && state.diffOpen.refName !== state.diffWith) {
+          const panel = renderDiffPanel(cat, rule, state.diffOpen.refName)
+          if (panel) el.appendChild(panel)
+        }
+
+        // controls: decision state.
+        //   - Editable rules: the four radios (pending/enable/disable/ignore)
+        //     + a level selector when `enable` is picked.
+        //   - Code-managed rules: no radios — the decision is already made
+        //     in src/configs/*.js. Just show a labelled pill reflecting the
+        //     effective state, so there's no phantom "pending" here.
+        const readOnly = !!rule.codeManaged
+        const controls = document.createElement('div')
+        controls.className = 'controls-row'
+
+        if (readOnly) {
+          const lvl = rule.unicuteLevel
+          const effective = lvl === 'off' ? 'disable' : lvl ? 'enable' : 'pending'
+          // Match the editable row's typography — 13px label-size text,
+          // key in muted gray, value in fg bold, trailing explanatory note
+          // in muted 12px. Keeps both states visually comparable instead
+          // of dropping chips into the radio slot.
+          const row = document.createElement('div')
+          row.style.cssText = 'display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:13px'
+          const label = (k, v) => {
+            const el = document.createElement('span')
+            el.innerHTML = `<span style="color:var(--muted)">${k}</span>\u2002<b>${escapeHtml(v)}</b>`
+            return el
+          }
+          row.appendChild(label('decision', effective))
+          if (effective === 'enable') row.appendChild(label('level', String(lvl)))
+          const note = document.createElement('span')
+          note.style.cssText = 'font-size:12px;color:var(--muted)'
+          note.textContent = 'decision is set in src/configs/ — dashboard is read-only'
+          row.appendChild(note)
+          controls.appendChild(row)
+        } else {
+          const choices = ['pending', 'enable', 'disable', 'ignore']
+          for (const choice of choices) {
+            const lab = document.createElement('label')
+            const input = document.createElement('input')
+            input.type = 'radio'
+            input.name = `dec-${cat.id}-${rule.id}`
+            input.value = choice
+            input.checked = (decision?.decision ?? 'pending') === choice
+            input.addEventListener('change', () => updateDecision(cat.id, rule, { decision: choice }))
+            lab.appendChild(input)
+            lab.append(' ' + choice)
+            controls.appendChild(lab)
+          }
+          if ((decision?.decision ?? 'pending') === 'enable') {
+            const sel = document.createElement('select')
+            for (const l of ['error', 'warn']) {
+              const o = document.createElement('option')
+              o.value = l
+              o.textContent = l
+              if ((decision?.level ?? 'error') === l) o.selected = true
+              sel.appendChild(o)
+            }
+            sel.addEventListener('change', () => updateDecision(cat.id, rule, { level: sel.value }))
+            controls.appendChild(sel)
+          }
+        }
+        el.appendChild(controls)
+
+        // options — always visible when the rule accepts options or already
+        // has some applied. Editing auto-flips decision to "enable" so the
+        // options stick.
+        const hasSchema = Array.isArray(rule.schema) && rule.schema.length > 0
+        const currentOptions = pickOptions(decision, rule)
+        const showOptions = hasSchema || currentOptions.length > 0 || (decision?.decision ?? 'pending') === 'enable'
+        if (showOptions) {
+          const wrap = document.createElement('div')
+          wrap.className = 'options-row'
+
+          // Where the shown options come from — makes it clear whether you're
+          // looking at the plugin's default, unicute's current override, or
+          // your own in-progress edit.
+          const origin = optionsOriginLabel(decision, rule)
+          if (origin) {
+            const o = document.createElement('div')
+            o.style.cssText = 'font-size:11px;color:var(--muted);margin-bottom:2px'
+            o.textContent = origin
+            wrap.appendChild(o)
+          }
+
+          const ta = document.createElement('textarea')
+          ta.spellcheck = false
+          // Code-managed rules: show unicuteOptions (the live config as
+          // ESLint sees it — which for no-restricted-globals is the 58
+          // confusing-browser-globals names). Don't show pickOptions for
+          // them — that function might return recommendedOptions defaults
+          // which aren't the real shipping value.
+          ta.value = readOnly
+            ? JSON.stringify(rule.unicuteOptions ?? [], null, 2)
+            : JSON.stringify(currentOptions, null, 2)
+          ta.placeholder = 'options (JSON array)'
+          ta.readOnly = readOnly
+          if (!readOnly) {
+            ta.addEventListener('change', () => {
+              try {
+                const parsed = JSON.parse(ta.value || '[]')
+                if (!Array.isArray(parsed)) throw new Error('must be an array')
+                const patch = { options: parsed }
+                // Flip to enable automatically if the user is editing options
+                // from a non-enable state — that's what they almost certainly
+                // want, otherwise their edit is a no-op.
+                if ((decision?.decision ?? 'pending') !== 'enable') {
+                  patch.decision = 'enable'
+                  patch.level = rule.recommended === 'warn' ? 'warn' : 'error'
+                }
+                updateDecision(cat.id, rule, patch)
+                ta.style.borderColor = ''
+              } catch (e) {
+                ta.style.borderColor = 'var(--danger)'
+                ta.title = e.message
+              }
+            })
+            ta.addEventListener('input', () => autosize(ta))
+          }
+          wrap.appendChild(ta)
+          // Initial sizing: done after the element is in the DOM so
+          // `scrollHeight` reflects actual wrapped height.
+          queueMicrotask(() => autosize(ta))
+
+          // Option schema hint — peek at the top-level keys so the user
+          // knows what's available without leaving the page. Links to the
+          // rule docs still available via the rule title above.
+          if (hasSchema) {
+            const hint = renderSchemaHint(rule.schema)
+            if (hint) wrap.appendChild(hint)
+          }
+          el.appendChild(wrap)
+        }
+
+        // note + "also override in" are editing affordances — skip for
+        // read-only rules to keep the card clean.
+        if (readOnly) return el
+
+        // note
+        const note = document.createElement('div')
+        note.className = 'note-row'
+        const input = document.createElement('input')
+        input.type = 'text'
+        input.placeholder = 'note (stored on disk)'
+        input.value = decision?.note ?? ''
+        input.addEventListener('change', () => updateDecision(cat.id, rule, { note: input.value }))
+        note.appendChild(input)
+        el.appendChild(note)
+
+        // "Also override in…" — clone this rule's current decision into a
+        // different category's scope. Useful for e.g. applying a core-rule
+        // decision only on .jsx/.tsx files (via the `react` category) or
+        // only on .vue files. Each category has its own `files` glob; the
+        // rule decision lands under that category's override block when
+        // saved, so the scope is determined by the target category.
+        const scopeRow = document.createElement('div')
+        scopeRow.style.cssText =
+          'margin-top:6px;display:flex;gap:6px;align-items:center;font-size:12px;color:var(--muted)'
+        scopeRow.innerHTML = '<span>Also override in:</span>'
+        const scopeSel = document.createElement('select')
+        scopeSel.innerHTML = '<option value="">— pick category —</option>'
+        for (const c of DATA.categories) {
+          if (c.id === cat.id) continue
+          // Already in that category? Label it so user knows.
+          const already = c.rules.some((r) => r.id === rule.id)
+          const o = document.createElement('option')
+          o.value = c.id
+          o.textContent = already ? `${c.id} (already present)` : c.id
+          if (already) o.disabled = true
+          scopeSel.appendChild(o)
+        }
+        scopeSel.addEventListener('change', () => {
+          const target = scopeSel.value
+          if (!target) return
+          // Clone the current effective decision. For a non-decided source
+          // rule, seed a "pending" placeholder so the card shows up.
+          const clone = decision ? JSON.parse(JSON.stringify(decision)) : { decision: 'pending' }
+          addRuleToCategory(target, rule.id, clone)
+          scopeSel.value = ''
+        })
+        scopeRow.appendChild(scopeSel)
+        if (rule.foreign) {
+          // Foreign rule card: show where it came from + a remove button.
+          const native = document.createElement('span')
+          native.style.cssText = 'margin-left:auto;color:var(--muted);font-size:11px'
+          native.textContent = `from ${rule.nativeCategory ?? '?'}`
+          scopeRow.appendChild(native)
+          const rm = document.createElement('button')
+          rm.textContent = 'remove from this category'
+          rm.style.cssText =
+            'border:0;background:transparent;color:var(--danger);cursor:pointer;font:inherit;font-size:11px'
+          rm.addEventListener('click', () => removeForeignRule(cat.id, rule.id))
+          scopeRow.appendChild(rm)
+        }
+        el.appendChild(scopeRow)
+
+        return el
+      }
+
+      /** Undo a foreign-add. Drops the rule from the target category's
+       *  in-memory list and clears any dirty entry. If the rule was already
+       *  persisted in the category's JSON, queue a save that removes it. */
+      function removeForeignRule(catId, ruleId) {
+        const cat = DATA.categories.find((c) => c.id === catId)
+        if (!cat) return
+        cat.rules = cat.rules.filter((r) => r.id !== ruleId)
+        const catDirty = state.dirty.get(catId) ?? new Map()
+        // Mark as pending-remove — save() deletes from onDisk when decision
+        // is pending / absent. Leave any other dirty entries alone.
+        catDirty.set(ruleId, { decision: 'pending' })
+        state.dirty.set(catId, catDirty)
+        renderSidebar()
+        renderRules()
+        renderStats()
+        renderSaveButton()
+      }
+
+      function chip(text, cls) {
+        const c = document.createElement('span')
+        c.className = 'chip' + (cls ? ' ' + cls : '')
+        c.textContent = text
+        return c
+      }
+
+      function updateDecision(catId, rule, patch) {
+        const catDirty = state.dirty.get(catId) ?? new Map()
+        const previous = catDirty.get(rule.id) ?? rule.decision ?? { decision: 'pending' }
+        const next = { ...previous, ...patch }
+        // Strip empty fields to keep JSON tidy on disk.
+        if (next.decision !== 'enable') {
+          delete next.level
+          delete next.options
+        }
+        if (next.note === '') delete next.note
+        catDirty.set(rule.id, next)
+        state.dirty.set(catId, catDirty)
+        renderRules()
+        renderSidebar()
+        renderStats()
+        renderSaveButton()
+      }
+
+      function applyRef(catId, rule, info) {
+        const lvl = info.level ?? 'off'
+        if (lvl === 'off') {
+          updateDecision(catId, rule, { decision: 'disable', level: undefined, options: undefined })
+        } else {
+          updateDecision(catId, rule, {
+            decision: 'enable',
+            level: lvl === 'warn' ? 'warn' : 'error',
+            options: info.options ?? [],
+          })
+        }
+      }
+
+      function renderSaveButton() {
+        const btn = document.getElementById('save')
+        const n = [...state.dirty.values()].reduce((s, m) => s + m.size, 0)
+        btn.textContent = `Save (${n})`
+        btn.disabled = n === 0
+      }
+
+      document.getElementById('save').addEventListener('click', save)
+      document.getElementById('search').addEventListener('input', (event) => {
+        state.query = event.target.value
+        renderRules()
+      })
+      // Populate "Diff with…" with recommended + all external refs.
+      const diffSel = document.getElementById('diff-with')
+      for (const name of REF_NAMES) {
+        const o = document.createElement('option')
+        o.value = name
+        o.textContent = name
+        diffSel.appendChild(o)
+      }
+      diffSel.addEventListener('change', () => {
+        state.diffWith = diffSel.value || null
+        renderRules()
+      })
+      document.getElementById('hide-ignored').addEventListener('change', (event) => {
+        state.hideIgnored = event.target.checked
+        renderRules()
+      })
+      document.getElementById('deprecated-filter').addEventListener('change', (event) => {
+        state.deprecated = event.target.value
+        renderRules()
+      })
+      for (const btn of document.querySelectorAll('#filter button')) {
+        btn.addEventListener('click', () => {
+          state.filter = btn.dataset.f
+          for (const b of document.querySelectorAll('#filter button')) b.classList.toggle('on', b === btn)
+          renderRules()
+        })
+      }
+
+      async function save() {
+        const btn = document.getElementById('save')
+        btn.disabled = true
+        btn.textContent = 'Saving…'
+        try {
+          for (const [catId, edits] of state.dirty) {
+            // Merge edits into the existing on-disk JSON, which we rebuild
+            // from the rule list. Anything not touched stays as it was.
+            const cat = DATA.categories.find((c) => c.id === catId)
+            const onDisk = {}
+            for (const r of cat.rules) {
+              if (r.decision && r.decision.decision !== 'pending') onDisk[r.id] = strip(r.decision)
+            }
+            for (const [ruleId, entry] of edits) {
+              if (!entry || entry.decision === 'pending') delete onDisk[ruleId]
+              else onDisk[ruleId] = strip(entry)
+            }
+            const res = await fetch(`/rule-diff/${catId}.json`, {
+              method: 'PUT',
+              headers: { 'content-type': 'application/json' },
+              body: JSON.stringify(onDisk, null, 2),
+            })
+            if (!res.ok) throw new Error(await res.text())
+            // Fold dirty edits back into in-memory rule.decision so next
+            // render treats them as saved.
+            for (const r of cat.rules) {
+              const e = edits.get(r.id)
+              if (e !== undefined) r.decision = e?.decision === 'pending' ? null : e
+            }
+          }
+          // Also refresh baseline once everything is saved.
+          const baseline = await buildCurrentBaseline()
+          const bres = await fetch('/rule-diff/.baseline.json', {
+            method: 'PUT',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(baseline, null, 2),
+          })
+          if (!bres.ok) throw new Error(await bres.text())
+
+          state.dirty.clear()
+          renderSidebar()
+          renderRules()
+          renderStats()
+          renderSaveButton()
+          flash('Saved ✓')
+        } catch (e) {
+          alert('Save failed: ' + e.message)
+          renderSaveButton()
+        }
+      }
+
+      async function buildCurrentBaseline() {
+        // Re-derive baseline from the data we already have so the user
+        // doesn't need to restart the dashboard to refresh drift.
+        const rules = {}
+        for (const c of DATA.categories) {
+          rules[c.id] = {}
+          for (const r of c.rules) rules[c.id][r.id] = { deprecated: r.deprecated, recommended: r.recommended }
+        }
+        const refs = {}
+        for (const c of DATA.categories) {
+          for (const r of c.rules) {
+            for (const [refName, info] of Object.entries(r.refs ?? {})) {
+              refs[refName] ??= { resolvedAliases: {}, version: DATA.refs[refName] }
+              if (info?.alias) refs[refName].resolvedAliases[r.id] = info.alias
+            }
+          }
+        }
+        const plugins = {}
+        for (const [p, v] of Object.entries(DATA.plugins)) plugins[p] = { version: v }
+        return { generatedAt: new Date().toISOString(), plugins, refs, rules }
+      }
+
+      function strip(d) {
+        const out = { decision: d.decision }
+        if (d.decision === 'enable') {
+          if (d.level && d.level !== 'error') out.level = d.level
+          if (d.options && d.options.length) out.options = d.options
+        }
+        if (d.note) out.note = d.note
+        return out
+      }
+
+      function flash(msg) {
+        const el = document.createElement('div')
+        el.textContent = msg
+        el.style.cssText = `position:fixed;bottom:20px;right:20px;background:var(--ok);color:#fff;padding:8px 14px;border-radius:6px;z-index:100;font-size:13px`
+        document.body.appendChild(el)
+        setTimeout(() => el.remove(), 1500)
+      }
+
+      /** Grow a textarea to fit its content. Called on input and after
+       *  initial render; caps at a reasonable ceiling so huge pasted configs
+       *  don't crowd the whole page. */
+      function autosize(ta) {
+        ta.style.height = 'auto'
+        const MAX = 600
+        ta.style.height = Math.min(ta.scrollHeight + 2, MAX) + 'px'
+        ta.style.overflowY = ta.scrollHeight > MAX ? 'auto' : 'hidden'
+      }
+
+      function toggleDiff(catId, ruleId, refName) {
+        const key = `${catId}::${ruleId}`
+        if (state.diffOpen?.key === key && state.diffOpen?.refName === refName) {
+          state.diffOpen = null
+        } else {
+          state.diffOpen = { key, refName }
+        }
+        renderRules()
+      }
+
+      /** Render a compact diff between what unicute currently does with the
+       *  rule (decision if any, else plugin-recommended) and what the ref
+       *  does. Covers level differences + per-path option differences. */
+      function renderDiffPanel(cat, rule, refName, { closable = true } = {}) {
+        // `rulesRefs` returns the synthetic `recommended` alongside the
+        // external refs; `info === null` is a legit state meaning "the
+        // source doesn't cover this rule" — still worth rendering as a diff
+        // ("unicute says X, source has no opinion"), so we don't early-exit.
+        const ref = rulesRefs(rule)[refName] ?? { absent: true, level: null, options: [] }
+        const cur = unicuteState(cat.id, rule)
+        const unicuteLvl = cur.level
+        const refLvl = ref.absent ? null : (ref.level ?? 'off')
+        // Drop options on the off side so the diff table doesn't list phantom
+        // option rows that come from ESLint schema defaults on off rules.
+        const unicuteOpts = effectiveOptions(unicuteLvl, cur.options)
+        const refOpts = effectiveOptions(refLvl, ref.options ?? [])
+
+        const wrap = document.createElement('div')
+        wrap.style.cssText =
+          'margin-top:6px;padding:8px 10px;background:var(--bg);border:1px dashed var(--line);border-radius:6px;font-size:12px'
+        const head = document.createElement('div')
+        head.style.cssText = 'display:flex;justify-content:space-between;margin-bottom:6px'
+        head.innerHTML =
+          `<b>unicute vs ${escapeHtml(refName)}</b>`
+          + (ref.absent ? ` <span style="color:var(--muted)">(source has no opinion on this rule)</span>` : '')
+          + (ref.alias ? ` <span style="color:var(--muted)">via ${escapeHtml(ref.alias)}</span>` : '')
+        if (closable) {
+          // Only show the close button when the panel was opened on demand
+          // (via a ref chip's "diff" button). Auto-rendered panels from the
+          // "Diff with" filter would just re-open on next render, so a ×
+          // there would feel broken.
+          const close = document.createElement('button')
+          close.textContent = '×'
+          close.style.cssText = 'border:0;background:transparent;cursor:pointer;color:var(--muted);font-size:14px'
+          close.addEventListener('click', () => toggleDiff(cat.id, rule.id, refName))
+          head.appendChild(close)
+        }
+        wrap.appendChild(head)
+
+        const rows = []
+        if (unicuteLvl !== refLvl) rows.push({ left: unicuteLvl, path: 'level', right: refLvl })
+        const optDiffs = jsonDiff(unicuteOpts, refOpts, 'options')
+        rows.push(...optDiffs)
+
+        if (rows.length === 0) {
+          const same = document.createElement('div')
+          same.style.cssText = 'color:var(--ok)'
+          same.textContent = '✓ identical (same level, same options)'
+          wrap.appendChild(same)
+          return wrap
+        }
+
+        const table = document.createElement('table')
+        table.style.cssText =
+          'width:100%;border-collapse:collapse;font-family:ui-monospace,Menlo,monospace;font-size:12px'
+        const thead = document.createElement('tr')
+        thead.innerHTML =
+          `<th style="text-align:left;color:var(--muted);font-weight:normal;padding-right:8px">path</th>`
+          + `<th style="text-align:left;color:var(--muted);font-weight:normal;padding-right:8px">unicute</th>`
+          + `<th style="text-align:left;color:var(--muted);font-weight:normal">${escapeHtml(refName)}</th>`
+        table.appendChild(thead)
+        for (const r of rows) {
+          const tr = document.createElement('tr')
+          tr.innerHTML =
+            `<td style="padding:2px 8px 2px 0;vertical-align:top">${escapeHtml(r.path)}</td>`
+            + `<td style="padding:2px 8px 2px 0;vertical-align:top;color:var(--danger)">${escapeHtml(diffCell(r.left))}</td>`
+            + `<td style="padding:2px 0;vertical-align:top;color:var(--ok)">${escapeHtml(diffCell(r.right))}</td>`
+          table.appendChild(tr)
+        }
+        wrap.appendChild(table)
+        return wrap
+      }
+
+      function diffCell(value) {
+        // `undefined` → missing key in structural diff; `null` → absent source
+        // or level with no value. Render both as "—" for readability; actual
+        // JSON `null` vs missing path distinction rarely matters in configs.
+        if (value === undefined || value === null) return '—'
+        return JSON.stringify(value)
+      }
+
+      /** Structural JSON diff. Emits one `{ path, left, right }` per leaf
+       *  that differs, where `undefined` on either side means "missing".
+       *  Short-circuits when both sides are canonically equal (key order
+       *  and array element order normalized) so free-order payloads don't
+       *  produce spurious rows.
+       *
+       *  Arrays are diffed as multisets rather than index-wise — rule option
+       *  arrays like `no-restricted-globals`'s 60-entry list are free-order
+       *  bags, not ordered sequences. Index-wise walking would produce a
+       *  wall of "[0] differs, [1] differs, …" rows whenever the two sides
+       *  list the same items in a different order. Multiset diff emits only
+       *  the actual set-difference: elements present on one side but not
+       *  the other. */
+      function jsonDiff(a, b, path = '', out = []) {
+        if (canonicalStringify(a) === canonicalStringify(b)) return out
+        if (a === undefined || b === undefined) {
+          out.push({ left: a, path, right: b })
+          return out
+        }
+        if (typeof a !== typeof b || Array.isArray(a) !== Array.isArray(b) || a === null || b === null) {
+          out.push({ left: a, path, right: b })
+          return out
+        }
+        if (typeof a !== 'object') {
+          out.push({ left: a, path, right: b })
+          return out
+        }
+        if (Array.isArray(a)) {
+          // Identity-field heuristic: ESLint option arrays often carry
+          // objects with a natural key field (`no-restricted-globals`
+          // → `{name, message}`, `no-restricted-syntax` → `{selector,
+          // message}`, naming-convention → `{selector, format, …}`).
+          // When every element on both sides has a common identity field,
+          // pair entries by that field and diff the payloads — so
+          // "same name, different message" shows as ONE row with the
+          // message sub-diff, not as two unrelated add/remove rows.
+          const identity = (v) => {
+            if (!v || typeof v !== 'object' || Array.isArray(v)) return null
+            for (const k of ['name', 'selector', 'id', 'key']) {
+              if (typeof v[k] === 'string') return `${k}:${v[k]}`
+            }
+            return null
+          }
+          const aKeys = a.map(identity)
+          const bKeys = b.map(identity)
+          if (a.length && b.length && aKeys.every((k) => k !== null) && bKeys.every((k) => k !== null)) {
+            const aByKey = new Map()
+            const bByKey = new Map()
+            for (let i = 0; i < a.length; i++) aByKey.set(aKeys[i], a[i])
+            for (let i = 0; i < b.length; i++) bByKey.set(bKeys[i], b[i])
+            const allKeys = new Set([...aByKey.keys(), ...bByKey.keys()])
+            for (const k of allKeys) jsonDiff(aByKey.get(k), bByKey.get(k), `${path}[${k}]`, out)
+            return out
+          }
+          // Fallback: multiset diff by canonical form. Free-order bags
+          // (plain strings, keyless objects) collapse cleanly — only
+          // entries present on exactly one side show up.
+          const key = (v) => canonicalStringify(v)
+          const countsA = new Map()
+          const countsB = new Map()
+          for (const v of a) countsA.set(key(v), (countsA.get(key(v)) ?? 0) + 1)
+          for (const v of b) countsB.set(key(v), (countsB.get(key(v)) ?? 0) + 1)
+          const seen = new Set()
+          for (const v of a) {
+            const k = key(v)
+            if (seen.has(k)) continue
+            seen.add(k)
+            const extra = (countsA.get(k) ?? 0) - (countsB.get(k) ?? 0)
+            for (let i = 0; i < extra; i++) out.push({ left: v, path: `${path}[]`, right: undefined })
+          }
+          for (const v of b) {
+            const k = key(v)
+            if (seen.has(k)) continue
+            seen.add(k)
+            const extra = (countsB.get(k) ?? 0) - (countsA.get(k) ?? 0)
+            for (let i = 0; i < extra; i++) out.push({ left: undefined, path: `${path}[]`, right: v })
+          }
+          return out
+        }
+        const keys = new Set([...Object.keys(a), ...Object.keys(b)])
+        for (const k of keys) jsonDiff(a[k], b[k], path ? `${path}.${k}` : k, out)
+        return out
+      }
+
+      /** Pick whichever options we should show in the textarea.
+       *  Edited decision > saved decision > current unicute effective
+       *  > plugin recommendedOptions.
+       *  Skip options coming from an off side — ESLint materializes rule
+       *  schema defaults even for off rules, and feeding those phantom
+       *  values into the editor would tempt the user to treat them as
+       *  real intent. */
+      function pickOptions(decision, rule) {
+        if (decision?.options && Array.isArray(decision.options)) return decision.options
+        if (rule.unicuteLevel && rule.unicuteLevel !== 'off' && rule.unicuteOptions?.length > 0) {
+          return rule.unicuteOptions
+        }
+        if (rule.recommended && rule.recommended !== 'off' && rule.recommendedOptions?.length > 0) {
+          return rule.recommendedOptions
+        }
+        return []
+      }
+
+      function optionsOriginLabel(decision, rule) {
+        if (decision?.decision === 'enable' && decision?.options) return 'options (unicute decision)'
+        const recSame = JSON.stringify(rule.unicuteOptions ?? []) === JSON.stringify(rule.recommendedOptions ?? [])
+        if (rule.unicuteOptions && rule.unicuteOptions.length > 0) {
+          return recSame ? 'options (plugin recommended)' : 'options (current unicute override)'
+        }
+        if (rule.recommendedOptions && rule.recommendedOptions.length > 0) return 'options (plugin recommended)'
+        return 'options'
+      }
+
+      /** Show the top-level schema keys as a one-line hint. Each schema
+       *  entry is an object with `properties` or `oneOf`/`anyOf`; we dig one
+       *  level down and list the keys — enough to know what's accepted
+       *  without leaving the page. Full schema lives in the docs. */
+      function renderSchemaHint(schema) {
+        const keys = new Set()
+        const walk = (node) => {
+          if (!node || typeof node !== 'object') return
+          if (node.properties) for (const k of Object.keys(node.properties)) keys.add(k)
+          for (const group of ['oneOf', 'anyOf', 'allOf']) if (Array.isArray(node[group])) node[group].forEach(walk)
+        }
+        for (const entry of schema) walk(entry)
+        if (keys.size === 0) return null
+        const hint = document.createElement('div')
+        hint.style.cssText = 'font-size:11px;color:var(--muted);margin-top:4px;font-family:ui-monospace,Menlo,monospace'
+        hint.textContent = `keys: ${[...keys].slice(0, 18).join(', ')}${keys.size > 18 ? '…' : ''}`
+        return hint
+      }
+
+      function escapeHtml(s) {
+        return String(s).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
+      }
+
+      renderMeta()
+      renderStats()
+      renderSidebar()
+      renderAlerts()
+      renderRules()
+    </script>
+  </body>
+</html>

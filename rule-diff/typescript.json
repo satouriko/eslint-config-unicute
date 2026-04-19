@@ -1,0 +1,469 @@
+{
+  "@typescript-eslint/adjacent-overload-signatures": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/array-type": {
+    "decision": "enable",
+    "options": [
+      {
+        "default": "array-simple",
+        "readonly": "array-simple"
+      }
+    ]
+  },
+  "@typescript-eslint/ban-tslint-comment": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/class-literal-property-style": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/class-methods-use-this": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/consistent-generic-constructors": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/consistent-indexed-object-style": {
+    "decision": "enable"
+  },
+  "@typescript-eslint/consistent-return": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/consistent-type-assertions": {
+    "decision": "enable",
+    "options": [
+      {
+        "assertionStyle": "as",
+        "objectLiteralTypeAssertions": "allow-as-parameter"
+      }
+    ]
+  },
+  "@typescript-eslint/consistent-type-definitions": {
+    "decision": "enable",
+    "options": [
+      "interface"
+    ]
+  },
+  "@typescript-eslint/consistent-type-exports": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/consistent-type-imports": {
+    "decision": "enable",
+    "options": [
+      {
+        "disallowTypeAnnotations": false,
+        "fixStyle": "inline-type-imports"
+      }
+    ]
+  },
+  "@typescript-eslint/default-param-last": {
+    "decision": "enable"
+  },
+  "@typescript-eslint/dot-notation": {
+    "decision": "enable",
+    "options": [
+      {
+        "allowIndexSignaturePropertyAccess": false,
+        "allowKeywords": true,
+        "allowPattern": "",
+        "allowPrivateClassPropertyAccess": false,
+        "allowProtectedClassPropertyAccess": false
+      }
+    ]
+  },
+  "@typescript-eslint/explicit-function-return-type": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/explicit-member-accessibility": {
+    "decision": "enable",
+    "options": [
+      {
+        "accessibility": "no-public"
+      }
+    ]
+  },
+  "@typescript-eslint/explicit-module-boundary-types": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/init-declarations": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/max-params": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/member-ordering": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/method-signature-style": {
+    "decision": "enable",
+    "options": [
+      "property"
+    ]
+  },
+  "@typescript-eslint/naming-convention": {
+    "decision": "enable",
+    "level": "warn",
+    "options": [
+      {
+        "selector": "variable",
+        "format": [
+          "camelCase",
+          "PascalCase",
+          "UPPER_CASE"
+        ]
+      },
+      {
+        "selector": "function",
+        "format": [
+          "camelCase",
+          "PascalCase"
+        ]
+      },
+      {
+        "selector": [
+          "class",
+          "typeLike"
+        ],
+        "format": [
+          "PascalCase"
+        ]
+      },
+      {
+        "selector": [
+          "classMethod",
+          "classProperty"
+        ],
+        "leadingUnderscore": "forbid",
+        "trailingUnderscore": "forbid",
+        "format": [
+          "camelCase"
+        ]
+      }
+    ]
+  },
+  "@typescript-eslint/no-confusing-non-null-assertion": {
+    "decision": "enable"
+  },
+  "@typescript-eslint/no-confusing-void-expression": {
+    "decision": "disable"
+  },
+  "@typescript-eslint/no-deprecated": {
+    "decision": "enable",
+    "level": "warn"
+  },
+  "@typescript-eslint/no-dupe-class-members": {
+    "decision": "enable"
+  },
+  "@typescript-eslint/no-dynamic-delete": {
+    "decision": "disable"
+  },
+  "@typescript-eslint/no-empty-function": {
+    "decision": "enable",
+    "options": [
+      {
+        "allow": [
+          "arrowFunctions",
+          "functions",
+          "methods"
+        ]
+      }
+    ]
+  },
+  "@typescript-eslint/no-empty-interface": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/no-explicit-any": {
+    "decision": "enable",
+    "level": "warn"
+  },
+  "@typescript-eslint/no-extraneous-class": {
+    "decision": "enable",
+    "options": [
+      {
+        "allowWithDecorator": true
+      }
+    ]
+  },
+  "@typescript-eslint/no-floating-promises": {
+    "decision": "disable"
+  },
+  "@typescript-eslint/no-import-type-side-effects": {
+    "decision": "enable"
+  },
+  "@typescript-eslint/no-inferrable-types": {
+    "decision": "enable",
+    "options": [
+      {
+        "ignoreParameters": false,
+        "ignoreProperties": false
+      }
+    ]
+  },
+  "@typescript-eslint/no-invalid-this": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/no-loop-func": {
+    "decision": "enable"
+  },
+  "@typescript-eslint/no-loss-of-precision": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/no-magic-numbers": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/no-misused-promises": {
+    "decision": "enable",
+    "options": [
+      {
+        "checksVoidReturn": false
+      }
+    ]
+  },
+  "@typescript-eslint/no-non-null-assertion": {
+    "decision": "disable"
+  },
+  "@typescript-eslint/no-redeclare": {
+    "decision": "enable",
+    "options": [
+      {
+        "builtinGlobals": false
+      }
+    ]
+  },
+  "@typescript-eslint/no-redundant-type-constituents": {
+    "decision": "disable"
+  },
+  "@typescript-eslint/no-restricted-imports": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/no-restricted-types": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/no-shadow": {
+    "decision": "enable"
+  },
+  "@typescript-eslint/no-type-alias": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/no-unnecessary-condition": {
+    "decision": "enable",
+    "level": "warn"
+  },
+  "@typescript-eslint/no-unnecessary-parameter-property-assignment": {
+    "decision": "enable"
+  },
+  "@typescript-eslint/no-unnecessary-qualifier": {
+    "decision": "enable"
+  },
+  "@typescript-eslint/no-unnecessary-type-assertion": {
+    "decision": "enable",
+    "options": [
+      {
+        "typesToIgnore": [
+          "`${number}`"
+        ]
+      }
+    ]
+  },
+  "@typescript-eslint/no-unnecessary-type-parameters": {
+    "decision": "disable"
+  },
+  "@typescript-eslint/no-unsafe-argument": {
+    "decision": "disable"
+  },
+  "@typescript-eslint/no-unsafe-assignment": {
+    "decision": "disable"
+  },
+  "@typescript-eslint/no-unsafe-call": {
+    "decision": "disable"
+  },
+  "@typescript-eslint/no-unsafe-member-access": {
+    "decision": "disable"
+  },
+  "@typescript-eslint/no-unsafe-return": {
+    "decision": "disable"
+  },
+  "@typescript-eslint/no-unsafe-type-assertion": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/no-unused-private-class-members": {
+    "decision": "enable",
+    "level": "warn"
+  },
+  "@typescript-eslint/no-unused-vars": {
+    "decision": "enable",
+    "options": [
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": true,
+        "argsIgnorePattern": "^_"
+      }
+    ]
+  },
+  "@typescript-eslint/no-use-before-define": {
+    "decision": "enable",
+    "options": [
+      {
+        "functions": false,
+        "classes": true,
+        "variables": true
+      }
+    ]
+  },
+  "@typescript-eslint/no-useless-empty-export": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/no-var-requires": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/non-nullable-type-assertion-style": {
+    "decision": "enable"
+  },
+  "@typescript-eslint/parameter-properties": {
+    "decision": "enable"
+  },
+  "@typescript-eslint/prefer-destructuring": {
+    "decision": "enable",
+    "options": [
+      {
+        "VariableDeclarator": {
+          "array": false,
+          "object": true
+        },
+        "AssignmentExpression": {
+          "array": false,
+          "object": false
+        }
+      },
+      {
+        "enforceForRenamedProperties": false
+      }
+    ]
+  },
+  "@typescript-eslint/prefer-enum-initializers": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/prefer-find": {
+    "decision": "enable"
+  },
+  "@typescript-eslint/prefer-for-of": {
+    "decision": "enable"
+  },
+  "@typescript-eslint/prefer-function-type": {
+    "decision": "enable"
+  },
+  "@typescript-eslint/prefer-includes": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/prefer-literal-enum-member": {
+    "decision": "disable"
+  },
+  "@typescript-eslint/prefer-nullish-coalescing": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/prefer-optional-chain": {
+    "decision": "enable",
+    "options": [
+      {
+        "requireNullish": true
+      }
+    ]
+  },
+  "@typescript-eslint/prefer-promise-reject-errors": {
+    "decision": "enable",
+    "options": [
+      {
+        "allowThrowingAny": true,
+        "allowThrowingUnknown": true
+      }
+    ]
+  },
+  "@typescript-eslint/prefer-readonly": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/prefer-readonly-parameter-types": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/prefer-reduce-type-parameter": {
+    "decision": "disable"
+  },
+  "@typescript-eslint/prefer-regexp-exec": {
+    "decision": "enable"
+  },
+  "@typescript-eslint/prefer-string-starts-ends-with": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/prefer-ts-expect-error": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/promise-function-async": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/require-array-sort-compare": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/restrict-plus-operands": {
+    "decision": "enable",
+    "options": [
+      {
+        "allowAny": true,
+        "allowBoolean": false,
+        "allowNullish": false,
+        "allowNumberAndString": false,
+        "allowRegExp": false
+      }
+    ]
+  },
+  "@typescript-eslint/restrict-template-expressions": {
+    "decision": "enable",
+    "options": [
+      {
+        "allow": [
+          {
+            "name": [
+              "Error",
+              "URL",
+              "URLSearchParams"
+            ],
+            "from": "lib"
+          }
+        ],
+        "allowAny": true,
+        "allowBoolean": true,
+        "allowNever": false,
+        "allowNullish": true,
+        "allowNumber": true,
+        "allowRegExp": true
+      }
+    ]
+  },
+  "@typescript-eslint/sort-type-constituents": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/strict-boolean-expressions": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/strict-void-return": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/switch-exhaustiveness-check": {
+    "decision": "enable",
+    "options": [
+      {
+        "allowDefaultCaseForExhaustiveSwitch": true,
+        "considerDefaultExhaustiveForUnions": true,
+        "requireDefaultForNonUnion": false
+      }
+    ]
+  },
+  "@typescript-eslint/typedef": {
+    "decision": "ignore"
+  },
+  "@typescript-eslint/unbound-method": {
+    "decision": "disable"
+  },
+  "jsdoc/require-jsdoc": {
+    "decision": "disable"
+  }
+}

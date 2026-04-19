@@ -1,0 +1,103 @@
+{
+  "import-x/consistent-type-specifier-style": {
+    "decision": "disable"
+  },
+  "import-x/extensions": {
+    "decision": "disable"
+  },
+  "import-x/first": {
+    "decision": "enable"
+  },
+  "import-x/newline-after-import": {
+    "decision": "enable"
+  },
+  "import-x/no-absolute-path": {
+    "decision": "enable",
+    "options": [
+      {
+        "esmodule": true,
+        "commonjs": true,
+        "amd": false
+      }
+    ]
+  },
+  "import-x/no-cycle": {
+    "decision": "disable"
+  },
+  "import-x/no-dynamic-require": {
+    "decision": "disable"
+  },
+  "import-x/no-empty-named-blocks": {
+    "decision": "enable"
+  },
+  "import-x/no-extraneous-dependencies": {
+    "decision": "disable"
+  },
+  "import-x/no-mutable-exports": {
+    "decision": "enable"
+  },
+  "import-x/no-named-as-default": {
+    "decision": "disable"
+  },
+  "import-x/no-named-default": {
+    "decision": "enable"
+  },
+  "import-x/no-relative-packages": {
+    "decision": "enable"
+  },
+  "import-x/no-self-import": {
+    "decision": "enable"
+  },
+  "import-x/no-useless-path-segments": {
+    "decision": "enable",
+    "options": [
+      {
+        "noUselessIndex": true,
+        "commonjs": true
+      }
+    ]
+  },
+  "import-x/no-webpack-loader-syntax": {
+    "decision": "enable"
+  },
+  "import-x/order": {
+    "decision": "enable",
+    "options": [
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "unknown",
+          "internal",
+          "parent",
+          "index",
+          "sibling",
+          "object",
+          "type"
+        ],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  },
+  "import-x/prefer-default-export": {
+    "decision": "disable"
+  },
+  "unused-imports/no-unused-imports": {
+    "decision": "enable"
+  },
+  "unused-imports/no-unused-vars": {
+    "decision": "enable",
+    "options": [
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": true,
+        "argsIgnorePattern": "^_"
+      }
+    ]
+  }
+}

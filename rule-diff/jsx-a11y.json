@@ -1,0 +1,5 @@
+{
+  "jsx-a11y/lang": {
+    "decision": "enable"
+  }
+}

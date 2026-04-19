@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Probe scratch dirs — regenerated each `pnpm decide` / test run
+.decide-probe/
+.sxzz-probe/
+
+# Dashboard-rendered snapshot — regenerated on every GET
+rule-diff/index.html
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*

@@ -1,0 +1,6212 @@
+{
+  "generatedAt": "2026-04-19T15:02:42.538Z",
+  "plugins": {
+    "eslint": {
+      "version": "10.2.1"
+    },
+    "@typescript-eslint/eslint-plugin": {
+      "version": "8.58.2"
+    },
+    "typescript-eslint": {
+      "version": "8.58.2"
+    },
+    "eslint-plugin-unicorn": {
+      "version": null
+    },
+    "eslint-plugin-regexp": {
+      "version": "3.1.0"
+    },
+    "eslint-plugin-import-x": {
+      "version": "4.16.2"
+    },
+    "eslint-plugin-unused-imports": {
+      "version": null
+    },
+    "eslint-plugin-perfectionist": {
+      "version": "5.9.0"
+    },
+    "@eslint-community/eslint-plugin-eslint-comments": {
+      "version": "4.7.1"
+    },
+    "eslint-plugin-jsdoc": {
+      "version": null
+    },
+    "eslint-plugin-n": {
+      "version": "17.24.0"
+    },
+    "eslint-plugin-no-only-tests": {
+      "version": "3.3.0"
+    },
+    "@vitest/eslint-plugin": {
+      "version": "1.6.16"
+    },
+    "@eslint-react/eslint-plugin": {
+      "version": "3.0.0"
+    },
+    "eslint-plugin-jsx-a11y": {
+      "version": "6.10.2"
+    },
+    "eslint-plugin-vue": {
+      "version": "10.8.0"
+    },
+    "eslint-plugin-vuejs-accessibility": {
+      "version": "2.5.0"
+    },
+    "eslint-plugin-svelte": {
+      "version": "3.17.0"
+    },
+    "eslint-plugin-tailwindcss": {
+      "version": "3.18.3"
+    },
+    "eslint-plugin-jsonc": {
+      "version": "3.1.2"
+    },
+    "eslint-plugin-yml": {
+      "version": "3.3.1"
+    },
+    "eslint-plugin-toml": {
+      "version": "1.3.1"
+    },
+    "eslint-plugin-pnpm": {
+      "version": "1.6.0"
+    }
+  },
+  "refs": {
+    "antfu": {
+      "resolvedAliases": {},
+      "version": "8.2.0"
+    },
+    "sxzz": {
+      "resolvedAliases": {},
+      "version": "7.8.4"
+    },
+    "standard": {
+      "resolvedAliases": {
+        "unused-imports/no-unused-imports": "no-unused-vars",
+        "unused-imports/no-unused-vars": "no-unused-vars",
+        "@eslint-react/jsx-key-before-spread": "react/jsx-key",
+        "@eslint-react/no-children-count": "react/no-children-prop",
+        "@eslint-react/no-children-prop": "react/no-children-prop",
+        "@eslint-react/no-component-will-mount": "react/no-deprecated",
+        "@eslint-react/no-component-will-receive-props": "react/no-deprecated",
+        "@eslint-react/no-component-will-update": "react/no-deprecated",
+        "@eslint-react/no-create-ref": "react/no-deprecated",
+        "@eslint-react/no-direct-mutation-state": "react/no-direct-mutation-state",
+        "@eslint-react/no-duplicate-key": "react/jsx-key",
+        "@eslint-react/no-implicit-key": "react/jsx-key",
+        "@eslint-react/no-missing-key": "react/jsx-key",
+        "@eslint-react/no-use-context": "react/no-deprecated"
+      },
+      "version": "0.12.2"
+    },
+    "airbnb": {
+      "resolvedAliases": {
+        "unused-imports/no-unused-imports": "no-unused-vars",
+        "unused-imports/no-unused-vars": "no-unused-vars",
+        "@eslint-react/jsx-key-before-spread": "react/jsx-key",
+        "@eslint-react/no-array-index-key": "react/no-array-index-key",
+        "@eslint-react/no-children-count": "react/no-children-prop",
+        "@eslint-react/no-children-prop": "react/no-children-prop",
+        "@eslint-react/no-component-will-mount": "react/no-deprecated",
+        "@eslint-react/no-component-will-receive-props": "react/no-deprecated",
+        "@eslint-react/no-component-will-update": "react/no-deprecated",
+        "@eslint-react/no-create-ref": "react/no-deprecated",
+        "@eslint-react/no-direct-mutation-state": "react/no-direct-mutation-state",
+        "@eslint-react/no-duplicate-key": "react/jsx-key",
+        "@eslint-react/no-implicit-key": "react/jsx-key",
+        "@eslint-react/no-missing-key": "react/jsx-key",
+        "@eslint-react/no-unsafe-component-will-mount": "react/no-unsafe",
+        "@eslint-react/no-unsafe-component-will-receive-props": "react/no-unsafe",
+        "@eslint-react/no-unsafe-component-will-update": "react/no-unsafe",
+        "@eslint-react/no-unstable-context-value": "react/jsx-no-constructed-context-values",
+        "@eslint-react/no-unstable-default-props": "react/no-unstable-nested-components",
+        "@eslint-react/no-unused-class-component-members": "react/no-unused-class-component-methods",
+        "@eslint-react/no-unused-state": "react/no-unused-state",
+        "@eslint-react/no-use-context": "react/no-deprecated"
+      },
+      "version": "3.1.0"
+    }
+  },
+  "rules": {
+    "javascript": {
+      "accessor-pairs": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "array-bracket-newline": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "array-bracket-spacing": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "array-callback-return": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "array-element-newline": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "arrow-body-style": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "arrow-parens": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "arrow-spacing": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "block-scoped-var": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "block-spacing": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "brace-style": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "callback-return": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "camelcase": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "capitalized-comments": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "class-methods-use-this": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "comma-dangle": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "comma-spacing": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "comma-style": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "complexity": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "computed-property-spacing": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "consistent-return": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "consistent-this": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "constructor-super": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "curly": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "default-case": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "default-case-last": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "default-param-last": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "dot-location": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "dot-notation": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "eol-last": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "eqeqeq": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "for-direction": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "func-call-spacing": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "func-name-matching": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "func-names": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "func-style": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "function-call-argument-newline": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "function-paren-newline": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "generator-star-spacing": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "getter-return": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "global-require": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "grouped-accessor-pairs": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "guard-for-in": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "handle-callback-err": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "id-blacklist": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "id-denylist": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "id-length": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "id-match": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "implicit-arrow-linebreak": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "indent": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "indent-legacy": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "init-declarations": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "jsx-quotes": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "key-spacing": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "keyword-spacing": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "line-comment-position": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "linebreak-style": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "lines-around-comment": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "lines-around-directive": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "lines-between-class-members": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "logical-assignment-operators": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "max-classes-per-file": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "max-depth": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "max-len": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "max-lines": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "max-lines-per-function": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "max-nested-callbacks": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "max-params": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "max-statements": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "max-statements-per-line": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "multiline-comment-style": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "multiline-ternary": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "new-cap": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "new-parens": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "newline-after-var": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "newline-before-return": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "newline-per-chained-call": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-alert": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-array-constructor": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-async-promise-executor": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-await-in-loop": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-bitwise": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-buffer-constructor": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-caller": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-case-declarations": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-catch-shadow": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-class-assign": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-compare-neg-zero": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-cond-assign": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-confusing-arrow": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-console": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-const-assign": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-constant-binary-expression": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-constant-condition": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-constructor-return": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-continue": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-control-regex": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-debugger": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-delete-var": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-div-regex": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-dupe-args": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-dupe-class-members": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-dupe-else-if": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-dupe-keys": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-duplicate-case": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-duplicate-imports": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-else-return": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-empty": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-empty-character-class": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-empty-function": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-empty-pattern": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-empty-static-block": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-eq-null": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-eval": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-ex-assign": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-extend-native": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-extra-bind": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-extra-boolean-cast": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-extra-label": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-extra-parens": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-extra-semi": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-fallthrough": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-floating-decimal": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-func-assign": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-global-assign": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-implicit-coercion": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-implicit-globals": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-implied-eval": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-import-assign": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-inline-comments": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-inner-declarations": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-invalid-regexp": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-invalid-this": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-irregular-whitespace": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-iterator": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-label-var": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-labels": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-lone-blocks": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-lonely-if": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-loop-func": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-loss-of-precision": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-magic-numbers": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-misleading-character-class": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-mixed-operators": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-mixed-requires": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-mixed-spaces-and-tabs": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-multi-assign": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-multi-spaces": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-multi-str": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-multiple-empty-lines": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-native-reassign": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-negated-condition": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-negated-in-lhs": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-nested-ternary": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-new": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-new-func": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-new-native-nonconstructor": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-new-object": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-new-require": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-new-symbol": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-new-wrappers": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-nonoctal-decimal-escape": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-obj-calls": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-object-constructor": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-octal": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-octal-escape": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-param-reassign": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-path-concat": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-plusplus": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-process-env": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-process-exit": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-promise-executor-return": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-proto": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-prototype-builtins": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-redeclare": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-regex-spaces": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-restricted-exports": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-restricted-globals": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-restricted-imports": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-restricted-modules": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-restricted-properties": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-restricted-syntax": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-return-assign": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-return-await": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-script-url": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-self-assign": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-self-compare": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-sequences": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-setter-return": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-shadow": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-shadow-restricted-names": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-spaced-func": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-sparse-arrays": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-sync": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-tabs": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-template-curly-in-string": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-ternary": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-this-before-super": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-throw-literal": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-trailing-spaces": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-unassigned-vars": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-undef": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-undef-init": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-undefined": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-underscore-dangle": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-unexpected-multiline": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-unmodified-loop-condition": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-unneeded-ternary": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-unreachable": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-unreachable-loop": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-unsafe-finally": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-unsafe-negation": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-unsafe-optional-chaining": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-unused-expressions": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-unused-labels": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-unused-private-class-members": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-unused-vars": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-use-before-define": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-useless-assignment": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-useless-backreference": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-useless-call": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-useless-catch": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-useless-computed-key": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-useless-concat": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-useless-constructor": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-useless-escape": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "no-useless-rename": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-useless-return": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-var": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-void": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-warning-comments": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "no-whitespace-before-property": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "no-with": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "nonblock-statement-body-position": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "object-curly-newline": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "object-curly-spacing": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "object-property-newline": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "object-shorthand": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "one-var": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "one-var-declaration-per-line": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "operator-assignment": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "operator-linebreak": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "padded-blocks": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "padding-line-between-statements": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "prefer-arrow-callback": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "prefer-const": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "prefer-destructuring": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "prefer-exponentiation-operator": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "prefer-named-capture-group": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "prefer-numeric-literals": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "prefer-object-has-own": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "prefer-object-spread": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "prefer-promise-reject-errors": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "prefer-reflect": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "prefer-regex-literals": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "prefer-rest-params": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "prefer-spread": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "prefer-template": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "preserve-caught-error": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "quote-props": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "quotes": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "radix": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "require-atomic-updates": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "require-await": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "require-unicode-regexp": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "require-yield": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "rest-spread-spacing": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "semi": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "semi-spacing": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "semi-style": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "sort-imports": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "sort-keys": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "sort-vars": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "space-before-blocks": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "space-before-function-paren": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "space-in-parens": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "space-infix-ops": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "space-unary-ops": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "spaced-comment": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "strict": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "switch-colon-spacing": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "symbol-description": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "template-curly-spacing": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "template-tag-spacing": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "unicode-bom": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "use-isnan": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "valid-typeof": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vars-on-top": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "wrap-iife": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "wrap-regex": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "yield-star-spacing": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "yoda": {
+        "deprecated": false,
+        "recommended": null
+      }
+    },
+    "typescript": {
+      "@typescript-eslint/adjacent-overload-signatures": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/array-type": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/await-thenable": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/ban-ts-comment": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/ban-tslint-comment": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/class-literal-property-style": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/class-methods-use-this": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/consistent-generic-constructors": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/consistent-indexed-object-style": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/consistent-return": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/consistent-type-assertions": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/consistent-type-definitions": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/consistent-type-exports": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/consistent-type-imports": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/default-param-last": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/dot-notation": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/explicit-function-return-type": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/explicit-member-accessibility": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/explicit-module-boundary-types": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/init-declarations": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/max-params": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/member-ordering": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/method-signature-style": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/naming-convention": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/no-array-constructor": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-array-delete": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-base-to-string": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-confusing-non-null-assertion": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/no-confusing-void-expression": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-deprecated": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-dupe-class-members": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/no-duplicate-enum-values": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-duplicate-type-constituents": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-dynamic-delete": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-empty-function": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/no-empty-interface": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "@typescript-eslint/no-empty-object-type": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-explicit-any": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-extra-non-null-assertion": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-extraneous-class": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-floating-promises": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-for-in-array": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-implied-eval": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-import-type-side-effects": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/no-inferrable-types": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/no-invalid-this": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/no-invalid-void-type": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-loop-func": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/no-loss-of-precision": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "@typescript-eslint/no-magic-numbers": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/no-meaningless-void-operator": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-misused-new": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-misused-promises": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-misused-spread": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-mixed-enums": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-namespace": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-non-null-asserted-nullish-coalescing": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-non-null-asserted-optional-chain": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-non-null-assertion": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-redeclare": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/no-redundant-type-constituents": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-require-imports": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-restricted-imports": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/no-restricted-types": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/no-shadow": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/no-this-alias": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-type-alias": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "@typescript-eslint/no-unnecessary-boolean-literal-compare": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-unnecessary-condition": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-unnecessary-parameter-property-assignment": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/no-unnecessary-qualifier": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/no-unnecessary-template-expression": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-unnecessary-type-arguments": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-unnecessary-type-assertion": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-unnecessary-type-constraint": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-unnecessary-type-conversion": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-unnecessary-type-parameters": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-unsafe-argument": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-unsafe-assignment": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-unsafe-call": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-unsafe-declaration-merging": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-unsafe-enum-comparison": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-unsafe-function-type": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-unsafe-member-access": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-unsafe-return": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-unsafe-type-assertion": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/no-unsafe-unary-minus": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-unused-expressions": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-unused-private-class-members": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/no-unused-vars": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-use-before-define": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/no-useless-constructor": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-useless-default-assignment": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/no-useless-empty-export": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/no-var-requires": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "@typescript-eslint/no-wrapper-object-types": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/non-nullable-type-assertion-style": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/only-throw-error": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/parameter-properties": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/prefer-as-const": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/prefer-destructuring": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/prefer-enum-initializers": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/prefer-find": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/prefer-for-of": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/prefer-function-type": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/prefer-includes": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/prefer-literal-enum-member": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/prefer-namespace-keyword": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/prefer-nullish-coalescing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/prefer-optional-chain": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/prefer-promise-reject-errors": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/prefer-readonly": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/prefer-readonly-parameter-types": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/prefer-reduce-type-parameter": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/prefer-regexp-exec": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/prefer-return-this-type": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/prefer-string-starts-ends-with": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/prefer-ts-expect-error": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "@typescript-eslint/promise-function-async": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/related-getter-setter-pairs": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/require-array-sort-compare": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/require-await": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/restrict-plus-operands": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/restrict-template-expressions": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/return-await": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/sort-type-constituents": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "@typescript-eslint/strict-boolean-expressions": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/strict-void-return": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/switch-exhaustiveness-check": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@typescript-eslint/triple-slash-reference": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/typedef": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "@typescript-eslint/unbound-method": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/unified-signatures": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@typescript-eslint/use-unknown-in-catch-callback-variable": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsdoc/require-jsdoc": {
+        "deprecated": false,
+        "recommended": "warn"
+      }
+    },
+    "unicorn": {
+      "unicorn/better-regex": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "unicorn/catch-error-name": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/consistent-assert": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/consistent-date-clone": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/consistent-destructuring": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "unicorn/consistent-empty-array-spread": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/consistent-existence-index-check": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/consistent-function-scoping": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/consistent-template-literal-escape": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/custom-error-definition": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "unicorn/empty-brace-spaces": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/error-message": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/escape-case": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/expiring-todo-comments": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/explicit-length-check": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/filename-case": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/import-style": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/isolated-functions": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/new-for-builtins": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-abusive-eslint-disable": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-accessor-recursion": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-anonymous-default-export": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-array-callback-reference": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-array-for-each": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-array-method-this-argument": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-array-push-push": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "unicorn/no-array-reduce": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-array-reverse": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-array-sort": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-await-expression-member": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-await-in-promise-methods": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-console-spaces": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-document-cookie": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-empty-file": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-for-loop": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-hex-escape": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-immediate-mutation": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-instanceof-array": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "unicorn/no-instanceof-builtins": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-invalid-fetch-options": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-invalid-remove-event-listener": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-keyword-prefix": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "unicorn/no-length-as-slice-end": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "unicorn/no-lonely-if": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-magic-array-flat-depth": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-named-default": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-negated-condition": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-negation-in-equality-check": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-nested-ternary": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-new-array": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-new-buffer": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-null": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-object-as-default-parameter": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-process-exit": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-single-promise-in-promise-methods": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-static-only-class": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-thenable": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-this-assignment": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-typeof-undefined": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-unnecessary-array-flat-depth": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-unnecessary-array-splice-count": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-unnecessary-await": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-unnecessary-polyfills": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-unnecessary-slice-end": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-unreadable-array-destructuring": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-unreadable-iife": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-unused-properties": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "unicorn/no-useless-collection-argument": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-useless-error-capture-stack-trace": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-useless-fallback-in-spread": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-useless-iterator-to-array": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-useless-length-check": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-useless-promise-resolve-reject": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-useless-spread": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-useless-switch-case": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-useless-undefined": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/no-zero-fractions": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/number-literal-case": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/numeric-separators-style": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-add-event-listener": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-array-find": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-array-flat": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-array-flat-map": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-array-index-of": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-array-some": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-at": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-bigint-literals": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-blob-reading-methods": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-class-fields": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-classlist-toggle": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-code-point": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-date-now": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-default-parameters": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-dom-node-append": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-dom-node-dataset": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-dom-node-remove": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-dom-node-text-content": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-event-target": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-export-from": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-global-this": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-import-meta-properties": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "unicorn/prefer-includes": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-json-parse-buffer": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "unicorn/prefer-keyboard-event-key": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-logical-operator-over-ternary": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-math-min-max": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-math-trunc": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-modern-dom-apis": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-modern-math-apis": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-module": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-native-coercion-functions": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-negative-index": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-node-protocol": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-number-properties": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-object-from-entries": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-optional-catch-binding": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-prototype-methods": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-query-selector": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-reflect-apply": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-regexp-test": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-response-static-json": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-set-has": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-set-size": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-simple-condition-first": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-single-call": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-spread": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-string-raw": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-string-replace-all": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-string-slice": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-string-starts-ends-with": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-string-trim-start-end": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-structured-clone": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-switch": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-ternary": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-top-level-await": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prefer-type-error": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/prevent-abbreviations": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/relative-url-style": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/require-array-join-separator": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/require-module-attributes": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/require-module-specifiers": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/require-number-to-fixed-digits-argument": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/require-post-message-target-origin": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "unicorn/string-content": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "unicorn/switch-case-braces": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/switch-case-break-position": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/template-indent": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/text-encoding-identifier-case": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "unicorn/throw-new-error": {
+        "deprecated": false,
+        "recommended": "error"
+      }
+    },
+    "regexp": {
+      "regexp/confusing-quantifier": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "regexp/control-character-escape": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/grapheme-string-literal": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "regexp/hexadecimal-escape": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "regexp/letter-case": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "regexp/match-any": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/negation": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-contradiction-with-assertion": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-control-character": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "regexp/no-dupe-characters-character-class": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-dupe-disjunctions": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-empty-alternative": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "regexp/no-empty-capturing-group": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-empty-character-class": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-empty-group": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-empty-lookarounds-assertion": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-empty-string-literal": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-escape-backspace": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-extra-lookaround-assertions": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-invalid-regexp": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-invisible-character": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-lazy-ends": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "regexp/no-legacy-features": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-misleading-capturing-group": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-misleading-unicode-character": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-missing-g-flag": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-non-standard-flag": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-obscure-range": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-octal": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "regexp/no-optional-assertion": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-potentially-useless-backreference": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "regexp/no-standalone-backslash": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "regexp/no-super-linear-backtracking": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-super-linear-move": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "regexp/no-trivially-nested-assertion": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-trivially-nested-quantifier": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-unused-capturing-group": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-useless-assertions": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-useless-backreference": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-useless-character-class": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-useless-dollar-replacements": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-useless-escape": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-useless-flag": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "regexp/no-useless-lazy": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-useless-non-capturing-group": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-useless-quantifier": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-useless-range": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-useless-set-operand": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-useless-string-literal": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-useless-two-nums-quantifier": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/no-zero-quantifier": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/optimal-lookaround-quantifier": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "regexp/optimal-quantifier-concatenation": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/prefer-character-class": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/prefer-d": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/prefer-escape-replacement-dollar-char": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "regexp/prefer-lookaround": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "regexp/prefer-named-backreference": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "regexp/prefer-named-capture-group": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "regexp/prefer-named-replacement": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "regexp/prefer-plus-quantifier": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/prefer-predefined-assertion": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/prefer-quantifier": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "regexp/prefer-question-quantifier": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/prefer-range": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/prefer-regexp-exec": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "regexp/prefer-regexp-test": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "regexp/prefer-result-array-groups": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "regexp/prefer-set-operation": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/prefer-star-quantifier": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/prefer-unicode-codepoint-escapes": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/prefer-w": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/require-unicode-regexp": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "regexp/require-unicode-sets-regexp": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "regexp/simplify-set-operations": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/sort-alternatives": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "regexp/sort-character-class-elements": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "regexp/sort-flags": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/strict": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "regexp/unicode-escape": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "regexp/unicode-property": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "regexp/use-ignore-case": {
+        "deprecated": false,
+        "recommended": "error"
+      }
+    },
+    "imports": {
+      "import-x/consistent-type-specifier-style": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/default": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "import-x/dynamic-import-chunkname": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/export": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "import-x/exports-last": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/extensions": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/first": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/group-exports": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/imports-first": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "import-x/max-dependencies": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/named": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "import-x/namespace": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "import-x/newline-after-import": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-absolute-path": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-amd": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-anonymous-default-export": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-commonjs": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-cycle": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-default-export": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-deprecated": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-duplicates": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "import-x/no-dynamic-require": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-empty-named-blocks": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-extraneous-dependencies": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-import-module-exports": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-internal-modules": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-mutable-exports": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-named-as-default": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "import-x/no-named-as-default-member": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "import-x/no-named-default": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-named-export": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-namespace": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-nodejs-modules": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-relative-packages": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-relative-parent-imports": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-rename-default": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-restricted-paths": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-self-import": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-unassigned-import": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-unresolved": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "import-x/no-unused-modules": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-useless-path-segments": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/no-webpack-loader-syntax": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/order": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/prefer-default-export": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/prefer-namespace-import": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "import-x/unambiguous": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "unused-imports/no-unused-imports": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "unused-imports/no-unused-vars": {
+        "deprecated": false,
+        "recommended": null
+      }
+    },
+    "perfectionist": {
+      "perfectionist/sort-array-includes": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "perfectionist/sort-arrays": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "perfectionist/sort-classes": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "perfectionist/sort-decorators": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "perfectionist/sort-enums": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "perfectionist/sort-export-attributes": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "perfectionist/sort-exports": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "perfectionist/sort-heritage-clauses": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "perfectionist/sort-import-attributes": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "perfectionist/sort-imports": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "perfectionist/sort-interfaces": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "perfectionist/sort-intersection-types": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "perfectionist/sort-jsx-props": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "perfectionist/sort-maps": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "perfectionist/sort-modules": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "perfectionist/sort-named-exports": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "perfectionist/sort-named-imports": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "perfectionist/sort-object-types": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "perfectionist/sort-objects": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "perfectionist/sort-sets": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "perfectionist/sort-switch-case": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "perfectionist/sort-union-types": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "perfectionist/sort-variable-declarations": {
+        "deprecated": false,
+        "recommended": null
+      }
+    },
+    "comments": {
+      "@eslint-community/eslint-comments/disable-enable-pair": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@eslint-community/eslint-comments/no-aggregating-enable": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@eslint-community/eslint-comments/no-duplicate-disable": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@eslint-community/eslint-comments/no-restricted-disable": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-community/eslint-comments/no-unlimited-disable": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@eslint-community/eslint-comments/no-unused-disable": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "@eslint-community/eslint-comments/no-unused-enable": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@eslint-community/eslint-comments/no-use": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-community/eslint-comments/require-description": {
+        "deprecated": false,
+        "recommended": null
+      }
+    },
+    "jsdoc": {
+      "jsdoc/check-access": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/check-alignment": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/check-examples": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/check-indentation": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/check-line-alignment": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/check-param-names": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/check-property-names": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/check-syntax": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/check-tag-names": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/check-template-names": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/check-types": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/check-values": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/convert-to-jsdoc-comments": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/empty-tags": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/escape-inline-tags": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/implements-on-classes": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/imports-as-dependencies": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/informative-docs": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/lines-before-block": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/match-description": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/match-name": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/multiline-blocks": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/no-bad-blocks": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/no-blank-block-descriptions": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/no-blank-blocks": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/no-defaults": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/no-missing-syntax": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/no-multi-asterisks": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/no-restricted-syntax": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/no-types": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/no-undefined-types": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/prefer-import-tag": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/reject-any-type": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/reject-function-type": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/require-asterisk-prefix": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/require-description": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/require-description-complete-sentence": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/require-example": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/require-file-overview": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/require-hyphen-before-param-description": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/require-jsdoc": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/require-next-description": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/require-next-type": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/require-param": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/require-param-description": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/require-param-name": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/require-param-type": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/require-property": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/require-property-description": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/require-property-name": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/require-property-type": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/require-rejects": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/require-returns": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/require-returns-check": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/require-returns-description": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/require-returns-type": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/require-tags": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/require-template": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/require-template-description": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/require-throws": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/require-throws-description": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/require-throws-type": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/require-yields": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/require-yields-check": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/require-yields-description": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/require-yields-type": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/sort-tags": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/tag-lines": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/text-escaping": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/ts-method-signature-style": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/ts-no-empty-object-type": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "jsdoc/ts-no-unnecessary-template-expression": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/ts-prefer-function-type": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/type-formatting": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsdoc/valid-types": {
+        "deprecated": false,
+        "recommended": "warn"
+      }
+    },
+    "node": {
+      "n/callback-return": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/exports-style": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/file-extension-in-import": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/global-require": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/handle-callback-err": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/hashbang": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "n/no-callback-literal": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/no-deprecated-api": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "n/no-exports-assign": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "n/no-extraneous-import": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "n/no-extraneous-require": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "n/no-hide-core-modules": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "n/no-missing-import": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "n/no-missing-require": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "n/no-mixed-requires": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/no-new-require": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/no-path-concat": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/no-process-env": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/no-process-exit": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "n/no-restricted-import": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/no-restricted-require": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/no-sync": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/no-top-level-await": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/no-unpublished-bin": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "n/no-unpublished-import": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "n/no-unpublished-require": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "n/no-unsupported-features/es-builtins": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "n/no-unsupported-features/es-syntax": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "n/no-unsupported-features/node-builtins": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "n/prefer-global/buffer": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/prefer-global/console": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/prefer-global/crypto": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/prefer-global/process": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/prefer-global/text-decoder": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/prefer-global/text-encoder": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/prefer-global/timers": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/prefer-global/url": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/prefer-global/url-search-params": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/prefer-node-protocol": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/prefer-promises/dns": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/prefer-promises/fs": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "n/process-exit-as-throw": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "n/shebang": {
+        "deprecated": true,
+        "recommended": null
+      }
+    },
+    "testing": {
+      "no-only-tests/no-only-tests": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/consistent-each-for": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/consistent-test-filename": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/consistent-test-it": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/consistent-vitest-vi": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/expect-expect": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vitest/hoisted-apis-on-top": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/max-expects": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/max-nested-describe": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/no-alias-methods": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/no-commented-out-tests": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vitest/no-conditional-expect": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vitest/no-conditional-in-test": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/no-conditional-tests": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/no-disabled-tests": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vitest/no-done-callback": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "vitest/no-duplicate-hooks": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/no-focused-tests": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vitest/no-hooks": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/no-identical-title": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vitest/no-import-node-test": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vitest/no-importing-vitest-globals": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/no-interpolation-in-snapshots": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vitest/no-large-snapshots": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/no-mocks-import": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vitest/no-restricted-matchers": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/no-restricted-vi-methods": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/no-standalone-expect": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vitest/no-test-prefixes": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/no-test-return-statement": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/no-unneeded-async-expect-function": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vitest/padding-around-after-all-blocks": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/padding-around-after-each-blocks": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/padding-around-all": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/padding-around-before-all-blocks": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/padding-around-before-each-blocks": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/padding-around-describe-blocks": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/padding-around-expect-groups": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/padding-around-test-blocks": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-called-exactly-once-with": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vitest/prefer-called-once": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-called-times": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-called-with": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-comparison-matcher": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-describe-function-title": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-each": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-equality-matcher": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-expect-assertions": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-expect-resolves": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-expect-type-of": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-hooks-in-order": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-hooks-on-top": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-import-in-mock": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-importing-vitest-globals": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-lowercase-title": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-mock-promise-shorthand": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-mock-return-shorthand": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-snapshot-hint": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-spy-on": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-strict-boolean-matchers": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-strict-equal": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-to-be": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-to-be-falsy": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-to-be-object": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-to-be-truthy": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-to-contain": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-to-have-been-called-times": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-to-have-length": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-todo": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/prefer-vi-mocked": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/require-awaited-expect-poll": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/require-hook": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/require-local-test-context-for-concurrent-snapshots": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vitest/require-mock-type-parameters": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/require-test-timeout": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/require-to-throw-message": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/require-top-level-describe": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/unbound-method": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vitest/valid-describe-callback": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vitest/valid-expect": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vitest/valid-expect-in-promise": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vitest/valid-title": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vitest/warn-todo": {
+        "deprecated": false,
+        "recommended": null
+      }
+    },
+    "react": {
+      "@eslint-react/component-hook-factories": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@eslint-react/error-boundaries": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@eslint-react/exhaustive-deps": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/immutability": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/jsx-dollar": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/jsx-key-before-spread": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/jsx-no-comment-textnodes": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/jsx-shorthand-boolean": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/jsx-shorthand-fragment": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/no-access-state-in-setstate": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@eslint-react/no-array-index-key": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/no-children-count": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/no-children-for-each": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/no-children-map": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/no-children-only": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/no-children-prop": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/no-children-to-array": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/no-class-component": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/no-clone-element": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/no-component-will-mount": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@eslint-react/no-component-will-receive-props": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@eslint-react/no-component-will-update": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@eslint-react/no-context-provider": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/no-create-ref": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@eslint-react/no-direct-mutation-state": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@eslint-react/no-duplicate-key": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/no-forward-ref": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/no-implicit-children": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/no-implicit-key": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/no-implicit-ref": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/no-leaked-conditional-rendering": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/no-missing-component-display-name": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/no-missing-context-display-name": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/no-missing-key": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@eslint-react/no-misused-capture-owner-stack": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/no-nested-component-definitions": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@eslint-react/no-nested-lazy-component-declarations": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@eslint-react/no-redundant-should-component-update": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@eslint-react/no-set-state-in-component-did-mount": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/no-set-state-in-component-did-update": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/no-set-state-in-component-will-update": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/no-unnecessary-use-callback": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/no-unnecessary-use-memo": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/no-unnecessary-use-prefix": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/no-unsafe-component-will-mount": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/no-unsafe-component-will-receive-props": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/no-unsafe-component-will-update": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/no-unstable-context-value": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/no-unstable-default-props": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/no-unused-class-component-members": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/no-unused-props": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/no-unused-state": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/no-use-context": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/no-useless-fragment": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/prefer-destructuring-assignment": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/prefer-namespace-import": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/purity": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/refs": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/rules-of-hooks": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@eslint-react/set-state-in-effect": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "@eslint-react/set-state-in-render": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@eslint-react/unstable-rules-of-props": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/unstable-rules-of-state": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "@eslint-react/unsupported-syntax": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@eslint-react/use-memo": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "@eslint-react/use-state": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "class-methods-use-this": {
+        "deprecated": false,
+        "recommended": null
+      }
+    },
+    "jsx-a11y": {
+      "jsx-a11y/accessible-emoji": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "jsx-a11y/alt-text": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/anchor-ambiguous-text": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsx-a11y/anchor-has-content": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/anchor-is-valid": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/aria-activedescendant-has-tabindex": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/aria-props": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/aria-proptypes": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/aria-role": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/aria-unsupported-elements": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/autocomplete-valid": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/click-events-have-key-events": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/control-has-associated-label": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "jsx-a11y/heading-has-content": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/html-has-lang": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/iframe-has-title": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/img-redundant-alt": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/interactive-supports-focus": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/label-has-associated-control": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/label-has-for": {
+        "deprecated": true,
+        "recommended": "off"
+      },
+      "jsx-a11y/lang": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "jsx-a11y/media-has-caption": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/mouse-events-have-key-events": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/no-access-key": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/no-aria-hidden-on-focusable": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "jsx-a11y/no-autofocus": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/no-distracting-elements": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/no-interactive-element-to-noninteractive-role": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/no-noninteractive-element-interactions": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/no-noninteractive-element-to-interactive-role": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/no-noninteractive-tabindex": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/no-onchange": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "jsx-a11y/no-redundant-roles": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/no-static-element-interactions": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/prefer-tag-over-role": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "jsx-a11y/role-has-required-aria-props": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/role-supports-aria-props": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/scope": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsx-a11y/tabindex-no-positive": {
+        "deprecated": false,
+        "recommended": "error"
+      }
+    },
+    "vue": {
+      "vue/array-bracket-newline": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/array-bracket-spacing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/array-element-newline": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/arrow-spacing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/attribute-hyphenation": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/attributes-order": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/block-lang": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/block-order": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/block-spacing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/block-tag-newline": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/brace-style": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/camelcase": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/comma-dangle": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/comma-spacing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/comma-style": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/comment-directive": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/component-api-style": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/component-definition-name-casing": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/component-name-in-template-casing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/component-options-name-casing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/custom-event-name-casing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/define-emits-declaration": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/define-macros-order": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/define-props-declaration": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/define-props-destructuring": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/dot-location": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/dot-notation": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/enforce-style-attribute": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/eqeqeq": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/first-attribute-linebreak": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/func-call-spacing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/html-button-has-type": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/html-closing-bracket-newline": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/html-closing-bracket-spacing": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/html-comment-content-newline": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/html-comment-content-spacing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/html-comment-indent": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/html-end-tags": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/html-indent": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/html-quotes": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/html-self-closing": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/jsx-uses-vars": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/key-spacing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/keyword-spacing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/match-component-file-name": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/match-component-import-name": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/max-attributes-per-line": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/max-len": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/max-lines-per-block": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/max-props": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/max-template-depth": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/multi-word-component-names": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/multiline-html-element-content-newline": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/multiline-ternary": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/mustache-interpolation-spacing": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/new-line-between-multi-line-property": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/next-tick-style": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-arrow-functions-in-watch": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-async-in-computed-properties": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-bare-strings-in-template": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-boolean-default": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-child-content": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-computed-properties-in-data": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-console": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-constant-condition": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-custom-modifiers-on-v-model": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-deprecated-data-object-declaration": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-deprecated-delete-set": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-deprecated-destroyed-lifecycle": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-deprecated-dollar-listeners-api": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-deprecated-dollar-scopedslots-api": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-deprecated-events-api": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-deprecated-filter": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-deprecated-functional-template": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-deprecated-html-element-is": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-deprecated-inline-template": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-deprecated-model-definition": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-deprecated-props-default-this": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-deprecated-router-link-tag-prop": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-deprecated-scope-attribute": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-deprecated-slot-attribute": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-deprecated-slot-scope-attribute": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-deprecated-v-bind-sync": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-deprecated-v-is": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-deprecated-v-on-native-modifier": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-deprecated-v-on-number-modifiers": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-deprecated-vue-config-keycodes": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-dupe-keys": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-dupe-v-else-if": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-duplicate-attr-inheritance": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-duplicate-attributes": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-duplicate-class-names": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-empty-component-block": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-empty-pattern": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-export-in-script-setup": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-expose-after-await": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-extra-parens": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-implicit-coercion": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-import-compiler-macros": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-irregular-whitespace": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-lifecycle-after-await": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-literals-in-template": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-lone-template": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/no-loss-of-precision": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-multi-spaces": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/no-multiple-objects-in-class": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-multiple-slot-args": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/no-multiple-template-root": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-mutating-props": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-negated-condition": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-negated-v-if-condition": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-parsing-error": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-potential-component-option-typo": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-ref-as-operand": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-ref-object-reactivity-loss": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-required-prop-with-default": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/no-reserved-component-names": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-reserved-keys": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-reserved-props": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-restricted-block": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-restricted-call-after-await": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-restricted-class": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-restricted-component-names": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-restricted-component-options": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-restricted-custom-event": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-restricted-html-elements": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-restricted-props": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-restricted-static-attribute": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-restricted-syntax": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-restricted-v-bind": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-restricted-v-on": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-root-v-if": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-setup-props-reactivity-loss": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-shared-component-data": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-side-effects-in-computed-properties": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-spaces-around-equal-signs-in-attribute": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/no-sparse-arrays": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-static-inline-styles": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-template-key": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-template-shadow": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/no-template-target-blank": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-textarea-mustache": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-this-in-before-route-enter": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-undef-components": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-undef-directives": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-undef-properties": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-unsupported-features": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-unused-components": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-unused-emit-declarations": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-unused-properties": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-unused-refs": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-unused-vars": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-use-computed-property-like-method": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-use-v-else-with-v-for": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-use-v-if-with-v-for": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-useless-concat": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-useless-mustaches": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-useless-template-attributes": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-useless-v-bind": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-v-for-template-key": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "vue/no-v-for-template-key-on-child": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-v-html": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/no-v-model-argument": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "vue/no-v-text": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/no-v-text-v-html-on-component": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/no-watch-after-await": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/object-curly-newline": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/object-curly-spacing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/object-property-newline": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/object-shorthand": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/one-component-per-file": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/operator-linebreak": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/order-in-components": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/padding-line-between-blocks": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/padding-line-between-tags": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/padding-lines-in-component-definition": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/prefer-define-options": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/prefer-import-from-vue": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/prefer-prop-type-boolean-first": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/prefer-separate-static-class": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/prefer-template": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/prefer-true-attribute-shorthand": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/prefer-use-template-ref": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/prop-name-casing": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/quote-props": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/require-component-is": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/require-default-export": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/require-default-prop": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/require-direct-export": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/require-emit-validator": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/require-explicit-emits": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/require-explicit-slots": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/require-expose": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/require-macro-variable-name": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/require-name-property": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/require-prop-comment": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/require-prop-type-constructor": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/require-prop-types": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/require-render-return": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/require-slots-as-functions": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/require-toggle-inside-transition": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/require-typed-object-prop": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/require-typed-ref": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/require-v-for-key": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/require-valid-default-prop": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/restricted-component-names": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/return-in-computed-property": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/return-in-emits-validator": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/script-indent": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/singleline-html-element-content-newline": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/slot-name-casing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/sort-keys": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/space-in-parens": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/space-infix-ops": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/space-unary-ops": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/static-class-names-order": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/template-curly-spacing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/this-in-template": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/use-v-on-exact": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/v-bind-style": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/v-for-delimiter-style": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/v-if-else-key": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/v-on-event-hyphenation": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/v-on-handler-style": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vue/v-on-style": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/v-slot-style": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "vue/valid-attribute-name": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/valid-define-emits": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/valid-define-options": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/valid-define-props": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/valid-model-definition": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "vue/valid-next-tick": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/valid-template-root": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/valid-v-bind": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/valid-v-bind-sync": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "vue/valid-v-cloak": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/valid-v-else": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/valid-v-else-if": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/valid-v-for": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/valid-v-html": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/valid-v-if": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/valid-v-is": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/valid-v-memo": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/valid-v-model": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/valid-v-on": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/valid-v-once": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/valid-v-pre": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/valid-v-show": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/valid-v-slot": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vue/valid-v-text": {
+        "deprecated": false,
+        "recommended": "error"
+      }
+    },
+    "vuejs-accessibility": {
+      "vuejs-accessibility/alt-text": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vuejs-accessibility/anchor-has-content": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vuejs-accessibility/aria-props": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vuejs-accessibility/aria-role": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vuejs-accessibility/aria-unsupported-elements": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vuejs-accessibility/click-events-have-key-events": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vuejs-accessibility/form-control-has-label": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vuejs-accessibility/heading-has-content": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vuejs-accessibility/iframe-has-title": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vuejs-accessibility/interactive-supports-focus": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vuejs-accessibility/label-has-for": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vuejs-accessibility/media-has-caption": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vuejs-accessibility/mouse-events-have-key-events": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vuejs-accessibility/no-access-key": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vuejs-accessibility/no-aria-hidden-on-focusable": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vuejs-accessibility/no-autofocus": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vuejs-accessibility/no-distracting-elements": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vuejs-accessibility/no-onchange": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "vuejs-accessibility/no-redundant-roles": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vuejs-accessibility/no-role-presentation-on-focusable": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "vuejs-accessibility/no-static-element-interactions": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vuejs-accessibility/role-has-required-aria-props": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "vuejs-accessibility/tabindex-no-positive": {
+        "deprecated": false,
+        "recommended": "error"
+      }
+    },
+    "svelte": {
+      "svelte/@typescript-eslint/no-unnecessary-condition": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "svelte/block-lang": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/button-has-type": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/comment-directive": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/consistent-selector-style": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/derived-has-same-inputs-outputs": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/experimental-require-slot-types": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/experimental-require-strict-events": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/first-attribute-linebreak": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/html-closing-bracket-new-line": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/html-closing-bracket-spacing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/html-quotes": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/html-self-closing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/indent": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/infinite-reactive-loop": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/max-attributes-per-line": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/max-lines-per-block": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/mustache-spacing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/no-add-event-listener": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/no-at-debug-tags": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "svelte/no-at-html-tags": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-dom-manipulating": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-dupe-else-if-blocks": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-dupe-on-directives": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-dupe-style-properties": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-dupe-use-directives": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-dynamic-slot-name": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "svelte/no-export-load-in-svelte-module-in-kit-pages": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-extra-reactive-curlies": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/no-goto-without-base": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "svelte/no-ignored-unsubscribe": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/no-immutable-reactive-statements": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-inline-styles": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/no-inner-declarations": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-inspect": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "svelte/no-navigation-without-base": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "svelte/no-navigation-without-resolve": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-not-function-handler": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-object-in-text-mustaches": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-raw-special-elements": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-reactive-functions": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-reactive-literals": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-reactive-reassign": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-restricted-html-elements": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/no-shorthand-style-property-overrides": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-spaces-around-equal-signs-in-attribute": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/no-store-async": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-svelte-internal": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-target-blank": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/no-top-level-browser-globals": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/no-trailing-spaces": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/no-unknown-style-directive-property": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-unnecessary-state-wrap": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-unused-class-name": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/no-unused-props": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-unused-svelte-ignore": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-useless-children-snippet": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/no-useless-mustaches": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/prefer-class-directive": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/prefer-const": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/prefer-destructured-store-props": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/prefer-style-directive": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/prefer-svelte-reactivity": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/prefer-writable-derived": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/require-each-key": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/require-event-dispatcher-types": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/require-event-prefix": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/require-optimized-style-attribute": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/require-store-callbacks-use-set-param": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/require-store-reactive-access": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/require-stores-init": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/shorthand-attribute": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/shorthand-directive": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/sort-attributes": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/spaced-html-comment": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/system": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/valid-compile": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "svelte/valid-each-key": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/valid-prop-names-in-kit-pages": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "svelte/valid-style-parse": {
+        "deprecated": false,
+        "recommended": null
+      }
+    },
+    "tailwind": {
+      "tailwindcss/classnames-order": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "tailwindcss/enforces-negative-arbitrary-values": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "tailwindcss/enforces-shorthand": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "tailwindcss/migration-from-tailwind-2": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "tailwindcss/no-arbitrary-value": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "tailwindcss/no-contradicting-classname": {
+        "deprecated": false,
+        "recommended": "off"
+      },
+      "tailwindcss/no-custom-classname": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "tailwindcss/no-unnecessary-arbitrary-value": {
+        "deprecated": false,
+        "recommended": "warn"
+      }
+    },
+    "jsonc": {
+      "jsonc/array-bracket-newline": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "jsonc/array-bracket-spacing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "jsonc/array-element-newline": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "jsonc/auto": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "jsonc/comma-dangle": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "jsonc/comma-style": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "jsonc/indent": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "jsonc/key-name-casing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "jsonc/key-spacing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "jsonc/no-bigint-literals": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/no-binary-expression": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/no-binary-numeric-literals": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/no-comments": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "jsonc/no-dupe-keys": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/no-escape-sequence-in-identifier": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/no-floating-decimal": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/no-hexadecimal-numeric-literals": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/no-infinity": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/no-irregular-whitespace": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/no-multi-str": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/no-nan": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/no-number-props": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/no-numeric-separators": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/no-octal": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/no-octal-escape": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "jsonc/no-octal-numeric-literals": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/no-parenthesized": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/no-plus-sign": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/no-regexp-literals": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/no-sparse-arrays": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/no-template-literals": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/no-undefined-value": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/no-unicode-codepoint-escapes": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/no-useless-escape": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/object-curly-newline": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "jsonc/object-curly-spacing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "jsonc/object-property-newline": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "jsonc/quote-props": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/quotes": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/sort-array-values": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "jsonc/sort-keys": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "jsonc/space-unary-ops": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/valid-json-number": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "jsonc/vue-custom-block/no-parsing-error": {
+        "deprecated": false,
+        "recommended": "error"
+      }
+    },
+    "yaml": {
+      "yml/block-mapping": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "yml/block-mapping-colon-indicator-newline": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "yml/block-mapping-question-indicator-newline": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "yml/block-sequence": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "yml/block-sequence-hyphen-indicator-newline": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "yml/file-extension": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "yml/flow-mapping-curly-newline": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "yml/flow-mapping-curly-spacing": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "yml/flow-sequence-bracket-newline": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "yml/flow-sequence-bracket-spacing": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "yml/indent": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "yml/key-name-casing": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "yml/key-spacing": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "yml/no-empty-document": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "yml/no-empty-key": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "yml/no-empty-mapping-value": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "yml/no-empty-sequence-entry": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "yml/no-irregular-whitespace": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "yml/no-multiple-empty-lines": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "yml/no-tab-indent": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "yml/no-trailing-zeros": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "yml/plain-scalar": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "yml/quotes": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "yml/require-string-key": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "yml/sort-keys": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "yml/sort-sequence-values": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "yml/spaced-comment": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "yml/vue-custom-block/no-parsing-error": {
+        "deprecated": false,
+        "recommended": "error"
+      }
+    },
+    "toml": {
+      "toml/array-bracket-newline": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "toml/array-bracket-spacing": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "toml/array-element-newline": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "toml/comma-style": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "toml/indent": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "toml/inline-table-curly-newline": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "toml/inline-table-curly-spacing": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "toml/inline-table-key-value-newline": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "toml/key-spacing": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "toml/keys-order": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "toml/no-mixed-type-in-array": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "toml/no-non-decimal-integer": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "toml/no-space-dots": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "toml/no-unreadable-number-separator": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "toml/padding-line-between-pairs": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "toml/padding-line-between-tables": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "toml/precision-of-fractional-seconds": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "toml/precision-of-integer": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "toml/quoted-keys": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "toml/space-eq-sign": {
+        "deprecated": true,
+        "recommended": null
+      },
+      "toml/spaced-comment": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "toml/table-bracket-spacing": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "toml/tables-order": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "toml/vue-custom-block/no-parsing-error": {
+        "deprecated": false,
+        "recommended": "error"
+      }
+    },
+    "pnpm": {
+      "pnpm/json-enforce-catalog": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "pnpm/json-prefer-workspace-settings": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "pnpm/json-valid-catalog": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "pnpm/yaml-enforce-settings": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "pnpm/yaml-no-duplicate-catalog-item": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "pnpm/yaml-no-unused-catalog-item": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "pnpm/yaml-valid-packages": {
+        "deprecated": false,
+        "recommended": "error"
+      }
+    }
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "vue/camelcase": {
+    "decision": "enable",
+    "options": [
+      {
+        "allow": [],
+        "ignoreDestructuring": false,
+        "ignoreGlobals": false,
+        "ignoreImports": false,
+        "properties": "never"
+      }
+    ]
+  },
+  "vue/component-name-in-template-casing": {
+    "decision": "enable",
+    "options": [
+      "PascalCase"
+    ]
+  },
+  "vue/component-options-name-casing": {
+    "decision": "enable",
+    "options": [
+      "PascalCase"
+    ]
+  },
+  "vue/custom-event-name-casing": {
+    "decision": "enable",
+    "options": [
+      "kebab-case"
+    ]
+  },
+  "vue/define-macros-order": {
+    "decision": "enable",
+    "options": [
+      {
+        "order": [
+          "defineOptions",
+          "defineProps",
+          "defineEmits",
+          "defineSlots"
+        ]
+      }
+    ]
+  },
+  "vue/dot-notation": {
+    "decision": "enable",
+    "options": [
+      {
+        "allowKeywords": true,
+        "allowPattern": ""
+      }
+    ]
+  },
+  "vue/eqeqeq": {
+    "decision": "enable",
+    "options": [
+      "always",
+      {
+        "null": "ignore"
+      }
+    ]
+  },
+  "vue/html-comment-content-spacing": {
+    "decision": "enable",
+    "options": [
+      "always",
+      {
+        "exceptions": [
+          "-"
+        ]
+      }
+    ]
+  },
+  "vue/no-empty-pattern": {
+    "decision": "enable",
+    "options": [
+      {
+        "allowObjectPatternsAsParameters": false
+      }
+    ]
+  },
+  "vue/no-irregular-whitespace": {
+    "decision": "enable"
+  },
+  "vue/no-loss-of-precision": {
+    "decision": "enable"
+  },
+  "vue/no-restricted-syntax": {
+    "decision": "enable",
+    "options": [
+      "DebuggerStatement",
+      "LabeledStatement",
+      "WithStatement"
+    ]
+  },
+  "vue/no-restricted-v-bind": {
+    "decision": "enable",
+    "options": [
+      "/^v-/"
+    ]
+  },
+  "vue/no-sparse-arrays": {
+    "decision": "enable"
+  },
+  "vue/no-unused-refs": {
+    "decision": "enable"
+  },
+  "vue/no-useless-v-bind": {
+    "decision": "enable"
+  },
+  "vue/object-shorthand": {
+    "decision": "enable",
+    "options": [
+      "always",
+      {
+        "ignoreConstructors": false,
+        "avoidQuotes": true
+      }
+    ]
+  },
+  "vue/padding-line-between-blocks": {
+    "decision": "enable",
+    "options": [
+      "always"
+    ]
+  },
+  "vue/prefer-separate-static-class": {
+    "decision": "enable"
+  },
+  "vue/prefer-template": {
+    "decision": "enable"
+  },
+  "vue/html-button-has-type": {
+    "decision": "enable",
+    "options": [
+      {
+        "button": true,
+        "submit": true,
+        "reset": false
+      }
+    ]
+  },
+  "vue/no-constant-condition": {
+    "decision": "enable",
+    "level": "warn",
+    "options": [
+      {
+        "checkLoops": "allExceptWhileTrue"
+      }
+    ]
+  },
+  "vue/no-potential-component-option-typo": {
+    "decision": "enable"
+  },
+  "vue/no-template-target-blank": {
+    "decision": "enable",
+    "options": [
+      {
+        "allowReferrer": true,
+        "enforceDynamicLinks": "always"
+      }
+    ]
+  },
+  "vue/no-useless-concat": {
+    "decision": "enable"
+  }
+}

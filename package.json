@@ -1,0 +1,88 @@
+{
+  "name": "eslint-config-unicute",
+  "type": "module",
+  "version": "0.0.0",
+  "packageManager": "pnpm@10.33.0",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "files": [
+    "rule-diff",
+    "src"
+  ],
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "decide": "node scripts/rule-diff.js",
+    "lint": "eslint ."
+  },
+  "peerDependencies": {
+    "eslint": "^9.5.0 || ^10.0.0",
+    "typescript": ">=5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@eslint-community/eslint-plugin-eslint-comments": "4.7.1",
+    "@eslint-react/eslint-plugin": "3.0.0",
+    "@eslint/js": "10.0.1",
+    "@prettier/plugin-xml": "^3.4.2",
+    "@typescript-eslint/eslint-plugin": "8.58.2",
+    "@vitest/eslint-plugin": "1.6.16",
+    "confusing-browser-globals": "1.0.11",
+    "eslint-config-flat-gitignore": "^2.3.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "4.4.4",
+    "eslint-plugin-format": "1.5.0",
+    "eslint-plugin-import-x": "4.16.2",
+    "eslint-plugin-jsdoc": "62.9.0",
+    "eslint-plugin-jsonc": "3.1.2",
+    "eslint-plugin-jsx-a11y": "6.10.2",
+    "eslint-plugin-n": "17.24.0",
+    "eslint-plugin-no-only-tests": "3.3.0",
+    "eslint-plugin-perfectionist": "5.9.0",
+    "eslint-plugin-pnpm": "1.6.0",
+    "eslint-plugin-prettier": "5.5.5",
+    "eslint-plugin-regexp": "3.1.0",
+    "eslint-plugin-svelte": "3.17.0",
+    "eslint-plugin-tailwindcss": "3.18.3",
+    "eslint-plugin-toml": "1.3.1",
+    "eslint-plugin-unicorn": "64.0.0",
+    "eslint-plugin-unused-imports": "4.4.1",
+    "eslint-plugin-vue": "10.8.0",
+    "eslint-plugin-vuejs-accessibility": "2.5.0",
+    "eslint-plugin-yml": "3.3.1",
+    "globals": "^17.5.0",
+    "jsonc-eslint-parser": "^3.1.0",
+    "local-pkg": "^1.1.2",
+    "prettier-plugin-svelte": "^3.4.0",
+    "prettier-plugin-toml": "2.0.6",
+    "svelte-eslint-parser": "^1.4.0",
+    "toml-eslint-parser": "^1.0.3",
+    "typescript-eslint": "8.58.2",
+    "vue-eslint-parser": "^10.4.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^8.2.0",
+    "@eslint/eslintrc": "^3.3.5",
+    "@sxzz/eslint-config": "^7.8.4",
+    "@vue/eslint-config-airbnb": "8.0.0",
+    "@vue/eslint-config-standard": "9.0.1",
+    "eslint": "^10.1.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-config-airbnb-extended": "^3.1.0",
+    "eslint-plugin-import": "2.32.0",
+    "eslint-plugin-react": "7.37.5",
+    "neostandard": "^0.12.2"
+  }
+}
