@@ -651,6 +651,16 @@
           /* Keep each entry's name/version pair aligned even when the name
              wraps to two lines on narrow screens. */
           flex-wrap: wrap;
+          min-width: 0;
+        }
+        header .versions[open] > .items > div > span {
+          /* Long unbreakable names like `eslint-plugin-tailwindcss` are
+             flex items; without `min-width: 0` they refuse to shrink
+             below their intrinsic width and overflow the popover to the
+             right. Combined with `overflow-wrap: anywhere` on the parent,
+             this lets them wrap mid-token. */
+          min-width: 0;
+          max-width: 100%;
         }
         main {
           grid-template-columns: 1fr;
@@ -724,6 +734,16 @@
         .rule-head {
           gap: 6px;
           font-size: 13px;
+        }
+        .rule-head .chip {
+          /* Long chips like `superseded-by: @typescript-eslint/prefer-includes,
+             @typescript-eslint/prefer-find` were forced onto one line (the
+             default chip rule is `white-space: nowrap`) and pushed the card
+             past the viewport. Allow wrapping on narrow screens. */
+          white-space: normal;
+          overflow-wrap: anywhere;
+          word-break: break-word;
+          max-width: 100%;
         }
         .refs {
           gap: 4px;
