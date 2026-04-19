@@ -1,0 +1,32 @@
+name: CI
+
+# Lint + smoke-test gate. Runs on PRs and direct pushes to main.
+# The publish workflow re-runs these same steps — they're the gate
+# that protects npm from a broken release.
+
+on:
+  push:
+    branches: [main]
+  pull_request: {}
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm lint
+
+      - run: pnpm test

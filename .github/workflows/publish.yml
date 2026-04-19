@@ -37,6 +37,12 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      # Gate: tag-triggered publish must pass the same checks CI runs on
+      # every push. If lint or the smoke tests fail the job stops here
+      # and npm never sees the publish call.
+      - run: pnpm lint
+      - run: pnpm test
+
       # `--provenance` adds a cryptographic attestation linking the
       # published tarball to this workflow run. Shown on the npm page.
       # `--tag alpha` keeps pre-1.0 releases off the default `latest`.
