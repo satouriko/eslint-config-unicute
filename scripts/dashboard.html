@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>unicute — rule decisions</title>
     <style>
       :root {
@@ -571,6 +572,94 @@
         padding: 40px;
         text-align: center;
         color: var(--muted);
+      }
+
+      /* Mobile / narrow viewport.
+         - Sidebar collapses from a fixed 280-px column into a horizontally
+           scrollable pill row above the content, so rule cards get the full
+           width.
+         - Header flex-wraps; version popovers still expand downward.
+         - Rule-card padding and chip sizes tightened a bit for phone
+           screens, but all content stays visible (no desktop-only features
+           hidden). */
+      @media (max-width: 768px) {
+        header {
+          padding: 10px 14px;
+          gap: 8px;
+        }
+        header h1 {
+          font-size: 16px;
+        }
+        header .versions[open] > .items {
+          /* Don't let the popover shoot off-screen on narrow viewports. */
+          left: auto;
+          right: 0;
+          min-width: min(260px, calc(100vw - 28px));
+        }
+        main {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto 1fr;
+          min-height: calc(100vh - 88px);
+        }
+        aside {
+          position: sticky;
+          top: 0;
+          height: auto;
+          max-height: none;
+          padding: 8px 12px;
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+          overflow-x: auto;
+          overflow-y: hidden;
+          /* Horizontal pill row — categories become chips you scroll through. */
+          display: flex;
+          flex-wrap: nowrap;
+          gap: 6px;
+          white-space: nowrap;
+          /* Fade the right edge to hint there's more to scroll. */
+          -webkit-overflow-scrolling: touch;
+        }
+        aside .cat {
+          margin: 0;
+          padding: 6px 12px;
+          flex: 0 0 auto;
+          border-radius: 14px;
+          background: var(--chip);
+        }
+        aside .cat.active {
+          background: var(--accent);
+        }
+        aside .cat-add {
+          flex: 0 0 auto;
+          margin-top: 0;
+        }
+        section.main {
+          padding: 12px 14px;
+        }
+        .toolbar {
+          gap: 6px;
+        }
+        .toolbar input[type='search'] {
+          min-width: 0;
+          flex: 1 1 180px;
+        }
+        .toolbar .count {
+          margin-left: auto;
+          order: 10;
+        }
+        .toolbar .save {
+          order: 11;
+        }
+        .rule {
+          padding: 10px 12px;
+        }
+        .rule-head {
+          gap: 6px;
+          font-size: 13px;
+        }
+        .refs {
+          gap: 4px;
+        }
       }
     </style>
   </head>
