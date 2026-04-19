@@ -8,6 +8,9 @@ node_modules/
 # Dashboard-rendered snapshot — regenerated on every GET
 rule-diff/index.html
 
+# Static build output (`pnpm build:static`)
+dist/
+
 # OS / editor
 .DS_Store
 Thumbs.db

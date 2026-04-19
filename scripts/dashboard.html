@@ -619,11 +619,26 @@
     </main>
     <script>
       const DATA = __DATA__
+      // Static / read-only rendering: hide editing + status-filter UI, disable
+      // all rule-card controls, force filter to "all". Toggled by the backend
+      // when producing a standalone HTML via `--static` (see scripts/rule-diff.js).
+      const READ_ONLY = !!DATA.readOnly
+      if (READ_ONLY) {
+        for (const el of [
+          document.getElementById('stats'),
+          document.getElementById('filter'),
+          document.querySelector('label[title^="Hide rules"]'),
+          document.getElementById('save'),
+        ]) {
+          if (el) el.remove()
+        }
+      }
 
       const state = {
         activeCat: DATA.categories[0]?.id ?? null,
-        /** 'action' | 'decided' | 'all' — the decision-status segment. */
-        filter: 'action',
+        /** 'action' | 'decided' | 'all' — the decision-status segment.
+         *  In read-only mode we only show "all" (no status filter UI). */
+        filter: READ_ONLY ? 'all' : 'action',
         /** null | ref-name — when set, scopes the rule list to rules where
          *  unicute disagrees with that source (composes AND with `filter`). */
         diffWith: null,
@@ -841,6 +856,7 @@
 
       function renderStats() {
         const s = document.getElementById('stats')
+        if (!s) return // removed in READ_ONLY mode
         const totals = { all: 0, pending: 0, decided: 0 }
         for (const c of DATA.categories) {
           for (const r of c.rules) {
@@ -870,11 +886,14 @@
         // Pull an existing rule from any category into the current category's
         // scope. After selection the rule shows up as a "foreign" card here
         // and its decision, once saved, writes to this category's JSON.
-        const addBtn = document.createElement('button')
-        addBtn.className = 'cat-add'
-        addBtn.textContent = '+ add rule from another category'
-        addBtn.addEventListener('click', () => openRulePicker(state.activeCat))
-        root.appendChild(addBtn)
+        // Hidden in read-only mode — no mutation surface.
+        if (!READ_ONLY) {
+          const addBtn = document.createElement('button')
+          addBtn.className = 'cat-add'
+          addBtn.textContent = '+ add rule from another category'
+          addBtn.addEventListener('click', () => openRulePicker(state.activeCat))
+          root.appendChild(addBtn)
+        }
       }
 
       /**
@@ -1238,10 +1257,11 @@
                 + `unicute:\n  ${JSON.stringify(curOpts)}\n${escapeHtml(name)}:\n  ${JSON.stringify(refOpts)}`
               ref.appendChild(m)
             }
-            if (!rule.codeManaged) {
+            if (!rule.codeManaged && !READ_ONLY) {
               // `apply` writes to state.dirty → rule-diff/*.json on save.
               // Code-managed rules' decisions live in src/configs/, so
               // applying here would be a lie — skip the button entirely.
+              // Same goes for the global read-only render.
               // `diff` is passive, always available.
               const apply = document.createElement('button')
               apply.textContent = 'apply'
@@ -1283,13 +1303,17 @@
         //   - Code-managed rules: no radios — the decision is already made
         //     in src/configs/*.js. Just show a labelled pill reflecting the
         //     effective state, so there's no phantom "pending" here.
-        const readOnly = !!rule.codeManaged
+        const readOnly = !!rule.codeManaged || READ_ONLY
         const controls = document.createElement('div')
         controls.className = 'controls-row'
 
         if (readOnly) {
+          // Prefer the explicit decision (`enable` / `disable` / `ignore` /
+          // `pending`) when one is saved — that's the user's authored
+          // intent. For code-managed rules or rules without a decision,
+          // derive from the effective unicuteLevel.
           const lvl = rule.unicuteLevel
-          const effective = lvl === 'off' ? 'disable' : lvl ? 'enable' : 'pending'
+          const decLabel = decision?.decision ?? (lvl === 'off' ? 'disable' : lvl ? 'enable' : 'pending')
           // Match the editable row's typography — 13px label-size text,
           // key in muted gray, value in fg bold, trailing explanatory note
           // in muted 12px. Keeps both states visually comparable instead
@@ -1301,12 +1325,14 @@
             el.innerHTML = `<span style="color:var(--muted)">${k}</span>\u2002<b>${escapeHtml(v)}</b>`
             return el
           }
-          row.appendChild(label('decision', effective))
-          if (effective === 'enable') row.appendChild(label('level', String(lvl)))
-          const note = document.createElement('span')
-          note.style.cssText = 'font-size:12px;color:var(--muted)'
-          note.textContent = 'decision is set in src/configs/ — dashboard is read-only'
-          row.appendChild(note)
+          row.appendChild(label('decision', decLabel))
+          if (decLabel === 'enable') row.appendChild(label('level', String(decision?.level ?? lvl ?? 'error')))
+          if (rule.codeManaged) {
+            const note = document.createElement('span')
+            note.style.cssText = 'font-size:12px;color:var(--muted)'
+            note.textContent = 'decision is set in src/configs/'
+            row.appendChild(note)
+          }
           controls.appendChild(row)
         } else {
           const choices = ['pending', 'enable', 'disable', 'ignore']
@@ -1365,7 +1391,9 @@
           // confusing-browser-globals names). Don't show pickOptions for
           // them — that function might return recommendedOptions defaults
           // which aren't the real shipping value.
-          ta.value = readOnly
+          // Global read-only (non-code-managed): show the author's
+          // decision options (via pickOptions), same as editable mode.
+          ta.value = rule.codeManaged
             ? JSON.stringify(rule.unicuteOptions ?? [], null, 2)
             : JSON.stringify(currentOptions, null, 2)
           ta.placeholder = 'options (JSON array)'
@@ -1530,12 +1558,26 @@
 
       function renderSaveButton() {
         const btn = document.getElementById('save')
+        if (!btn) return // removed in READ_ONLY mode
         const n = [...state.dirty.values()].reduce((s, m) => s + m.size, 0)
         btn.textContent = `Save (${n})`
         btn.disabled = n === 0
       }
 
-      document.getElementById('save').addEventListener('click', save)
+      if (!READ_ONLY) {
+        document.getElementById('save').addEventListener('click', save)
+        document.getElementById('hide-ignored').addEventListener('change', (event) => {
+          state.hideIgnored = event.target.checked
+          renderRules()
+        })
+        for (const btn of document.querySelectorAll('#filter button')) {
+          btn.addEventListener('click', () => {
+            state.filter = btn.dataset.f
+            for (const b of document.querySelectorAll('#filter button')) b.classList.toggle('on', b === btn)
+            renderRules()
+          })
+        }
+      }
       document.getElementById('search').addEventListener('input', (event) => {
         state.query = event.target.value
         renderRules()
@@ -1552,21 +1594,10 @@
         state.diffWith = diffSel.value || null
         renderRules()
       })
-      document.getElementById('hide-ignored').addEventListener('change', (event) => {
-        state.hideIgnored = event.target.checked
-        renderRules()
-      })
       document.getElementById('deprecated-filter').addEventListener('change', (event) => {
         state.deprecated = event.target.value
         renderRules()
       })
-      for (const btn of document.querySelectorAll('#filter button')) {
-        btn.addEventListener('click', () => {
-          state.filter = btn.dataset.f
-          for (const b of document.querySelectorAll('#filter button')) b.classList.toggle('on', b === btn)
-          renderRules()
-        })
-      }
 
       async function save() {
         const btn = document.getElementById('save')

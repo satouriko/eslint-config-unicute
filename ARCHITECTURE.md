@@ -156,7 +156,7 @@ Unknown keys become a user config layer, applied before any later
 | `node`        | `false` (**opt-in**)              | `boolean \| glob \| glob[]`                                                                                               |
 | `jsdoc`       | `false` (**opt-in**)              | `eslint-plugin-jsdoc` recommended fires on any `/** */`; enable when the project commits to JSDoc as documentation        |
 | `pnpm`        | auto-detect `pnpm-workspace.yaml` |                                                                                                                           |
-| `prettier`    | `true`                            | `boolean \| PrettierOptions` — unicute owns the config. Severity is `warn`, not `error`                                  |
+| `prettier`    | `true`                            | `boolean \| PrettierOptions` — unicute owns the config. Severity is `warn`, not `error`                                   |
 
 Notes on the design choices:
 

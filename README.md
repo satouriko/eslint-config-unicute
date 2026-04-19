@@ -2,7 +2,7 @@
 
 > 🌸 **Unified and cute.** Uniform code, strictness that's just right.
 
-[中文](./README.zh.md)
+[中文](./README.zh.md) · [Browse every decision →](https://satouriko.github.io/eslint-config-unicute/)
 
 A TypeScript-first ESLint flat config. Zero config; assembles itself from your project.
 
@@ -26,9 +26,7 @@ Peer deps: `eslint ≥ 9.5`, `typescript ≥ 5`, `prettier ≥ 3.5`, `node ≥ 2
 
 ## Out of the box
 
-**Auto-assembles from your project.** unicute detects installed dependencies and enables the matching rule chains.
-
-**Formatting is Prettier's job.** ESLint stays out of formatting; Prettier handles it at the end of the chain.
+**Auto-assembles from your project.** unicute detects installed dependencies and enables the matching rule chains — one call is enough.
 
 ---
 
@@ -54,6 +52,8 @@ A large portion of unicute's rule choices — switches, options, exception lists
 - [**neostandard**](https://github.com/neostandard/neostandard) (the flat-config successor to standard) — core code-style conventions (no-semi, single-quote and other Standard traditions), plus some core ESLint rule calls. unicute keeps trailing commas because they're friendlier to diffs.
 - [**antfu/eslint-config**](https://github.com/antfu/eslint-config) — flat-config-native design, per-project auto-detection, factory-function API; modern plugin selection (unicorn, import-x, regexp, etc.) and specific rule choices.
 - [**@sxzz/eslint-config**](https://github.com/sxzz/eslint-config) — the overall pattern of using Prettier as the formatting layer; Prettier defaults (no-semi, single-quote, trailingComma 'all'); plugin selection and specific unicorn rule calls.
+
+Every rule's current state and a live side-by-side diff against these four configs is browsable at **[satouriko.github.io/eslint-config-unicute](https://satouriko.github.io/eslint-config-unicute/)** — rebuilt on every push to `main`.
 
 ### vs airbnb-extended
 

@@ -66,6 +66,10 @@ const argumentOf = (flag, fallback) => {
   return index === -1 ? fallback : cliArgs[index + 1]
 }
 const SERVE_PORT = Number(argumentOf('--port', '8080'))
+// --static <path> builds a standalone HTML snapshot (read-only dashboard) to
+// the given file and exits. No server, no HTTP endpoints, no editing UI.
+// Intended for publishing as a static page (GitHub Pages, etc.).
+const STATIC_OUT = argumentOf('--static', null)
 
 // ─── probe files ──────────────────────────────────────────────────────────
 
@@ -1215,6 +1219,20 @@ function buildPayload() {
 // is regenerated on each HTTP GET while the server is up.
 mkdirSync(OUT, { recursive: true })
 writeFileSync(join(OUT, 'index.html'), toHtml(buildPayload()))
+
+// --static <path>: write a read-only HTML snapshot to <path> and exit.
+// "Read-only" means the embedded DATA carries `readOnly: true`, which the
+// dashboard JS reads to hide status filters (Needs action / unicute decisions
+// / Hide ignored), the Save button, header stats, and all per-rule editing
+// affordances. Only `Diff with`, search, deprecated filter, and category
+// navigation remain. Use for publishing the decision set as a static site.
+if (STATIC_OUT) {
+  const outPath = resolve(STATIC_OUT)
+  mkdirSync(dirname(outPath), { recursive: true })
+  writeFileSync(outPath, toHtml({ ...buildPayload(), readOnly: true }))
+  console.log(`Wrote read-only snapshot to ${outPath}`)
+  process.exit(0)
+}
 
 // Summary — mirror the dashboard's `isPending` / `isDecided` buckets
 // (dashboard.html) so the terminal line matches what the webpage shows.
