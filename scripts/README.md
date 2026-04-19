@@ -89,14 +89,21 @@ flags a lost alias, update that file and re-run `pnpm decide`.
   updates with every filter change.
 - **Category picker + rule picker** — quick jump to any loaded rule.
   Sidebar's `+ add rule from another category` brings any native rule
-  into the current category's scope as a foreign entry.
+  into the current category's scope as a foreign entry. The scope-only
+  `commonjs` category has no native rules of its own — populate it by
+  adding rules from other categories (so their options apply only on
+  `.cjs` / `.cts` files).
 - **Filters** (compose with AND): `Needs action` / `unicute decisions` /
   `All` segmented, `Diff with…` ref dropdown, `Hide ignored` checkbox,
   `Deprecated: all / hide / only`.
 - **Diff with `<ref>`** — side-by-side with any reference config, with
   auto-expanded diff panels on the rows that actually differ. Arrays
   are diffed as multisets (order-insensitive) and object key order is
-  normalized, so order-only noise doesn't show up.
+  normalized, so order-only noise doesn't show up. Arrays of objects
+  with an identity field (`name` / `selector` / `id` / `key`) are paired
+  up by that field — so `no-restricted-globals`-style entries with a
+  shared `name` but differing `message` show as one row with the inner
+  message diff, not as unrelated add/remove pairs.
 - **Also override in** — dropdown on each rule to copy a decision into
   another category's JSON (useful when the same rule id lives under
   multiple plugins).
@@ -128,7 +135,12 @@ flags a lost alias, update that file and re-run `pnpm decide`.
 
 - Each category has its own `{ probe file, unicuteOptions }` scenario
   in `CATEGORIES`. Add an entry when you wire a new plugin in
-  `src/configs/`.
+  `src/configs/`. Scope-only categories (no native plugin, like
+  `commonjs`) use `enumerate: () => []` and `packages: []`.
+- Drift alerts skip foreign rules — a rule in a non-native category's
+  JSON shouldn't surface `new-rule` / `recommended-changed` /
+  `rule-retired` noise there; its native category is the single source
+  of truth for upstream-state drift.
 - `.decide-probe/` is created fresh each run; gitignored.
 - The tool never edits `src/configs/*.js` — unicute opinions flow
   through `rule-diff/*.json` (dashboard-authored) and

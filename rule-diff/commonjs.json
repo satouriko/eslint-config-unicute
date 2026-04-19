@@ -1,0 +1,11 @@
+{
+  "import-x/no-useless-path-segments": {
+    "decision": "enable",
+    "options": [
+      {
+        "noUselessIndex": true,
+        "commonjs": true
+      }
+    ]
+  }
+}

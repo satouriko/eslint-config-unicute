@@ -92,7 +92,8 @@ src/
     │                    when `typescript` is on
     ├── perfectionist.js eslint-plugin-perfectionist plugin registration only
     ├── comments.js      @eslint-community/eslint-plugin-eslint-comments recommended
-    ├── jsdoc.js         eslint-plugin-jsdoc flat/recommended
+    ├── jsdoc.js         eslint-plugin-jsdoc flat/recommended (opt-in)
+    ├── commonjs.js      scope-only overrides for .cjs / .cts (no native plugin)
     ├── node.js          eslint-plugin-n flat/recommended (opt-in)
     ├── testing.js       no-only-tests + optional vitest (test files)
     ├── tailwind.js      eslint-plugin-tailwindcss flat/recommended
@@ -153,8 +154,9 @@ Unknown keys become a user config layer, applied before any later
 | `tailwindcss` | auto-detect `tailwindcss`         |                                                                                                                           |
 | `vitest`      | auto-detect `vitest`              |                                                                                                                           |
 | `node`        | `false` (**opt-in**)              | `boolean \| glob \| glob[]`                                                                                               |
+| `jsdoc`       | `false` (**opt-in**)              | `eslint-plugin-jsdoc` recommended fires on any `/** */`; enable when the project commits to JSDoc as documentation        |
 | `pnpm`        | auto-detect `pnpm-workspace.yaml` |                                                                                                                           |
-| `prettier`    | `true`                            | `boolean \| PrettierOptions` — unicute owns the config                                                                    |
+| `prettier`    | `true`                            | `boolean \| PrettierOptions` — unicute owns the config. Severity is `warn`, not `error`                                  |
 
 Notes on the design choices:
 
@@ -170,27 +172,39 @@ Notes on the design choices:
 - **`node`** must be opt-in — there's no reliable filesystem test for
   "this code runs on Node vs in a browser". `true` applies to all source;
   a glob / glob[] scopes to specific paths.
+- **`jsdoc`** must be opt-in — `eslint-plugin-jsdoc`'s recommended set
+  fires on every `/** */` block (alignment, multi-asterisks, tag-names …),
+  but `/** */` isn't always _intended_ as JSDoc. Enable only when the
+  project commits to JSDoc as its documentation layer.
 - **`prettier`** ignores `.prettierrc` (we pass `usePrettierrc: false` to
   `eslint-plugin-prettier`). This is a feature, not a bug: the whole team
-  shares one source of truth per unicute config.
+  shares one source of truth per unicute config. Severity is deliberately
+  `warn`, not `error` — so a save can land even mid-way through a
+  reformat, and CI gate-keeping can be configured separately.
+- **`files` in `firstArg` is rejected** — `extractOptions` throws a clear
+  error if it sees a `files` key at the top level. unicute options apply
+  globally; `files` at the top would only scope the leftover user block,
+  not the whole config, which is a common footgun. Put `files` in a
+  separate config block passed as a later argument. (Same check antfu runs.)
 
 ---
 
 ## Categories (rule namespaces)
 
-A **category** corresponds to a rule-ID namespace / prefix. There are 20
+A **category** corresponds to a rule-ID namespace / prefix. There are 21
 categories currently; each gets its own `rule-diff/{id}.json`:
 
 | Category              | Covers rule IDs                                                        | File globs scope                       |
 | --------------------- | ---------------------------------------------------------------------- | -------------------------------------- |
 | `javascript`          | core ESLint (no prefix)                                                | `GLOB_SRC`                             |
+| `commonjs`            | _any rule_ (scope-only override)                                       | `.cjs` + `.cts`                        |
 | `typescript`          | `@typescript-eslint/*`                                                 | TS + TSX + VUE + SVELTE                |
 | `unicorn`             | `unicorn/*`                                                            | `GLOB_SRC`                             |
 | `regexp`              | `regexp/*`                                                             | `GLOB_SRC`                             |
 | `imports`             | `import-x/*` + `unused-imports/*` + import-side `perfectionist/sort-*` | `GLOB_SRC`                             |
 | `perfectionist`       | `perfectionist/*` (non-import)                                         | `GLOB_SRC`                             |
 | `comments`            | `@eslint-community/eslint-comments/*`                                  | `GLOB_SRC`                             |
-| `jsdoc`               | `jsdoc/*`                                                              | `GLOB_SRC`                             |
+| `jsdoc`               | `jsdoc/*`                                                              | `GLOB_SRC` (opt-in)                    |
 | `node`                | `n/*`                                                                  | opt-in scope                           |
 | `testing`             | `vitest/*` + `no-only-tests/*`                                         | test files                             |
 | `react`               | `@eslint-react/*`                                                      | `.jsx` + `.tsx` (configurable)         |
@@ -203,6 +217,14 @@ categories currently; each gets its own `rule-diff/{id}.json`:
 | `yaml`                | `yml/*`                                                                | `.yaml` + `.yml`                       |
 | `toml`                | `toml/*`                                                               | `.toml`                                |
 | `pnpm`                | `pnpm/*`                                                               | `package.json` + `pnpm-workspace.yaml` |
+
+The **`commonjs` category** is special: it has no native plugin and no
+`enumerate()` — rules are pulled in as _foreign_ from other categories
+via the dashboard's "+ add rule from another category" button. Any rule
+decision put in `rule-diff/commonjs.json` applies only on `.cjs` / `.cts`
+files, layered after the main chains. Typical use: a rule whose correct
+stance differs under CJS (e.g. `import-x/no-useless-path-segments` with
+`noUselessIndex: false` to match CJS's directory-index resolution).
 
 **Category → config-file is many-to-many**. Example: the `imports` workflow
 touches three namespaces (`import-x`, `unused-imports`, and a subset of
@@ -568,6 +590,16 @@ would emit an `alias-lost` alert for every ref × every rule native to
 the failed category. `computeDrift` skips alias-lost for any rule whose
 native category is in `current.failedCategories` — failed probes don't
 pretend aliases are lost, only that they couldn't be evaluated.
+
+**Foreign-rule suppression**: `recommended` and `deprecated` are
+plugin-level attributes of a rule, but each category's
+`recommendedPreset()` only probes its own plugin — so for a rule pulled
+into a non-native category (`jsdoc/require-jsdoc` staged under
+`commonjs`, say), the per-category probe produces a meaningless `null`
+and any disagreement with baseline would fire a spurious
+`recommended-changed` alert. Drift checks skip any rule whose native
+category differs from the one being probed; the rule's own native entry
+is the single source of truth for its upstream state.
 
 The UI surfaces all alerts in a top alert bar; each rule-scoped alert
 also marks its rule with a `drift` chip and bumps it into "Needs action"

@@ -49,7 +49,7 @@ import vuePlugin from 'eslint-plugin-vue'
 import vueA11yPlugin from 'eslint-plugin-vuejs-accessibility'
 import ymlPlugin, { configs as ymlConfigs } from 'eslint-plugin-yml'
 
-import unicute from '../src'
+import unicute from '../src/index.js'
 import { SUPERSEDED_BY, SUPERSEDES } from '../src/rule-supersedes.js'
 
 import { resolveRef } from './rule-equivalence.js'
@@ -172,6 +172,20 @@ const CATEGORIES = [
       })),
     packages: ['eslint'],
     recommendedPreset: () => [jsPlugin.configs.recommended],
+  },
+  {
+    // Scope-only override category for `.cjs` / `.cts`. No native plugin —
+    // rules here are always "foreign" (added by user from other categories
+    // in the dashboard) and apply only on CJS files. Useful for rules whose
+    // correct stance differs under CJS (e.g. `import-x/no-useless-path-segments`
+    // with `noUselessIndex: false` matching CJS's directory-index resolution).
+    id: 'commonjs',
+    label: 'commonjs (.cjs / .cts scope)',
+    probe: 'probe.cjs',
+    unicuteOptions: {},
+    enumerate: () => [],
+    packages: [],
+    recommendedPreset: () => [],
   },
   {
     id: 'typescript',
@@ -699,6 +713,7 @@ async function loadRefs() {
       const reactPluginLegacy = (await import('eslint-plugin-react')).default
       const importPlugin = await import('eslint-plugin-import')
       const vueAirbnbPath = require.resolve('@vue/eslint-config-airbnb/package.json')
+
       const vueAirbnbPkg = require(vueAirbnbPath)
       packages.push({ name: '@vue/eslint-config-airbnb', version: vueAirbnbPkg.version })
       const compat = new FlatCompat({ baseDirectory: resolve(vueAirbnbPath, '..') })

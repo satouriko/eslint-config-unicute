@@ -12,6 +12,7 @@
 import { defineConfig } from 'eslint/config'
 
 import { commentsConfig } from './configs/comments.js'
+import { commonjsConfig } from './configs/commonjs.js'
 import { ignores } from './configs/ignores.js'
 import { imports } from './configs/imports.js'
 import { javascript } from './configs/javascript.js'
@@ -148,6 +149,10 @@ export function unicute(firstArgument = {}, ...userConfigs) {
     ...yamlConfig(),
     ...tomlConfig(),
     ...(pnpm ? pnpmConfig() : []),
+
+    // Scope-only override category for `.cjs` / `.cts`. Loaded after the
+    // main chains so it wins over defaults; applies before user configs.
+    ...commonjsConfig(),
 
     ...allUserConfigs,
 

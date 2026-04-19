@@ -2,9 +2,6 @@
   "import-x/consistent-type-specifier-style": {
     "decision": "disable"
   },
-  "import-x/extensions": {
-    "decision": "disable"
-  },
   "import-x/first": {
     "decision": "enable"
   },
@@ -21,23 +18,20 @@
       }
     ]
   },
-  "import-x/no-cycle": {
-    "decision": "disable"
-  },
   "import-x/no-dynamic-require": {
     "decision": "disable"
   },
   "import-x/no-empty-named-blocks": {
     "decision": "enable"
   },
-  "import-x/no-extraneous-dependencies": {
-    "decision": "disable"
-  },
   "import-x/no-mutable-exports": {
     "decision": "enable"
   },
   "import-x/no-named-as-default": {
     "decision": "disable"
+  },
+  "import-x/no-named-as-default-member": {
+    "decision": "enable"
   },
   "import-x/no-named-default": {
     "decision": "enable"
@@ -52,7 +46,7 @@
     "decision": "enable",
     "options": [
       {
-        "noUselessIndex": true,
+        "noUselessIndex": false,
         "commonjs": true
       }
     ]
@@ -82,9 +76,6 @@
         }
       }
     ]
-  },
-  "import-x/prefer-default-export": {
-    "decision": "disable"
   },
   "unused-imports/no-unused-imports": {
     "decision": "enable"
