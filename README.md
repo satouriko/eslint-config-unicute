@@ -22,6 +22,8 @@ export default unicute()
 
 Peer deps: `eslint ≥ 9.5`, `typescript ≥ 5`, `prettier ≥ 3.5`, `node ≥ 20.19`.
 
+> **Run formatting through ESLint, not Prettier directly.** unicute owns the Prettier config and runs Prettier inside ESLint via `eslint-plugin-prettier` — `eslint --fix` formats the whole project in one pass. Running `prettier --write` separately is redundant and can disagree with unicute's options (it reads `.prettierrc`, which unicute ignores).
+
 ---
 
 ## Out of the box
