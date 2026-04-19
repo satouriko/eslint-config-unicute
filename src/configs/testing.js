@@ -3,14 +3,14 @@ import noOnlyTests from 'eslint-plugin-no-only-tests'
 
 import { GLOB_TESTS } from '../utils.js'
 
-import { overridesBlock } from './_overrides.js'
+import { compileOverrides } from './_overrides.js'
 
 /**
  * @param {object} [opts]
  * @param {boolean} [opts.vitest]
  */
 export function testingConfig({ vitest: useVitest = false } = {}) {
-  return [
+  const blocks = [
     {
       files: GLOB_TESTS,
       name: 'unicute/testing/plugins',
@@ -20,6 +20,23 @@ export function testingConfig({ vitest: useVitest = false } = {}) {
       },
       rules: useVitest ? (vitest.configs?.recommended?.rules ?? {}) : {},
     },
-    ...overridesBlock('testing', GLOB_TESTS),
   ]
+
+  // Testing overrides JSON mixes `vitest/*` with plugin-agnostic entries
+  // (`no-only-tests/*`). When vitest is disabled, emit only the non-vitest
+  // rules — referencing `vitest/*` rules with a non-`off` severity while
+  // the plugin isn't registered throws at lint time.
+  const rules = compileOverrides('testing')
+  const filtered = useVitest
+    ? rules
+    : Object.fromEntries(Object.entries(rules).filter(([id]) => !id.startsWith('vitest/')))
+  if (Object.keys(filtered).length > 0) {
+    blocks.push({
+      files: GLOB_TESTS,
+      name: 'unicute/testing/overrides',
+      rules: filtered,
+    })
+  }
+
+  return blocks
 }

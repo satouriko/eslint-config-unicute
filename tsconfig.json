@@ -12,5 +12,6 @@
     "isolatedModules": true,
     "noEmit": true
   },
-  "include": ["src/**/*", "scripts/**/*", "eslint.config.js"]
+  "include": ["src/**/*", "scripts/**/*", "tests/smoke.test.js", "eslint.config.js"],
+  "exclude": ["tests/fixture-project"]
 }

@@ -34,7 +34,7 @@
     "options": [
       "as-needed",
       {
-        "requireReturnForObjectLiteral": "never"
+        "requireReturnForObjectLiteral": false
       }
     ]
   },

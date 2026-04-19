@@ -1,0 +1,12 @@
+{
+  "name": "unicute-smoke-fixture",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Isolated project used by the unicute smoke tests. Never published.",
+  "type": "module",
+  "devDependencies": {
+    "eslint-config-unicute": "workspace:*",
+    "tailwindcss": "^4.2.2",
+    "vitest": "^4.1.4"
+  }
+}
