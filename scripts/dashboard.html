@@ -610,14 +610,21 @@
           font-size: 16px;
         }
         header .versions[open] > .items {
-          /* Right-anchor the popover and cap its width at the viewport —
-             otherwise `white-space: nowrap` lets long package names push
-             the popover off-screen. */
-          left: auto;
-          right: 0;
-          width: calc(100vw - 24px);
+          /* Anchor the popover to the viewport (not to the clicked
+             `<details>`) so it never overflows the right edge — the
+             `<details>` can sit anywhere along the wrapped header,
+             which previously sent the absolute-positioned popover off
+             the screen. `var(--header-h)` is tracked live via the
+             ResizeObserver, so the popover sits flush under whatever
+             height the header currently has. */
+          position: fixed;
+          top: var(--header-h);
+          left: 12px;
+          right: 12px;
+          width: auto;
           min-width: 0;
-          max-width: calc(100vw - 24px);
+          max-width: none;
+          margin-top: 4px;
           white-space: normal;
           overflow-wrap: anywhere;
         }
