@@ -739,11 +739,18 @@
           /* Long chips like `superseded-by: @typescript-eslint/prefer-includes,
              @typescript-eslint/prefer-find` were forced onto one line (the
              default chip rule is `white-space: nowrap`) and pushed the card
-             past the viewport. Allow wrapping on narrow screens. */
+             past the viewport. Allow wrapping on narrow screens.
+             `min-width: 0` is the critical bit — without it, flex items
+             default to `min-width: auto` which inherits the intrinsic
+             content width and refuses to shrink, so even though the text
+             COULD wrap, the box itself doesn't allow it. Same trick as
+             other flex children elsewhere in this file. */
           white-space: normal;
           overflow-wrap: anywhere;
-          word-break: break-word;
+          word-break: break-all;
+          min-width: 0;
           max-width: 100%;
+          flex-shrink: 1;
         }
         .refs {
           gap: 4px;
