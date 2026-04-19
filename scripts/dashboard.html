@@ -9,6 +9,13 @@
         color-scheme: light dark;
         --bg: #fafafa;
         --fg: #1f2937;
+        /* Sticky offsets — toolbar sticks below header on desktop, below
+           header + aside pill row on mobile. The values reflect the actual
+           rendered heights of those rows and are hand-tuned; close-enough
+           beats exact here because both headers have their own backgrounds
+           so a 1-px overlap is invisible. */
+        --header-h: 52px;
+        --aside-mobile-h: 46px;
         --panel: #ffffff;
         --line: #e5e7eb;
         --accent: #6a5acd;
@@ -151,6 +158,7 @@
       aside .cat {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         padding: 6px 10px;
         margin: 2px 0;
         border-radius: 6px;
@@ -168,8 +176,10 @@
         background: var(--chip);
         color: var(--fg);
         font-size: 11px;
+        line-height: 1.6;
         border-radius: 10px;
-        padding: 0 6px;
+        padding: 0 8px;
+        font-variant-numeric: tabular-nums;
       }
       aside .cat.active .badge {
         background: rgba(255, 255, 255, 0.25);
@@ -300,6 +310,15 @@
         align-items: center;
         flex-wrap: wrap;
         margin-bottom: 12px;
+        /* Keep the search / filter / diff-with controls reachable when the
+           user scrolls deep into the rule list. Sticks below the page
+           header on desktop (see media query below for the mobile offset). */
+        position: sticky;
+        top: var(--header-h);
+        background: var(--bg);
+        padding-top: 8px;
+        padding-bottom: 10px;
+        z-index: 5;
       }
       .toolbar input[type='search'] {
         padding: 6px 10px;
@@ -603,7 +622,13 @@
         }
         aside {
           position: sticky;
-          top: 0;
+          /* Stick below the page header (not at viewport top 0 — header is
+             also sticky and would overlap). `--aside-mobile-h` below
+             matches the rendered height of this pill row and is used by
+             `.toolbar` to stick under both. */
+          top: var(--header-h);
+          background: var(--panel);
+          z-index: 6;
           height: auto;
           max-height: none;
           padding: 8px 12px;
@@ -616,15 +641,19 @@
           flex-wrap: nowrap;
           gap: 6px;
           white-space: nowrap;
-          /* Fade the right edge to hint there's more to scroll. */
           -webkit-overflow-scrolling: touch;
         }
         aside .cat {
           margin: 0;
-          padding: 6px 12px;
+          padding: 4px 12px;
           flex: 0 0 auto;
           border-radius: 14px;
           background: var(--chip);
+          /* Pill layout — label + badge sit next to each other with a
+             small gap, vertically centered. Not `space-between` (that
+             would leave an awkward gap inside narrow pills). */
+          justify-content: flex-start;
+          gap: 8px;
         }
         aside .cat.active {
           background: var(--accent);
@@ -638,6 +667,8 @@
         }
         .toolbar {
           gap: 6px;
+          /* Stack below header + the mobile pill-row aside. */
+          top: calc(var(--header-h) + var(--aside-mobile-h));
         }
         .toolbar input[type='search'] {
           min-width: 0;
@@ -1852,8 +1883,18 @@
         }
 
         const table = document.createElement('table')
+        // table-layout: fixed respects the container width; without it, long
+        // monospace JSON tokens blow out the table past the panel's border.
+        // Column widths are biased toward the two data columns so long
+        // option values have room to wrap; `path` stays narrow.
         table.style.cssText =
-          'width:100%;border-collapse:collapse;font-family:ui-monospace,Menlo,monospace;font-size:12px'
+          'width:100%;table-layout:fixed;border-collapse:collapse;font-family:ui-monospace,Menlo,monospace;font-size:12px'
+        const colgroup = document.createElement('colgroup')
+        colgroup.innerHTML = '<col style="width:20%"><col style="width:40%"><col style="width:40%">'
+        table.appendChild(colgroup)
+        // `overflow-wrap: anywhere` + `word-break: break-word` let long JSON
+        // blobs wrap mid-token instead of forcing horizontal overflow.
+        const cellStyle = 'padding:2px 8px 2px 0;vertical-align:top;overflow-wrap:anywhere;word-break:break-word'
         const thead = document.createElement('tr')
         thead.innerHTML =
           `<th style="text-align:left;color:var(--muted);font-weight:normal;padding-right:8px">path</th>`
@@ -1863,9 +1904,9 @@
         for (const r of rows) {
           const tr = document.createElement('tr')
           tr.innerHTML =
-            `<td style="padding:2px 8px 2px 0;vertical-align:top">${escapeHtml(r.path)}</td>`
-            + `<td style="padding:2px 8px 2px 0;vertical-align:top;color:var(--danger)">${escapeHtml(diffCell(r.left))}</td>`
-            + `<td style="padding:2px 0;vertical-align:top;color:var(--ok)">${escapeHtml(diffCell(r.right))}</td>`
+            `<td style="${cellStyle}">${escapeHtml(r.path)}</td>`
+            + `<td style="${cellStyle};color:var(--danger)">${escapeHtml(diffCell(r.left))}</td>`
+            + `<td style="${cellStyle};color:var(--ok);padding-right:0">${escapeHtml(diffCell(r.right))}</td>`
           table.appendChild(tr)
         }
         wrap.appendChild(table)
