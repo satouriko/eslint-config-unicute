@@ -1,0 +1,43 @@
+name: Publish to npm
+
+# Tag-triggered release. Push a `vX.Y.Z` tag and this workflow publishes
+# via npm's Trusted Publishers (OIDC) — no token needed, no 2FA prompt.
+#
+# Setup once on npmjs.com:
+#   package → Settings → Trusted Publisher → Add Publisher → GitHub Actions
+#     Owner:              satouriko
+#     Repository:         eslint-config-unicute
+#     Workflow filename:  publish.yml
+#     Environment name:   npm
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  id-token: write # required so the runner can mint an OIDC token for npm
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    # Must match the `Environment name` set in the Trusted Publisher form.
+    environment: npm
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+
+      - run: pnpm install --frozen-lockfile
+
+      # `--provenance` adds a cryptographic attestation linking the
+      # published tarball to this workflow run. Shown on the npm page.
+      # `--tag alpha` keeps pre-1.0 releases off the default `latest`.
+      - run: npm publish --tag alpha --access public --provenance
