@@ -765,6 +765,31 @@
         }
       }
 
+      /** The sticky toolbar sits below the page header (and, on mobile, the
+       *  aside pill row). When either of those wraps to a taller height —
+       *  narrow viewports, long text, etc. — hand-tuned CSS constants go
+       *  stale and the toolbar ends up hidden under the header on scroll.
+       *  Measure live and publish as CSS custom properties so the sticky
+       *  offsets always match the actual rendered heights. */
+      function trackStickyOffsets() {
+        const header = document.querySelector('header')
+        const aside = document.getElementById('sidebar')
+        const root = document.documentElement
+        const apply = () => {
+          if (header) root.style.setProperty('--header-h', header.offsetHeight + 'px')
+          if (aside) root.style.setProperty('--aside-mobile-h', aside.offsetHeight + 'px')
+        }
+        apply()
+        const ro = new ResizeObserver(apply)
+        if (header) ro.observe(header)
+        if (aside) ro.observe(aside)
+        // Also re-measure on viewport changes (orientation flip, chrome
+        // showing / hiding, layout shifts from font load, etc.).
+        window.addEventListener('resize', apply)
+      }
+      // Run after initial render so `aside`'s pill row has its final height.
+      queueMicrotask(trackStickyOffsets)
+
       const state = {
         activeCat: DATA.categories[0]?.id ?? null,
         /** 'action' | 'decided' | 'all' — the decision-status segment.
