@@ -2190,7 +2190,14 @@
         for (const entry of schema) walk(entry)
         if (keys.size === 0) return null
         const hint = document.createElement('div')
-        hint.style.cssText = 'font-size:11px;color:var(--muted);margin-top:4px;font-family:ui-monospace,Menlo,monospace'
+        // `overflow-wrap: anywhere` + `min-width: 0` so an absurdly long
+        // monospace option key (e.g. typescript-eslint's 57-char
+        // `allowPotentiallyUnsafeFixesThatModifyTheReturnTypeIKnowWhatImDoing`)
+        // breaks mid-word instead of pushing the card past the viewport
+        // on narrow screens.
+        hint.style.cssText =
+          'font-size:11px;color:var(--muted);margin-top:4px;font-family:ui-monospace,Menlo,monospace;'
+          + 'overflow-wrap:anywhere;word-break:break-word;min-width:0'
         hint.textContent = `keys: ${[...keys].slice(0, 18).join(', ')}${keys.size > 18 ? '…' : ''}`
         return hint
       }
