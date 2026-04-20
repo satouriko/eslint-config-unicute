@@ -63,6 +63,29 @@ const OPTION_KEYS = new Set([
  * in a separate config passed as a later argument instead. (Same check antfu runs.)
  * @param firstArgument
  */
+/**
+ * Normalize a `boolean | object` option to `{}` / the object / `null`.
+ * Used for react / vue / svelte / prettier option shapes.
+ */
+function normalizeBoolOrObject(value) {
+  if (value === true) return {}
+  if (value && typeof value === 'object') return value
+  return null
+}
+
+/**
+ * Normalize the `node` option's three shapes:
+ *   `true`                     → apply to nodeConfig's DEFAULT_FILES
+ *   `string` / `string[]`      → apply to those globs
+ *   `false` / unset / anything → don't load eslint-plugin-n
+ */
+function normalizeNode(node) {
+  if (node === true) return {}
+  if (typeof node === 'string') return { files: [node] }
+  if (Array.isArray(node)) return { files: node }
+  return null
+}
+
 function extractOptions(firstArgument) {
   if (!firstArgument || typeof firstArgument !== 'object') return { block: null, options: {} }
   if ('files' in firstArgument) {
@@ -110,23 +133,17 @@ export function unicute(firstArgument = {}, ...userConfigs) {
     vue = isPackageExists('vue'),
   } = options
 
-  const reactOptions = react === true ? {} : react && typeof react === 'object' ? react : null
-  const vueOptions = vue === true ? {} : vue && typeof vue === 'object' ? vue : null
-  const svelteOptions = svelte === true ? {} : svelte && typeof svelte === 'object' ? svelte : null
+  const reactOptions = normalizeBoolOrObject(react)
+  const vueOptions = normalizeBoolOrObject(vue)
+  const svelteOptions = normalizeBoolOrObject(svelte)
   // `typescript` accepts `true` or an options object. The only option
   // today is `noWarnOnMultipleProjects`, forwarded to the import
   // resolver (silences its perf hint when the project glob matches
   // multiple tsconfigs — common in monorepos / toolchain-split setups).
   const tsEnabled = typescript !== false && typescript !== null && typescript !== undefined
   const tsOpts = typescript && typeof typescript === 'object' ? typescript : {}
-  // `node` is opt-in and accepts three shapes (see UnicuteOptions):
-  //   true          → apply to all JS/TS source (nodeConfig's DEFAULT_FILES)
-  //   string | []   → apply to just those globs (e.g. 'server/**')
-  //   false / unset → do not load eslint-plugin-n at all
-  const nodeOptions =
-    node === true ? {} : typeof node === 'string' ? { files: [node] } : Array.isArray(node) ? { files: node } : null
-
-  const prettierUserOptions = prettier === true ? {} : prettier && typeof prettier === 'object' ? prettier : null
+  const nodeOptions = normalizeNode(node)
+  const prettierUserOptions = normalizeBoolOrObject(prettier)
 
   const allUserConfigs = block ? [block, ...userConfigs] : userConfigs
 

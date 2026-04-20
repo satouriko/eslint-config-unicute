@@ -9,6 +9,20 @@ import { GLOB_VUE } from '../utils.js'
 
 import { loadOverridesJson, overridesBlock } from './_overrides.js'
 
+/** Normalize `sfcTsx` option's three shapes (true/string/string[]) to a glob array. */
+function normalizeSfcTsxScope(sfcTsx) {
+  if (!sfcTsx) return []
+  if (sfcTsx === true) return GLOB_VUE
+  if (Array.isArray(sfcTsx)) return sfcTsx
+  return [sfcTsx]
+}
+
+/** Normalize `files` option to a glob array; default scope is GLOB_VUE. */
+function normalizeScope(files) {
+  if (!files) return GLOB_VUE
+  return Array.isArray(files) ? files : [files]
+}
+
 /**
  * When `disableTypeChecked` turns off a type-aware `@typescript-eslint/*`
  * rule on sfcTsxScope, its counterpart core rule (extension via
@@ -60,7 +74,9 @@ function computeRevivedCoreRules(disableRulesMap) {
     if (!id.startsWith('@typescript-eslint/')) continue
     const short = id.slice('@typescript-eslint/'.length)
     const ebr = tsPlugin.rules?.[short]?.meta?.docs?.extendsBaseRule
-    const base = ebr === true ? short : typeof ebr === 'string' ? ebr : null
+    let base = null
+    if (ebr === true) base = short
+    else if (typeof ebr === 'string') base = ebr
     if (base) emitRevive(base)
   }
 
@@ -83,10 +99,10 @@ function computeRevivedCoreRules(disableRulesMap) {
  * @param {boolean} [opts.a11y] - also apply eslint-plugin-vuejs-accessibility
  */
 export function vueConfig({ a11y = false, files, sfcTsx = false } = {}) {
-  const sfcTsxScope = sfcTsx ? (sfcTsx === true ? GLOB_VUE : Array.isArray(sfcTsx) ? sfcTsx : [sfcTsx]) : []
+  const sfcTsxScope = normalizeSfcTsxScope(sfcTsx)
   // Default scope is just `.vue`. `sfcTsx` only controls JSX parser enablement;
   // to run Vue rules on standalone .tsx files, include them explicitly via `files`.
-  const scope = files ? (Array.isArray(files) ? files : [files]) : GLOB_VUE
+  const scope = normalizeScope(files)
 
   const blocks = []
   const recommended = vue.configs?.['flat/recommended'] ?? []

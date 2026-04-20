@@ -497,7 +497,7 @@
     "decision": "ignore"
   },
   "no-nested-ternary": {
-    "decision": "disable"
+    "decision": "enable"
   },
   "no-new": {
     "decision": "enable"

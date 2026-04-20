@@ -1,4 +1,10 @@
 {
+  "@typescript-eslint/no-redundant-type-constituents": {
+    "decision": "disable"
+  },
+  "@typescript-eslint/no-unnecessary-type-assertion": {
+    "decision": "disable"
+  },
   "vue/camelcase": {
     "decision": "enable",
     "options": [
@@ -160,5 +166,8 @@
   },
   "vue/prefer-template": {
     "decision": "enable"
+  },
+  "@typescript-eslint/unified-signatures": {
+    "decision": "disable"
   }
 }

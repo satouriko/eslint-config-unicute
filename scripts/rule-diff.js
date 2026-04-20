@@ -173,7 +173,9 @@ function extractMeta(rule, id) {
   else if (rec === true) recommendedTiers = ['recommended']
   else if (rec && typeof rec === 'object') recommendedTiers = Object.keys(rec)
   const ebr = rule?.meta?.docs?.extendsBaseRule
-  const baseRuleName = ebr === true ? id.split('/').at(-1) : typeof ebr === 'string' ? ebr : null
+  let baseRuleName = null
+  if (ebr === true) baseRuleName = id.split('/').at(-1)
+  else if (typeof ebr === 'string') baseRuleName = ebr
   let schema
   try {
     schema = normalizeSchema(rule?.meta?.schema)
@@ -1069,7 +1071,9 @@ const TS_EXTENDS_REVERSE = (() => {
   const out = {}
   for (const [id, rule] of Object.entries(tsPlugin.rules ?? {})) {
     const ebr = rule?.meta?.docs?.extendsBaseRule
-    const base = ebr === true ? id : typeof ebr === 'string' ? ebr : null
+    let base = null
+    if (ebr === true) base = id
+    else if (typeof ebr === 'string') base = ebr
     if (!base) continue
     ;(out[base] ??= []).push(`@typescript-eslint/${id}`)
   }
@@ -1407,12 +1411,11 @@ if (driftInitial.length > 0)
 
 // ─── server ───────────────────────────────────────────────────────────────
 
-const mimeFor = (f) =>
-  f.endsWith('.html')
-    ? 'text/html; charset=utf-8'
-    : f.endsWith('.json')
-      ? 'application/json; charset=utf-8'
-      : 'text/plain; charset=utf-8'
+function mimeFor(f) {
+  if (f.endsWith('.html')) return 'text/html; charset=utf-8'
+  if (f.endsWith('.json')) return 'application/json; charset=utf-8'
+  return 'text/plain; charset=utf-8'
+}
 
 const CATEGORY_IDS = new Set(CATEGORIES.map((c) => c.id))
 
