@@ -30,13 +30,7 @@
     "decision": "ignore"
   },
   "arrow-body-style": {
-    "decision": "enable",
-    "options": [
-      "as-needed",
-      {
-        "requireReturnForObjectLiteral": false
-      }
-    ]
+    "decision": "disable"
   },
   "arrow-parens": {
     "decision": "ignore"
@@ -503,7 +497,7 @@
     "decision": "ignore"
   },
   "no-nested-ternary": {
-    "decision": "enable"
+    "decision": "disable"
   },
   "no-new": {
     "decision": "enable"
@@ -883,13 +877,7 @@
     "decision": "ignore"
   },
   "prefer-arrow-callback": {
-    "decision": "enable",
-    "options": [
-      {
-        "allowNamedFunctions": false,
-        "allowUnboundThis": true
-      }
-    ]
+    "decision": "disable"
   },
   "prefer-const": {
     "decision": "enable",
