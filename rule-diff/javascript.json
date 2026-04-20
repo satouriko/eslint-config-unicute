@@ -981,7 +981,7 @@
         "requireStringLiterals": true
       }
     ]
-  }
+  },
   "vars-on-top": {
     "decision": "enable"
   },
