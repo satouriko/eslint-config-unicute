@@ -464,6 +464,11 @@
         color: #5b21b6;
         cursor: help;
       }
+      .rule-head .chip.defeated {
+        background: #fef3c7;
+        color: #92400e;
+        cursor: help;
+      }
       @media (prefers-color-scheme: dark) {
         .rule-head .chip.level-error {
           background: #3f1d1d;
@@ -493,6 +498,10 @@
         .rule-head .chip.superseded {
           background: #2e1065;
           color: #c4b5fd;
+        }
+        .rule-head .chip.defeated {
+          background: #451a03;
+          color: #fcd34d;
         }
       }
       .rule-desc {
@@ -782,6 +791,12 @@
           <div class="seg" id="filter">
             <button data-f="action" class="on">Needs action</button>
             <button data-f="decided">unicute decisions</button>
+            <button
+              data-f="defeated"
+              title="Rules whose `enable` decision is silently off'd by a downstream plugin preset (e.g. unicorn, prettier)"
+            >
+              Defeated
+            </button>
             <button data-f="all">All</button>
           </div>
           <select id="diff-with" title="Filter to rules where unicute disagrees with the selected source">
@@ -1328,6 +1343,7 @@
           // "Needs action + Diff with antfu + Hide ignored" are first-class.
           if (state.filter === 'action' && !isPending(cat.id, r)) return false
           if (state.filter === 'decided' && !isDecided(cat.id, r)) return false
+          if (state.filter === 'defeated' && !r.defeatedByPreset) return false
           if (state.diffWith && !diffsFrom(cat.id, r, state.diffWith)) return false
           if (state.hideIgnored && r.decision?.decision === 'ignore') return false
           if (state.deprecated === 'hide' && r.deprecated) return false
@@ -1416,6 +1432,14 @@
           c.title =
             `This rule is typically superseded by:\n  ${rule.supersededBy.join('\n  ')}\n\n`
             + `If you enable any of those, this one gets auto-off'd in the same scope.`
+          head.appendChild(c)
+        }
+        if (rule.defeatedByPreset) {
+          const c = chip('defeated', 'defeated')
+          c.title =
+            `You set this rule to "enable" but a downstream preset (e.g. unicorn's recommended config, or eslint-config-prettier) flips it back to "off". `
+            + `Your enable is a no-op in the effective config. `
+            + `Switch to a non-defeated replacement (e.g. the unicorn/* variant) or just set this rule to "ignore" to make the dashboard stop nagging.`
           head.appendChild(c)
         }
         el.appendChild(head)

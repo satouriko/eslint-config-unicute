@@ -49,6 +49,7 @@ import vuePlugin from 'eslint-plugin-vue'
 import vueA11yPlugin from 'eslint-plugin-vuejs-accessibility'
 import ymlPlugin, { configs as ymlConfigs } from 'eslint-plugin-yml'
 
+import { compileOverrides } from '../src/configs/_overrides.js'
 import unicute from '../src/index.js'
 import { SUPERSEDED_BY, SUPERSEDES } from '../src/rule-supersedes.js'
 
@@ -1051,10 +1052,30 @@ async function probeCategory(category, refs) {
   const rules = []
   const nativeIds = new Set()
 
+  // What THIS category's override block emits into the rules map, before any
+  // downstream category's preset runs. Used to distinguish:
+  //   - we off'd the rule ourselves (phase-2 auto-off via extendsBaseRule /
+  //     SUPERSEDES) — that's planned, the user can see it from the
+  //     `superseded-by` / `ext` chips already
+  //   - we told ESLint to turn the rule ON, but a later preset (e.g.
+  //     unicorn's `no-nested-ternary: off`, or eslint-config-prettier) flipped
+  //     it back to off — the user's enable was silently defeated
+  // Only the second case is worth flagging.
+  const ownOverridesRules = compileOverrides(category.id)
+
   const buildRule = (id, meta, isForeign) => {
     const unicuteEntry = unicuteRules[id]
     const recEntry = recRules[id]
     const decision = decisions[id] ?? null
+
+    // defeatedByPreset: user decision says enable, probe result says off, AND
+    // our own overrides compile doesn't off it. Means a later preset flipped
+    // it; the enable is a no-op in the effective config.
+    const probedLevel = level(unicuteEntry)
+    const ownValue = ownOverridesRules[id]
+    const ownLevel = Array.isArray(ownValue) ? ownValue[0] : ownValue
+    const defeatedByPreset =
+      decision?.decision === 'enable' && probedLevel === 'off' && ownLevel !== 'off' && ownLevel !== 0
     const refsForRule = {}
     for (const refName of Object.keys(refs)) {
       refsForRule[refName] = resolveRef(id, refRulesByName[refName])
@@ -1069,6 +1090,11 @@ async function probeCategory(category, refs) {
       // (e.g. no-restricted-globals fed by confusing-browser-globals). The
       // dashboard renders it read-only.
       codeManaged: CODE_MANAGED_RULES.has(id) || undefined,
+      // `defeatedByPreset: true` — user decision is `enable` but probe shows
+      // `off`, and our overrides block didn't off it, so something downstream
+      // (unicorn's recommended preset, eslint-config-prettier, …) flipped it.
+      // Dashboard renders a chip + filter so you can sweep these in one click.
+      defeatedByPreset: defeatedByPreset || undefined,
       // `foreign: true` + `nativeCategory` means the rule was pulled into
       // this category's JSON by the user. Dashboard renders a badge + a
       // remove-from-here button.
