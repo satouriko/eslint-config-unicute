@@ -128,29 +128,37 @@ export const SUPERSEDES = {
   'perfectionist/sort-imports': ['sort-imports', 'import-x/order'],
   'perfectionist/sort-named-imports': ['sort-imports'],
 
-  // eslint-plugin-unused-imports breakdown (verified empirically via lint,
-  // and by reading `dist/index.js` — `makePredicate(isImport)` filters
-  // reports from the core no-unused-vars implementation by whether the
-  // node's parent is an ImportSpecifier):
+  // eslint-plugin-unused-imports breakdown (verified by reading its
+  // `dist/index.js` — `makePredicate(isImport)` filters reports from the
+  // core no-unused-vars implementation by whether the node's parent is
+  // an ImportSpecifier):
   //
-  //   core / @typescript-eslint `no-unused-vars` : imports + vars + params
-  //   unused-imports/no-unused-vars              : vars + params only (filters out imports)
-  //   unused-imports/no-unused-imports           : imports only, with auto-fix
+  //   core `no-unused-vars`             : imports + vars + params, AST-only
+  //   @typescript-eslint/no-unused-vars : imports + vars + params, TYPE-AWARE
+  //     (understands enum members, `declare`, type-only imports, ambient
+  //      modules, interface-method optional param names, etc.)
+  //   unused-imports/no-unused-vars     : vars + params only (filters imports)
+  //   unused-imports/no-unused-imports  : imports only, with auto-fix
   //
-  // So the two `unused-imports/*` rules together cover the same ground as
-  // core `no-unused-vars`, with the imports side gaining auto-fix. The
-  // canonical setup is: enable BOTH `unused-imports/*`, turn off core
-  // (and @typescript-eslint) `no-unused-vars` to avoid duplicate reports
-  // on imports.
+  // Two SUPERSEDES edges, complementary by scope:
   //
-  // `unused-imports/no-unused-vars` alone covers vars/params but not
-  // imports, so it isn't a strict superset — but combined with
-  // `unused-imports/no-unused-imports` (which has no auto-off target
-  // it clean-makes redundant either) the pair supersedes core. Encode
-  // it on `no-unused-vars` side since that's the side people actually
-  // reach for first; `no-unused-imports` is nearly always paired with
-  // it and the reverse direction is handled manually.
-  'unused-imports/no-unused-vars': ['no-unused-vars', '@typescript-eslint/no-unused-vars'],
+  //   - `unused-imports/no-unused-vars` ⊃ core `no-unused-vars`
+  //     On JS scope (where TS isn't loaded). unused-imports' version is
+  //     the core rule with an import filter, same AST otherwise — strict
+  //     superset after pairing with `no-unused-imports` for autofix.
+  //
+  //   - `@typescript-eslint/no-unused-vars` ⊃ `unused-imports/no-unused-vars`
+  //     On TS scope. TS version covers imports + vars + params WITH type
+  //     awareness, so it catches everything unused-imports would plus more.
+  //     Phase-2 emits the off inside typescript's overrides block (scope:
+  //     TS files), which compose-order-wise comes after the imports block —
+  //     so the off wins on TS, while JS files still get unused-imports.
+  //
+  // `unused-imports/no-unused-imports` (the imports-only rule with autofix)
+  // is intentionally left firing alongside whichever no-unused-vars rule
+  // owns the file — the duplicate report is the price of autofix.
+  'unused-imports/no-unused-vars': ['no-unused-vars'],
+  '@typescript-eslint/no-unused-vars': ['unused-imports/no-unused-vars'],
 
   // ── regexp plugin vs core ─────────────────────────────────────────────
   // eslint-plugin-regexp's AST-level regex analysis subsumes the core
