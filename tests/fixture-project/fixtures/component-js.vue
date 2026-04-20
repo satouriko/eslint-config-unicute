@@ -4,7 +4,6 @@
 // parser must still successfully parse the SFC so subsequent rules can
 // run and the violation is reported cleanly.
 const msg = 'Hello'
-// eslint-disable-next-line no-console
 console.log(msg)
 </script>
 
