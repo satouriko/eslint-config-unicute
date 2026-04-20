@@ -4,5 +4,5 @@
     "jsx": "preserve",
     "jsxImportSource": "vue"
   },
-  "files": ["fixtures/component.vue", "fixtures/component-tsx.vue"]
+  "files": ["fixtures/component.vue", "fixtures/component-tsx.vue", "fixtures/component-js.vue"]
 }

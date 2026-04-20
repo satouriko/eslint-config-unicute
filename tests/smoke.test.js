@@ -175,6 +175,11 @@ describe('smoke: per-option branches', () => {
     await assertLinted(eslint, ['component.vue'])
   })
 
+  it('vue: SFC with lang="js" still parses (block-lang reports as lint error, not parser error)', async () => {
+    const eslint = makeEslint({ typescript: true, vue: true })
+    await assertLinted(eslint, ['component-js.vue'])
+  })
+
   // ── svelte: 2 variants ─────────────────────────────────────────────
   it('svelte: true', async () => {
     const eslint = makeEslint({ typescript: true, svelte: true })
