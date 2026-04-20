@@ -1550,6 +1550,9 @@
         //   - Edit mode, code-managed rule: no radios — the decision is made
         //     in src/configs/*.js. Show decision + level + a pointer note.
         //   - Edit mode, regular rule: the four radios + level selector.
+        // Still referenced by the options <textarea> and by the
+        // note / "also override in" sections further down the card.
+        const readOnly = !!rule.codeManaged || READ_ONLY
         const controls = document.createElement('div')
         controls.className = 'controls-row'
 
