@@ -76,6 +76,10 @@ export const SUPERSEDES = {
   '@typescript-eslint/prefer-find': ['unicorn/prefer-array-find'],
   '@typescript-eslint/prefer-for-of': ['unicorn/no-for-loop'],
 
+  // import-x is loaded AFTER unicorn — same compose-order reasoning as the
+  // TS-vs-unicorn pairs above.
+  'import-x/no-named-default': ['unicorn/no-named-default'],
+
   // ── Broader rule supersedes narrower one ───────────────────────────────
 
   // unicorn/prefer-module bans CommonJS wholesale (`module.exports`,
