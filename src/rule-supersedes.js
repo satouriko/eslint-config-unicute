@@ -75,10 +75,26 @@ export const SUPERSEDES = {
   '@typescript-eslint/prefer-string-starts-ends-with': ['unicorn/prefer-string-starts-ends-with'],
   '@typescript-eslint/prefer-find': ['unicorn/prefer-array-find'],
   '@typescript-eslint/prefer-for-of': ['unicorn/no-for-loop'],
+  // `await-thenable` is type-aware — flags any awaited value whose static
+  // type isn't a Promise / PromiseLike, which is a strict superset of
+  // unicorn's AST-only "literal non-promise" check.
+  '@typescript-eslint/await-thenable': ['unicorn/no-unnecessary-await'],
 
   // import-x is loaded AFTER unicorn — same compose-order reasoning as the
   // TS-vs-unicorn pairs above.
   'import-x/no-named-default': ['unicorn/no-named-default'],
+  'import-x/no-anonymous-default-export': ['unicorn/no-anonymous-default-export'],
+
+  // eslint-plugin-n is the modern Node plugin; it's loaded after unicorn
+  // AND covers the same ground on these two rules. Core `no-process-exit`
+  // was deprecated by ESLint in favor of letting plugins own it — include
+  // it as a victim so enabling n's version also silences the legacy one.
+  'n/no-process-exit': ['unicorn/no-process-exit', 'no-process-exit'],
+  'n/prefer-node-protocol': ['unicorn/prefer-node-protocol'],
+
+  // regexp plugin loads right after unicorn and has a dedicated
+  // `prefer-regexp-test` that supersedes unicorn's.
+  'regexp/prefer-regexp-test': ['unicorn/prefer-regexp-test'],
 
   // ── Broader rule supersedes narrower one ───────────────────────────────
 
