@@ -67,7 +67,7 @@ unicute 的规则取舍、选项、例外清单等大量借鉴了以下四套配
 - **TypeScript**：airbnb 几乎不用 type-aware 规则；unicute 用 strict + type-aware 全套。
 - **React 插件**：airbnb 用传统 `eslint-plugin-react`（70+ 条规则覆盖 prop-types、class component 等历史用法）；unicute 用现代 `@eslint-react`（面向 hooks 时代）。
 - **Formatting 归属**：airbnb 通过 `@stylistic/*`；unicute 交给 Prettier。
-- **对明显无害语法的限制**：airbnb 禁止 `no-plusplus`、`no-bitwise`、`no-continue`、`no-nested-ternary`、`no-await-in-loop`、`no-lonely-if`、`consistent-return` 等；unicute 不禁止这些（见上面的"语法自由度"条目）。
+- **对明显无害语法的限制**：airbnb 禁止 `no-plusplus`、`no-bitwise`、`no-continue`、`no-await-in-loop`、`no-lonely-if`、`consistent-return` 等；unicute 不禁止这些（见上面的"语法自由度"条目）。
 
 ### vs neostandard
 
@@ -97,7 +97,7 @@ unicute 的规则取舍、选项、例外清单等大量借鉴了以下四套配
 异：
 
 - **TypeScript 严格度**：sxzz 使用更宽松的 typescript-eslint 预设；unicute 使用 `strictTypeChecked + stylisticTypeChecked`，type-aware 全量打开。
-- **unicorn `prefer-*` / `no-useless-*` 等建议换 API 的规则**：sxzz 开启 `prefer-at`、`prefer-includes`、`prefer-string-replace-all`、`prefer-number-properties`、`prefer-math-trunc` 等十余条；unicute 把它们全关掉。主因是这些规则的 autofix 可能引入非预期的运行时语义差异。
+- **unicorn `prefer-*` / `no-useless-*` 等建议换 API 的规则**：sxzz 几乎一股脑儿全开；unicute 逐条权衡每条 autofix 的语义差异风险 —— 真正安全的（`prefer-math-min-max`、`prefer-set-has`、`prefer-node-protocol` 等）保留开启，运行时行为有细微差别的（`prefer-at`、`prefer-includes`、`prefer-string-replace-all`、`prefer-number-properties`、`prefer-spread`……）关掉。
 - **Import 解析与分组**：unicute 的 import 解析是 type-aware 的——通过 `eslint-import-resolver-typescript` 读 tsconfig 的 paths / alias（monorepo 下递归查找 tsconfig）做分组；sxzz 的 import 解析路线不同。
 - **sxzz 默认带的额外插件 unicute 没有**：`de-morgan`（德摩根律改写）、`baseline-js`（Web 平台 Baseline 检查）、`command`、以及 `sxzz/*` 自有规则。
 
@@ -113,7 +113,7 @@ unicute(firstArg?, ...userConfigs)
 
 | 选项          | 默认     | 说明                                                                  |
 | ------------- | -------- | --------------------------------------------------------------------- |
-| `typescript`  | 自动探测 | strict + type-aware + `projectService: true`                          |
+| `typescript`  | 自动探测 | strict + type-aware + `projectService: true`；传 `{ tsconfigRootDir }` 可锁定 project 根 |
 | `react`       | 自动探测 | `true \| { files?, a11y? }`                                           |
 | `vue`         | 自动探测 | `true \| { files?, sfcTsx?, a11y? }`                                  |
 | `svelte`      | 自动探测 | `true \| { a11y? }`                                                   |

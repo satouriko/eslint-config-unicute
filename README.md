@@ -67,7 +67,7 @@ Different:
 - **TypeScript**: airbnb barely uses type-aware rules; unicute uses strict + type-aware in full.
 - **React plugin**: airbnb uses the legacy `eslint-plugin-react` (70+ rules covering prop-types, class-component patterns, etc.); unicute uses the modern `@eslint-react` (hooks-era).
 - **Formatting ownership**: airbnb via `@stylistic/*`; unicute via Prettier.
-- **Restrictions on harmless syntax**: airbnb bans `no-plusplus`, `no-bitwise`, `no-continue`, `no-nested-ternary`, `no-await-in-loop`, `no-lonely-if`, `consistent-return`, etc.; unicute doesn't (see the "syntactic freedom" bullet above).
+- **Restrictions on harmless syntax**: airbnb bans `no-plusplus`, `no-bitwise`, `no-continue`, `no-await-in-loop`, `no-lonely-if`, `consistent-return`, etc.; unicute doesn't (see the "syntactic freedom" bullet above).
 
 ### vs neostandard
 
@@ -97,7 +97,7 @@ Shared — flat-config only, framework auto-detection, **both use Prettier for f
 Different:
 
 - **TypeScript strictness**: sxzz uses a more restrained typescript-eslint preset; unicute uses `strictTypeChecked + stylisticTypeChecked`, type-aware fully on.
-- **unicorn `prefer-*` / `no-useless-*` rules that nudge API swaps**: sxzz turns on `prefer-at`, `prefer-includes`, `prefer-string-replace-all`, `prefer-number-properties`, `prefer-math-trunc`, and about a dozen more; unicute turns all of these off. The reason is correctness: these autofixes can introduce unintended runtime semantic differences.
+- **unicorn `prefer-*` / `no-useless-*` rules that nudge API swaps**: sxzz turns most of this family on wholesale; unicute picks case by case, weighing each rule's autofix for runtime semantic drift. The ones where the swap is genuinely safe (`prefer-math-min-max`, `prefer-set-has`, `prefer-node-protocol`, etc.) stay on; rules with subtle runtime differences (`prefer-at`, `prefer-includes`, `prefer-string-replace-all`, `prefer-number-properties`, `prefer-spread`, …) stay off.
 - **Import resolution and grouping**: unicute's import resolution is type-aware — reads tsconfig paths / aliases via `eslint-import-resolver-typescript` (walking up to find tsconfigs in monorepos) for grouping; sxzz's import resolution is a different route.
 - **Extras sxzz ships by default that unicute doesn't**: `de-morgan` (De Morgan's law rewrites), `baseline-js` (Web platform Baseline checks), `command`, plus sxzz's own `sxzz/*` rules.
 
@@ -113,7 +113,7 @@ Every option is auto-detected from installed dependencies by default. Pass expli
 
 | Option        | Default     | Notes                                                                 |
 | ------------- | ----------- | --------------------------------------------------------------------- |
-| `typescript`  | auto-detect | strict + type-aware + `projectService: true`                          |
+| `typescript`  | auto-detect | strict + type-aware + `projectService: true`; pass `{ tsconfigRootDir }` to pin the project root |
 | `react`       | auto-detect | `true \| { files?, a11y? }`                                           |
 | `vue`         | auto-detect | `true \| { files?, sfcTsx?, a11y? }`                                  |
 | `svelte`      | auto-detect | `true \| { a11y? }`                                                   |
