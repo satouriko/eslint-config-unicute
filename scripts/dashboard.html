@@ -1108,7 +1108,10 @@
           const pending = c.rules.filter((r) => isPending(c.id, r)).length
           const el = document.createElement('div')
           el.className = 'cat' + (c.id === state.activeCat ? ' active' : '')
-          el.innerHTML = `<span>${escapeHtml(c.label)}</span><span class="badge">${pending}/${c.rules.length}</span>`
+          // In the static build pending is always 0 and not a concept the
+          // reader cares about — just show the total rule count.
+          const badge = READ_ONLY ? `${c.rules.length}` : `${pending}/${c.rules.length}`
+          el.innerHTML = `<span>${escapeHtml(c.label)}</span><span class="badge">${badge}</span>`
           el.addEventListener('click', () => {
             state.activeCat = c.id
             renderSidebar()
