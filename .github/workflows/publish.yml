@@ -49,5 +49,17 @@ jobs:
 
       # `--provenance` adds a cryptographic attestation linking the
       # published tarball to this workflow run. Shown on the npm page.
-      # `--tag alpha` keeps pre-1.0 releases off the default `latest`.
-      - run: npm publish --tag alpha --access public --provenance
+      # Auto-pick dist-tag: prerelease versions (e.g. 1.0.0-alpha.1) land on
+      # `alpha`/`beta`/`rc`/`next` per their suffix, stable versions on
+      # `latest`. Avoids accidentally publishing a prerelease to `latest`.
+      - run: |
+          VERSION=$(node -p "require('./package.json').version")
+          case "$VERSION" in
+            *-alpha.*) TAG=alpha ;;
+            *-beta.*)  TAG=beta ;;
+            *-rc.*)    TAG=rc ;;
+            *-*)       TAG=next ;;
+            *)         TAG=latest ;;
+          esac
+          echo "Publishing $VERSION to dist-tag $TAG"
+          npm publish --tag "$TAG" --access public --provenance
