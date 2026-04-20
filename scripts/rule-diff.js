@@ -31,7 +31,6 @@ import tsPlugin from '@typescript-eslint/eslint-plugin'
 import vitestPlugin from '@vitest/eslint-plugin'
 import { ESLint } from 'eslint'
 import { builtinRules } from 'eslint/use-at-your-own-risk'
-import prettierConfig from 'eslint-config-prettier'
 import importXPlugin, { flatConfigs as importXFlatConfigs } from 'eslint-plugin-import-x'
 import jsdocPlugin from 'eslint-plugin-jsdoc'
 import jsoncPlugin, { configs as jsoncConfigs } from 'eslint-plugin-jsonc'
@@ -40,6 +39,7 @@ import nPlugin from 'eslint-plugin-n'
 import noOnlyTestsPlugin from 'eslint-plugin-no-only-tests'
 import perfectionistPlugin from 'eslint-plugin-perfectionist'
 import pnpmPlugin, { configs as pnpmConfigs } from 'eslint-plugin-pnpm'
+import prettierRecommended from 'eslint-plugin-prettier/recommended'
 import * as regexpPlugin from 'eslint-plugin-regexp'
 import sveltePlugin from 'eslint-plugin-svelte'
 import tailwindPlugin from 'eslint-plugin-tailwindcss'
@@ -57,13 +57,21 @@ import { SUPERSEDED_BY, SUPERSEDES } from '../src/rule-supersedes.js'
 import { resolveRef } from './rule-equivalence.js'
 
 /**
- * Rule IDs that eslint-config-prettier turns off — the full list, as
- * shipped. Every entry in its rules table is set to 'off' (verified at
- * load time below), so we can safely collapse to a Set of ids. Dashboard
- * renders a chip for any rule in this set so the reader can tell at a
- * glance that enabling it would clash with Prettier.
+ * Rule IDs that the Prettier layer in unicute turns off. Pulled from
+ * `eslint-plugin-prettier/recommended` — that's the config unicute
+ * actually loads (see `src/configs/prettier.js`), and it's a superset
+ * of `eslint-config-prettier`'s list (adds `arrow-body-style` and
+ * `prefer-arrow-callback`, since those directly modify the shape of
+ * arrow functions that Prettier is supposed to control).
+ *
+ * We filter to entries whose severity is 'off'. The `prettier/prettier`
+ * rule itself is emitted at 'error' to drive Prettier — don't flag that.
  */
-const PRETTIER_OFF_RULES = new Set(Object.keys(prettierConfig.rules ?? {}))
+const PRETTIER_OFF_RULES = new Set(
+  Object.entries(prettierRecommended.rules ?? {})
+    .filter(([, value]) => value === 'off' || value === 0)
+    .map(([id]) => id),
+)
 
 const require = createRequire(import.meta.url)
 const HERE = dirname(fileURLToPath(import.meta.url))
