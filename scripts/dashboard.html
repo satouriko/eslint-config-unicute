@@ -1410,7 +1410,11 @@
           // Don't render a "pending" chip for code-managed rules — the
           // decision is in src/configs/, surface that specifically.
           head.appendChild(chip('in-code', 'managed'))
-        } else if (decision) {
+        } else if (decision && !READ_ONLY) {
+          // The decision pill is an editor-only workflow signal. In the
+          // static (read-only) build the reader only cares about the
+          // effective level — the `unicute: <level>` chip above already
+          // conveys that, so a second pill just adds noise.
           head.appendChild(chip(decision.decision, decision.decision === 'pending' ? 'pending' : ''))
         }
         const drifts = ruleDrifts(cat.id, rule.id)
@@ -1539,41 +1543,39 @@
         }
 
         // controls: decision state.
-        //   - Editable rules: the four radios (pending/enable/disable/ignore)
-        //     + a level selector when `enable` is picked.
-        //   - Code-managed rules: no radios — the decision is already made
-        //     in src/configs/*.js. Just show a labelled pill reflecting the
-        //     effective state, so there's no phantom "pending" here.
-        const readOnly = !!rule.codeManaged || READ_ONLY
+        //   - Static build (READ_ONLY): no editor workflow to surface — show
+        //     only the effective `level`. `decision` is an authoring concept
+        //     the reader doesn't need; the level already tells them what
+        //     unicute does on their file.
+        //   - Edit mode, code-managed rule: no radios — the decision is made
+        //     in src/configs/*.js. Show decision + level + a pointer note.
+        //   - Edit mode, regular rule: the four radios + level selector.
         const controls = document.createElement('div')
         controls.className = 'controls-row'
 
-        if (readOnly) {
-          // Prefer the explicit decision (`enable` / `disable` / `ignore` /
-          // `pending`) when one is saved — that's the user's authored
-          // intent. For code-managed rules or rules without a decision,
-          // derive from the effective unicuteLevel.
+        const label = (k, v) => {
+          const el = document.createElement('span')
+          el.innerHTML = `<span style="color:var(--muted)">${k}</span>\u2002<b>${escapeHtml(v)}</b>`
+          return el
+        }
+        const rowStyle = 'display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:13px'
+
+        if (READ_ONLY) {
+          const row = document.createElement('div')
+          row.style.cssText = rowStyle
+          row.appendChild(label('level', String(currentLevel)))
+          controls.appendChild(row)
+        } else if (rule.codeManaged) {
           const lvl = rule.unicuteLevel
           const decLabel = decision?.decision ?? (lvl === 'off' ? 'disable' : lvl ? 'enable' : 'pending')
-          // Match the editable row's typography — 13px label-size text,
-          // key in muted gray, value in fg bold, trailing explanatory note
-          // in muted 12px. Keeps both states visually comparable instead
-          // of dropping chips into the radio slot.
           const row = document.createElement('div')
-          row.style.cssText = 'display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:13px'
-          const label = (k, v) => {
-            const el = document.createElement('span')
-            el.innerHTML = `<span style="color:var(--muted)">${k}</span>\u2002<b>${escapeHtml(v)}</b>`
-            return el
-          }
+          row.style.cssText = rowStyle
           row.appendChild(label('decision', decLabel))
           if (decLabel === 'enable') row.appendChild(label('level', String(decision?.level ?? lvl ?? 'error')))
-          if (rule.codeManaged) {
-            const note = document.createElement('span')
-            note.style.cssText = 'font-size:12px;color:var(--muted)'
-            note.textContent = 'decision is set in src/configs/'
-            row.appendChild(note)
-          }
+          const note = document.createElement('span')
+          note.style.cssText = 'font-size:12px;color:var(--muted)'
+          note.textContent = 'decision is set in src/configs/'
+          row.appendChild(note)
           controls.appendChild(row)
         } else {
           const choices = ['pending', 'enable', 'disable', 'ignore']
