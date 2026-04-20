@@ -974,6 +974,14 @@
       "never"
     ]
   },
+  "valid-typeof": {
+    "decision": "enable",
+    "options": [
+      {
+        "requireStringLiterals": true
+      }
+    ]
+  }
   "vars-on-top": {
     "decision": "enable"
   },
