@@ -1015,27 +1015,45 @@ function computeDrift(current, baseline) {
 
 // ─── payload build ────────────────────────────────────────────────────────
 
-function pluginVersions() {
-  const pkg = require(join(ROOT, 'package.json'))
-  const out = {}
-  for (const cat of CATEGORIES) {
-    for (const p of cat.packages) {
-      if (!out[p]) {
-        try {
-          const m = require(`${p}/package.json`)
-          out[p] = m.version
-        } catch {
-          out[p] = null
-        }
-      }
-    }
-  }
-  out.eslint = pkg.dependencies?.eslint ?? pkg.devDependencies?.eslint ?? 'unknown'
+/**
+ * Read a plugin's version. The direct `require(`${name}/package.json`)`
+ * path fails on packages that don't expose `./package.json` in their
+ * `exports` map (eslint-plugin-unicorn / unused-imports / jsdoc /
+ * better-tailwindcss at time of writing, all modern ESM-strict
+ * packages). Fall back to resolving the entry file and walking up to
+ * find a package.json whose `name` matches.
+ */
+function readPluginVersion(name) {
   try {
-    out.eslint = require('eslint/package.json').version
+    return require(`${name}/package.json`).version
+  } catch {
+    /* fall through to resolve-and-walk */
+  }
+  try {
+    const entry = require.resolve(name)
+    let dir = dirname(entry)
+    while (dir && dir !== dirname(dir)) {
+      const candidate = join(dir, 'package.json')
+      if (existsSync(candidate)) {
+        const pkg = JSON.parse(readFileSync(candidate, 'utf8'))
+        if (pkg.name === name) return pkg.version
+      }
+      dir = dirname(dir)
+    }
   } catch {
     /* ignore */
   }
+  return null
+}
+
+function pluginVersions() {
+  const out = {}
+  for (const cat of CATEGORIES) {
+    for (const p of cat.packages) {
+      if (!(p in out)) out[p] = readPluginVersion(p)
+    }
+  }
+  out.eslint = readPluginVersion('eslint') ?? 'unknown'
   return out
 }
 
