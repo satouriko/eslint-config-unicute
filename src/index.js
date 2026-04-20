@@ -110,18 +110,9 @@ export function unicute(firstArgument = {}, ...userConfigs) {
     vue = isPackageExists('vue'),
   } = options
 
-  const reactOptions =
-    react === true ? {}
-    : react && typeof react === 'object' ? react
-    : null
-  const vueOptions =
-    vue === true ? {}
-    : vue && typeof vue === 'object' ? vue
-    : null
-  const svelteOptions =
-    svelte === true ? {}
-    : svelte && typeof svelte === 'object' ? svelte
-    : null
+  const reactOptions = react === true ? {} : react && typeof react === 'object' ? react : null
+  const vueOptions = vue === true ? {} : vue && typeof vue === 'object' ? vue : null
+  const svelteOptions = svelte === true ? {} : svelte && typeof svelte === 'object' ? svelte : null
   // `typescript` accepts `true` or an options object. The only option
   // today is `noWarnOnMultipleProjects`, forwarded to the import
   // resolver (silences its perf hint when the project glob matches
@@ -133,15 +124,9 @@ export function unicute(firstArgument = {}, ...userConfigs) {
   //   string | []   → apply to just those globs (e.g. 'server/**')
   //   false / unset → do not load eslint-plugin-n at all
   const nodeOptions =
-    node === true ? {}
-    : typeof node === 'string' ? { files: [node] }
-    : Array.isArray(node) ? { files: node }
-    : null
+    node === true ? {} : typeof node === 'string' ? { files: [node] } : Array.isArray(node) ? { files: node } : null
 
-  const prettierUserOptions =
-    prettier === true ? {}
-    : prettier && typeof prettier === 'object' ? prettier
-    : null
+  const prettierUserOptions = prettier === true ? {} : prettier && typeof prettier === 'object' ? prettier : null
 
   const allUserConfigs = block ? [block, ...userConfigs] : userConfigs
 

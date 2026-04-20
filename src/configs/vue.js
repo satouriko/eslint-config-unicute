@@ -60,10 +60,7 @@ function computeRevivedCoreRules(disableRulesMap) {
     if (!id.startsWith('@typescript-eslint/')) continue
     const short = id.slice('@typescript-eslint/'.length)
     const ebr = tsPlugin.rules?.[short]?.meta?.docs?.extendsBaseRule
-    const base =
-      ebr === true ? short
-      : typeof ebr === 'string' ? ebr
-      : null
+    const base = ebr === true ? short : typeof ebr === 'string' ? ebr : null
     if (base) emitRevive(base)
   }
 
@@ -86,20 +83,10 @@ function computeRevivedCoreRules(disableRulesMap) {
  * @param {boolean} [opts.a11y] - also apply eslint-plugin-vuejs-accessibility
  */
 export function vueConfig({ a11y = false, files, sfcTsx = false } = {}) {
-  const sfcTsxScope =
-    sfcTsx ?
-      sfcTsx === true ? GLOB_VUE
-      : Array.isArray(sfcTsx) ? sfcTsx
-      : [sfcTsx]
-    : []
+  const sfcTsxScope = sfcTsx ? (sfcTsx === true ? GLOB_VUE : Array.isArray(sfcTsx) ? sfcTsx : [sfcTsx]) : []
   // Default scope is just `.vue`. `sfcTsx` only controls JSX parser enablement;
   // to run Vue rules on standalone .tsx files, include them explicitly via `files`.
-  const scope =
-    files ?
-      Array.isArray(files) ?
-        files
-      : [files]
-    : GLOB_VUE
+  const scope = files ? (Array.isArray(files) ? files : [files]) : GLOB_VUE
 
   const blocks = []
   const recommended = vue.configs?.['flat/recommended'] ?? []

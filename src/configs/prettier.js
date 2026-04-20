@@ -33,13 +33,6 @@ export const DEFAULT_PRETTIER_OPTIONS = {
   bracketSpacing: true,
   endOfLine: 'lf',
   experimentalOperatorPosition: 'start',
-  // `experimentalTernaries: true` — added in Prettier 3.1, opt-in until
-  // further notice. Formats chained ternaries in an if-else-if shape with
-  // intentionally unparenthesised inner ternaries, which is exactly why
-  // `eslint-config-prettier` off's `unicorn/no-nested-ternary`. Enabling
-  // here so our chain (lint ignores nested ternaries + prettier lays them
-  // out readably) is actually self-consistent.
-  experimentalTernaries: true,
   printWidth: 120,
   semi: false,
   singleQuote: true,
@@ -169,9 +162,8 @@ export function prettierConfig(userOptions = {}, { svelte = false } = {}) {
   // whole SFC as JSX, and emits "Adjacent JSX elements…" parse warnings.
   // Only emitted when the caller opted into svelte (so we don't override
   // a prettier/prettier rule for files the project doesn't have).
-  const sveltePrettier =
-    svelte ?
-      [
+  const sveltePrettier = svelte
+    ? [
         {
           files: GLOB_SVELTE,
           name: 'unicute/svelte/prettier',

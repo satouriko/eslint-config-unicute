@@ -895,9 +895,9 @@
       function rulesRefs(rule) {
         const out = {}
         out.recommended =
-          rule.recommended == null ?
-            null
-          : { alias: null, level: rule.recommended, options: rule.recommendedOptions ?? [] }
+          rule.recommended == null
+            ? null
+            : { alias: null, level: rule.recommended, options: rule.recommendedOptions ?? [] }
         Object.assign(out, rule.refs ?? {})
         return out
       }
@@ -1233,12 +1233,13 @@
         const render = (q) => {
           const needle = q.trim().toLowerCase()
           const list = (
-            needle ?
-              universe.filter(
-                ({ rule }) =>
-                  rule.id.toLowerCase().includes(needle) || (rule.description ?? '').toLowerCase().includes(needle),
-              )
-            : universe).slice(0, 200)
+            needle
+              ? universe.filter(
+                  ({ rule }) =>
+                    rule.id.toLowerCase().includes(needle) || (rule.description ?? '').toLowerCase().includes(needle),
+                )
+              : universe
+          ).slice(0, 200)
           hits.innerHTML = ''
           if (list.length === 0) {
             const e = document.createElement('div')
@@ -1378,9 +1379,11 @@
 
         const decision = effectiveDecision(cat.id, rule)
         const currentLevel =
-          decision?.decision === 'enable' ? (decision.level ?? 'error')
-          : decision?.decision === 'disable' ? 'off'
-          : (rule.unicuteLevel ?? rule.recommended ?? 'off')
+          decision?.decision === 'enable'
+            ? (decision.level ?? 'error')
+            : decision?.decision === 'disable'
+              ? 'off'
+              : (rule.unicuteLevel ?? rule.recommended ?? 'off')
 
         // head
         const head = document.createElement('div')
@@ -1586,11 +1589,7 @@
           controls.appendChild(row)
         } else if (rule.codeManaged) {
           const lvl = rule.unicuteLevel
-          const decLabel =
-            decision?.decision
-            ?? (lvl === 'off' ? 'disable'
-            : lvl ? 'enable'
-            : 'pending')
+          const decLabel = decision?.decision ?? (lvl === 'off' ? 'disable' : lvl ? 'enable' : 'pending')
           const row = document.createElement('div')
           row.style.cssText = rowStyle
           row.appendChild(label('decision', decLabel))
@@ -1659,9 +1658,8 @@
           // which aren't the real shipping value.
           // Global read-only (non-code-managed): show the author's
           // decision options (via pickOptions), same as editable mode.
-          ta.value =
-            rule.codeManaged ?
-              JSON.stringify(rule.unicuteOptions ?? [], null, 2)
+          ta.value = rule.codeManaged
+            ? JSON.stringify(rule.unicuteOptions ?? [], null, 2)
             : JSON.stringify(currentOptions, null, 2)
           ta.placeholder = 'options (JSON array)'
           ta.readOnly = readOnly
