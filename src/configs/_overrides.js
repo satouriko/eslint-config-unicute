@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 
 import tsPlugin from '@typescript-eslint/eslint-plugin'
 
-import { SUPERSEDES } from '../rule-supersedes.js'
+import { SUPERSEDED_BY, SUPERSEDES } from '../rule-supersedes.js'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const OVERRIDES_DIR = resolve(HERE, '..', '..', 'rule-diff')
@@ -104,6 +104,42 @@ export function compileOverrides(category) {
   }
 
   return rules
+}
+
+/**
+ * Auto-off block derived from a plugin's own preset: for every rule the
+ * preset turns on, look it up in SUPERSEDED_BY and off every victim that
+ * matches `victimFilter`. Used to close the gap in phase-2 — phase-2 only
+ * fires on user `enable` decisions, but a preset-enabled superseder also
+ * shadows its victim and needs to silence it.
+ *
+ * Example: `@eslint-community/eslint-comments`'s `recommended` enables
+ * `no-unlimited-disable` at error. That supersedes
+ * `unicorn/no-abusive-eslint-disable`. Without this helper, both fire on
+ * the same `/* eslint-disable *\/` line.
+ *
+ * @param {Array<{rules?: Record<string, unknown>}> | {rules?: Record<string, unknown>}} presetBlocks
+ *   The plugin's own preset block(s) — whatever has its `rules` map of
+ *   what it turns on by default.
+ * @param {(victimId: string) => boolean} [victimFilter] - narrow the set
+ *   of victims, e.g. `(id) => id.startsWith('unicorn/')`. Default: all.
+ * @returns {Record<string, 'off'>} a rules map ready to drop into a block.
+ */
+export function presetAutoOffs(presetBlocks, victimFilter = () => true) {
+  const active = new Set()
+  const blocks = Array.isArray(presetBlocks) ? presetBlocks : [presetBlocks]
+  for (const b of blocks) {
+    for (const [id, value] of Object.entries(b?.rules ?? {})) {
+      const lvl = Array.isArray(value) ? value[0] : value
+      if (lvl !== 'off' && lvl !== 0) active.add(id)
+    }
+  }
+  const offs = {}
+  for (const [victim, superseders] of Object.entries(SUPERSEDED_BY)) {
+    if (!victimFilter(victim)) continue
+    if (superseders.some((s) => active.has(s))) offs[victim] = 'off'
+  }
+  return offs
 }
 
 /**

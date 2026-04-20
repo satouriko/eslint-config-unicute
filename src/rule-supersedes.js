@@ -55,7 +55,13 @@ export const SUPERSEDES = {
   '@typescript-eslint/return-await': ['no-return-await'],
 
   // Forbid aliasing `this` at all, rather than enforcing one chosen alias.
-  '@typescript-eslint/no-this-alias': ['consistent-this'],
+  // `unicorn/no-this-assignment` is the near-identical unicorn twin.
+  '@typescript-eslint/no-this-alias': ['consistent-this', 'unicorn/no-this-assignment'],
+
+  // TS's no-extraneous-class flags static-only classes by default (option
+  // `allowStaticOnly: false`); unicorn's version is narrower (only the
+  // static-only subset). Strict-type-checked enables no-extraneous-class.
+  '@typescript-eslint/no-extraneous-class': ['unicorn/no-static-only-class'],
 
   // TS's no-deprecated uses the type system to flag every usage of
   // anything marked @deprecated; import-x's version only catches
@@ -86,15 +92,24 @@ export const SUPERSEDES = {
   'import-x/no-anonymous-default-export': ['unicorn/no-anonymous-default-export'],
 
   // eslint-plugin-n is the modern Node plugin; it's loaded after unicorn
-  // AND covers the same ground on these two rules. Core `no-process-exit`
-  // was deprecated by ESLint in favor of letting plugins own it — include
-  // it as a victim so enabling n's version also silences the legacy one.
+  // AND covers the same ground on these rules. Core `no-process-exit` was
+  // deprecated by ESLint in favor of letting plugins own it — include it
+  // as a victim so enabling n's version also silences the legacy one.
+  // `no-deprecated-api` is a broader sweep that already catches `new Buffer()`,
+  // which is the entire point of unicorn/no-new-buffer.
   'n/no-process-exit': ['unicorn/no-process-exit', 'no-process-exit'],
   'n/prefer-node-protocol': ['unicorn/prefer-node-protocol'],
+  'n/no-deprecated-api': ['unicorn/no-new-buffer'],
 
   // regexp plugin loads right after unicorn and has a dedicated
   // `prefer-regexp-test` that supersedes unicorn's.
   'regexp/prefer-regexp-test': ['unicorn/prefer-regexp-test'],
+
+  // ── eslint-comments plugin ────────────────────────────────────────────
+  // @eslint-community/eslint-comments `no-unlimited-disable` = "an
+  // `eslint-disable` comment with no rule names"; unicorn/no-abusive-eslint-
+  // disable says the same thing.
+  '@eslint-community/eslint-comments/no-unlimited-disable': ['unicorn/no-abusive-eslint-disable'],
 
   // ── Broader rule supersedes narrower one ───────────────────────────────
 

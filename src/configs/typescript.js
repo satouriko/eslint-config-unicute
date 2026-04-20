@@ -2,7 +2,7 @@ import tseslint from 'typescript-eslint'
 
 import { GLOB_SVELTE, GLOB_TS, GLOB_TSX, GLOB_VUE } from '../utils.js'
 
-import { overridesBlock } from './_overrides.js'
+import { overridesBlock, presetAutoOffs } from './_overrides.js'
 
 // TS rules also apply to .vue/.svelte — their SFC parsers delegate
 // <script lang="ts"> blocks to typescript-eslint's parser.
@@ -19,6 +19,7 @@ export function typescriptConfig() {
     ...block,
     files: FILES,
   }))
+  const autoOffs = presetAutoOffs(tseslint.configs.strictTypeChecked)
   return [
     ...scoped,
     {
@@ -26,6 +27,9 @@ export function typescriptConfig() {
       languageOptions: { parserOptions: { projectService: true } },
       name: 'unicute/typescript/parser',
     },
+    ...(Object.keys(autoOffs).length > 0
+      ? [{ files: FILES, name: 'unicute/typescript/preset-superseded-off', rules: autoOffs }]
+      : []),
     ...overridesBlock('typescript', FILES),
   ]
 }

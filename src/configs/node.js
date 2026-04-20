@@ -2,7 +2,7 @@ import n from 'eslint-plugin-n'
 
 import { GLOB_JS, GLOB_JSX, GLOB_TS, GLOB_TSX } from '../utils.js'
 
-import { overridesBlock } from './_overrides.js'
+import { overridesBlock, presetAutoOffs } from './_overrides.js'
 
 const DEFAULT_FILES = [...GLOB_JS, ...GLOB_JSX, ...GLOB_TS, ...GLOB_TSX]
 
@@ -17,12 +17,16 @@ export function nodeConfig({ files = DEFAULT_FILES } = {}) {
   const scope = Array.isArray(files) ? files : [files]
   const rec = n.configs?.['flat/recommended'] ?? []
   const blocks = Array.isArray(rec) ? rec : [rec]
+  const autoOffs = presetAutoOffs(blocks)
   return [
     ...blocks.map((b) => ({
       ...b,
       files: scope,
       name: 'unicute/n/recommended',
     })),
+    ...(Object.keys(autoOffs).length > 0
+      ? [{ files: scope, name: 'unicute/n/preset-superseded-off', rules: autoOffs }]
+      : []),
     ...overridesBlock('node', scope),
   ]
 }
