@@ -18,9 +18,9 @@ export function commentsConfig() {
       plugins: { '@eslint-community/eslint-comments': comments },
       rules: rec?.rules ?? {},
     },
-    ...(Object.keys(autoOffs).length > 0
-      ? [{ files, name: 'unicute/eslint-comments/preset-superseded-off', rules: autoOffs }]
-      : []),
+    ...(Object.keys(autoOffs).length > 0 ?
+      [{ files, name: 'unicute/eslint-comments/preset-superseded-off', rules: autoOffs }]
+    : []),
     ...overridesBlock('comments', files),
   ]
 }

@@ -27,9 +27,8 @@ export function testingConfig({ vitest: useVitest = false } = {}) {
   // rules — referencing `vitest/*` rules with a non-`off` severity while
   // the plugin isn't registered throws at lint time.
   const rules = compileOverrides('testing')
-  const filtered = useVitest
-    ? rules
-    : Object.fromEntries(Object.entries(rules).filter(([id]) => !id.startsWith('vitest/')))
+  const filtered =
+    useVitest ? rules : Object.fromEntries(Object.entries(rules).filter(([id]) => !id.startsWith('vitest/')))
   if (Object.keys(filtered).length > 0) {
     blocks.push({
       files: GLOB_TESTS,

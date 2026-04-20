@@ -173,7 +173,10 @@ function extractMeta(rule, id) {
   else if (rec === true) recommendedTiers = ['recommended']
   else if (rec && typeof rec === 'object') recommendedTiers = Object.keys(rec)
   const ebr = rule?.meta?.docs?.extendsBaseRule
-  const baseRuleName = ebr === true ? id.split('/').at(-1) : typeof ebr === 'string' ? ebr : null
+  const baseRuleName =
+    ebr === true ? id.split('/').at(-1)
+    : typeof ebr === 'string' ? ebr
+    : null
   let schema
   try {
     schema = normalizeSchema(rule?.meta?.schema)
@@ -504,8 +507,9 @@ function summarizeProbeError(error, categoryId) {
   if (ruleMatch && (propMatch || shouldNotHave)) {
     const rule = ruleMatch[1]
     const badProp = propMatch?.[1]
-    const expected = expectedMatch
-      ? expectedMatch[1]
+    const expected =
+      expectedMatch ?
+        expectedMatch[1]
           .replace(/"/g, '')
           .split(',')
           .map((s) => s.trim())
@@ -513,8 +517,9 @@ function summarizeProbeError(error, categoryId) {
       : []
     const homes = findRuleInOverrides(rule)
     const where = homes.length ? homes.map((f) => `rule-diff/${f}`).join(' / ') : `rule-diff/${categoryId}.json`
-    const fix = badProp
-      ? `unknown option "${badProp}"${expected.length ? ` (expected one of: ${expected.join(', ')})` : ''}`
+    const fix =
+      badProp ?
+        `unknown option "${badProp}"${expected.length ? ` (expected one of: ${expected.join(', ')})` : ''}`
       : `options don't match the rule's schema`
     return {
       badProperty: badProp ?? null,
@@ -872,9 +877,9 @@ function computeDrift(current, baseline) {
     alerts.push({
       categories,
       message:
-        failure.type === 'option-invalid'
-          ? `${failure.rule} has an invalid option${failure.badProperty ? ` "${failure.badProperty}"` : ''} in ${failure.file}${failure.expected?.length ? ` — expected one of: ${failure.expected.join(', ')}` : ''}${where}`
-          : `probe failed: ${failure.summary}${where}`,
+        failure.type === 'option-invalid' ?
+          `${failure.rule} has an invalid option${failure.badProperty ? ` "${failure.badProperty}"` : ''} in ${failure.file}${failure.expected?.length ? ` — expected one of: ${failure.expected.join(', ')}` : ''}${where}`
+        : `probe failed: ${failure.summary}${where}`,
       rule: failure.rule ?? null,
       type: failure.type,
     })
@@ -1069,7 +1074,10 @@ const TS_EXTENDS_REVERSE = (() => {
   const out = {}
   for (const [id, rule] of Object.entries(tsPlugin.rules ?? {})) {
     const ebr = rule?.meta?.docs?.extendsBaseRule
-    const base = ebr === true ? id : typeof ebr === 'string' ? ebr : null
+    const base =
+      ebr === true ? id
+      : typeof ebr === 'string' ? ebr
+      : null
     if (!base) continue
     ;(out[base] ??= []).push(`@typescript-eslint/${id}`)
   }
@@ -1408,11 +1416,9 @@ if (driftInitial.length > 0)
 // ─── server ───────────────────────────────────────────────────────────────
 
 const mimeFor = (f) =>
-  f.endsWith('.html')
-    ? 'text/html; charset=utf-8'
-    : f.endsWith('.json')
-      ? 'application/json; charset=utf-8'
-      : 'text/plain; charset=utf-8'
+  f.endsWith('.html') ? 'text/html; charset=utf-8'
+  : f.endsWith('.json') ? 'application/json; charset=utf-8'
+  : 'text/plain; charset=utf-8'
 
 const CATEGORY_IDS = new Set(CATEGORIES.map((c) => c.id))
 

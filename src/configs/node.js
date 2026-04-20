@@ -24,9 +24,9 @@ export function nodeConfig({ files = DEFAULT_FILES } = {}) {
       files: scope,
       name: 'unicute/n/recommended',
     })),
-    ...(Object.keys(autoOffs).length > 0
-      ? [{ files: scope, name: 'unicute/n/preset-superseded-off', rules: autoOffs }]
-      : []),
+    ...(Object.keys(autoOffs).length > 0 ?
+      [{ files: scope, name: 'unicute/n/preset-superseded-off', rules: autoOffs }]
+    : []),
     ...overridesBlock('node', scope),
   ]
 }

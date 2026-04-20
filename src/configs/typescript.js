@@ -33,9 +33,9 @@ export function typescriptConfig({ tsconfigRootDir } = {}) {
       languageOptions: { parserOptions },
       name: 'unicute/typescript/parser',
     },
-    ...(Object.keys(autoOffs).length > 0
-      ? [{ files: FILES, name: 'unicute/typescript/preset-superseded-off', rules: autoOffs }]
-      : []),
+    ...(Object.keys(autoOffs).length > 0 ?
+      [{ files: FILES, name: 'unicute/typescript/preset-superseded-off', rules: autoOffs }]
+    : []),
     ...overridesBlock('typescript', FILES),
   ]
 }

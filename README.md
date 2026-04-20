@@ -20,7 +20,7 @@ import unicute from 'eslint-config-unicute'
 export default unicute()
 ```
 
-Peer deps: `eslint ≥ 9.35`, `typescript ≥ 5`, `prettier ≥ 3.5`, `node ≥ 18.18` (the union of eslint 9's and 10's engine constraints).
+Peer deps: `eslint ≥ 9.35`, `typescript ≥ 4.8.4`, `prettier ≥ 3.5`, `node ≥ 18.18` (the union of eslint 9's and 10's engine constraints).
 
 > **Run formatting through ESLint, not Prettier directly.** unicute owns the Prettier config and runs Prettier inside ESLint via `eslint-plugin-prettier` — `eslint --fix` formats the whole project in one pass. Running `prettier --write` separately is redundant and can disagree with unicute's options (it reads `.prettierrc`, which unicute ignores).
 
