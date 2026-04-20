@@ -1,3 +1,3 @@
 # Hello
 
-A sample markdown file.
+Markdown with **multiple    spaces**  that Prettier normalises.

@@ -1,2 +1,5 @@
-name = "sample"
-value = 42
+# Missing blank line before [section]      → toml/padding-line-between-tables (prettier off)
+# Extra spaces around `=` and spacing drift → prettier/prettier (prettier on)
+key   =    1
+[section]
+other  =   2

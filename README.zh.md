@@ -20,7 +20,7 @@ import unicute from 'eslint-config-unicute'
 export default unicute()
 ```
 
-Peer deps：`eslint ≥ 9.5`、`typescript ≥ 5`、`prettier ≥ 3.5`、`node ≥ 20.19`。
+Peer deps：`eslint ≥ 9.35`、`typescript ≥ 5`、`prettier ≥ 3.5`、`node ≥ 18.18`（eslint 9 和 10 的 engines 并集）。
 
 > **格式化请走 ESLint，不要单独跑 Prettier。** unicute 管理 Prettier 配置，通过 `eslint-plugin-prettier` 在 ESLint 内部调用 Prettier——`eslint --fix` 一条命令就会把整个项目格式化。单独跑 `prettier --write` 是多余的，还会跟 unicute 的设置冲突（它会读 `.prettierrc`，而 unicute 是忽略 `.prettierrc` 的）。
 

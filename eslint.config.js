@@ -5,7 +5,11 @@ export default unicute(
   // smoke-test fixture-project a workspace sibling, so its fixture deps
   // (tailwindcss, vitest) don't leak into our own package.json. Our own
   // package.json isn't subject to the pnpm plugin's catalog-ref rules.
-  { node: true, pnpm: false },
+  //
+  // `typescript.tsconfigRootDir` — pin the single project entry for both
+  // projectService and the import resolver. References from this root
+  // cover the fixture-project subtree; resolver stops globbing.
+  { node: true, pnpm: false, typescript: { tsconfigRootDir: import.meta.dirname } },
   { ignores: ['rule-diff/**', 'tests/fixture-project/**'] },
   {
     // Claude Code hooks have shebangs so the runtime can exec them directly;

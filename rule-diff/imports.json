@@ -18,11 +18,22 @@
       }
     ]
   },
+  "import-x/no-duplicates": {
+    "decision": "enable"
+  },
   "import-x/no-dynamic-require": {
     "decision": "disable"
   },
   "import-x/no-empty-named-blocks": {
     "decision": "enable"
+  },
+  "import-x/no-import-module-exports": {
+    "decision": "enable",
+    "options": [
+      {
+        "exceptions": []
+      }
+    ]
   },
   "import-x/no-mutable-exports": {
     "decision": "enable"
@@ -39,8 +50,20 @@
   "import-x/no-relative-packages": {
     "decision": "enable"
   },
+  "import-x/no-rename-default": {
+    "decision": "disable"
+  },
   "import-x/no-self-import": {
     "decision": "enable"
+  },
+  "import-x/no-unresolved": {
+    "decision": "enable",
+    "options": [
+      {
+        "commonjs": true,
+        "caseSensitive": true
+      }
+    ]
   },
   "import-x/no-useless-path-segments": {
     "decision": "enable",

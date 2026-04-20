@@ -113,6 +113,12 @@ export function unicute(firstArgument = {}, ...userConfigs) {
   const reactOptions = react === true ? {} : react && typeof react === 'object' ? react : null
   const vueOptions = vue === true ? {} : vue && typeof vue === 'object' ? vue : null
   const svelteOptions = svelte === true ? {} : svelte && typeof svelte === 'object' ? svelte : null
+  // `typescript` accepts `true` or an options object. The only option
+  // today is `noWarnOnMultipleProjects`, forwarded to the import
+  // resolver (silences its perf hint when the project glob matches
+  // multiple tsconfigs — common in monorepos / toolchain-split setups).
+  const tsEnabled = typescript !== false && typescript !== null && typescript !== undefined
+  const tsOpts = typescript && typeof typescript === 'object' ? typescript : {}
   // `node` is opt-in and accepts three shapes (see UnicuteOptions):
   //   true          → apply to all JS/TS source (nodeConfig's DEFAULT_FILES)
   //   string | []   → apply to just those globs (e.g. 'server/**')
@@ -131,13 +137,13 @@ export function unicute(firstArgument = {}, ...userConfigs) {
     ...jsxConfig(),
     ...unicornConfig(),
     ...regexpConfig(),
-    ...imports({ typescript }),
+    ...imports({ typescript: tsEnabled, tsconfigRootDir: tsOpts.tsconfigRootDir }),
     ...perfectionistConfig(),
     ...commentsConfig(),
     ...(jsdoc ? jsdocConfig() : []),
     ...testingConfig({ vitest }),
 
-    ...(typescript ? typescriptConfig() : []),
+    ...(tsEnabled ? typescriptConfig({ tsconfigRootDir: tsOpts.tsconfigRootDir }) : []),
 
     ...(reactOptions ? reactConfig(reactOptions) : []),
     ...(vueOptions ? vueConfig(vueOptions) : []),

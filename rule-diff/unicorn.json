@@ -67,6 +67,9 @@
   "unicorn/no-typeof-undefined": {
     "decision": "disable"
   },
+  "unicorn/no-unnecessary-polyfills": {
+    "decision": "disable"
+  },
   "unicorn/no-unreadable-array-destructuring": {
     "decision": "disable"
   },
@@ -76,16 +79,61 @@
   "unicorn/numeric-separators-style": {
     "decision": "disable"
   },
+  "unicorn/prefer-add-event-listener": {
+    "decision": "enable"
+  },
+  "unicorn/prefer-array-find": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-array-flat": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-array-flat-map": {
+    "decision": "disable"
+  },
   "unicorn/prefer-array-index-of": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-array-some": {
     "decision": "disable"
   },
   "unicorn/prefer-at": {
     "decision": "disable"
   },
+  "unicorn/prefer-bigint-literals": {
+    "decision": "enable"
+  },
+  "unicorn/prefer-blob-reading-methods": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-class-fields": {
+    "decision": "enable"
+  },
+  "unicorn/prefer-classlist-toggle": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-code-point": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-date-now": {
+    "decision": "enable"
+  },
+  "unicorn/prefer-default-parameters": {
+    "decision": "enable"
+  },
   "unicorn/prefer-dom-node-append": {
     "decision": "disable"
   },
+  "unicorn/prefer-dom-node-dataset": {
+    "decision": "disable"
+  },
   "unicorn/prefer-dom-node-remove": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-dom-node-text-content": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-event-target": {
     "decision": "disable"
   },
   "unicorn/prefer-export-from": {
@@ -99,31 +147,100 @@
   "unicorn/prefer-global-this": {
     "decision": "disable"
   },
+  "unicorn/prefer-import-meta-properties": {
+    "decision": "disable"
+  },
   "unicorn/prefer-includes": {
     "decision": "disable"
   },
-  "unicorn/prefer-math-min-max": {
+  "unicorn/prefer-json-parse-buffer": {
     "decision": "disable"
+  },
+  "unicorn/prefer-keyboard-event-key": {
+    "decision": "enable"
+  },
+  "unicorn/prefer-logical-operator-over-ternary": {
+    "decision": "enable"
+  },
+  "unicorn/prefer-math-min-max": {
+    "decision": "enable"
   },
   "unicorn/prefer-math-trunc": {
     "decision": "disable"
   },
+  "unicorn/prefer-modern-dom-apis": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-modern-math-apis": {
+    "decision": "enable"
+  },
   "unicorn/prefer-module": {
     "decision": "disable"
+  },
+  "unicorn/prefer-native-coercion-functions": {
+    "decision": "enable"
+  },
+  "unicorn/prefer-negative-index": {
+    "decision": "enable"
+  },
+  "unicorn/prefer-node-protocol": {
+    "decision": "enable"
   },
   "unicorn/prefer-number-properties": {
     "decision": "disable"
   },
-  "unicorn/prefer-regexp-test": {
+  "unicorn/prefer-object-from-entries": {
     "decision": "disable"
   },
+  "unicorn/prefer-optional-catch-binding": {
+    "decision": "enable"
+  },
+  "unicorn/prefer-prototype-methods": {
+    "decision": "enable"
+  },
+  "unicorn/prefer-query-selector": {
+    "decision": "enable"
+  },
+  "unicorn/prefer-reflect-apply": {
+    "decision": "enable"
+  },
+  "unicorn/prefer-regexp-test": {
+    "decision": "enable"
+  },
+  "unicorn/prefer-response-static-json": {
+    "decision": "enable"
+  },
+  "unicorn/prefer-set-has": {
+    "decision": "enable"
+  },
+  "unicorn/prefer-set-size": {
+    "decision": "enable"
+  },
   "unicorn/prefer-simple-condition-first": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-single-call": {
     "decision": "disable"
   },
   "unicorn/prefer-spread": {
     "decision": "disable"
   },
+  "unicorn/prefer-string-raw": {
+    "decision": "enable"
+  },
   "unicorn/prefer-string-replace-all": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-string-slice": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-string-starts-ends-with": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-string-trim-start-end": {
+    "decision": "disable"
+  },
+  "unicorn/prefer-structured-clone": {
     "decision": "disable"
   },
   "unicorn/prefer-switch": {
@@ -138,10 +255,10 @@
   "unicorn/prefer-top-level-await": {
     "decision": "disable"
   },
-  "unicorn/prevent-abbreviations": {
+  "unicorn/prefer-type-error": {
     "decision": "disable"
   },
-  "unicorn/prefer-single-call": {
+  "unicorn/prevent-abbreviations": {
     "decision": "disable"
   }
 }

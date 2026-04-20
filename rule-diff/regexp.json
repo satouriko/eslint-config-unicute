@@ -1,0 +1,5 @@
+{
+  "regexp/prefer-regexp-test": {
+    "decision": "enable"
+  }
+}

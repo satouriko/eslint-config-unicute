@@ -1,30 +1,8 @@
 {
-  "compilerOptions": {
-    "target": "ES2023",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "jsx": "preserve",
-    "allowJs": true,
-    "checkJs": false,
-    "strict": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true
-  },
-  "files": [
-    "fixtures/sample.ts",
-    "fixtures/sample.mts",
-    "fixtures/sample.cts",
-    "fixtures/sample.tsx",
-    "fixtures/sample.js",
-    "fixtures/sample.mjs",
-    "fixtures/sample.cjs",
-    "fixtures/sample.jsx",
-    "fixtures/sample.test.ts",
-    "fixtures/component.vue",
-    "fixtures/component-tsx.vue",
-    "fixtures/component.svelte"
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.react.json" },
+    { "path": "./tsconfig.vue.json" },
+    { "path": "./tsconfig.default.json" }
   ]
 }

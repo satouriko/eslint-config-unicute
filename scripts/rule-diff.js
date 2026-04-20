@@ -31,6 +31,7 @@ import tsPlugin from '@typescript-eslint/eslint-plugin'
 import vitestPlugin from '@vitest/eslint-plugin'
 import { ESLint } from 'eslint'
 import { builtinRules } from 'eslint/use-at-your-own-risk'
+import tailwindPlugin from 'eslint-plugin-better-tailwindcss'
 import importXPlugin, { flatConfigs as importXFlatConfigs } from 'eslint-plugin-import-x'
 import jsdocPlugin from 'eslint-plugin-jsdoc'
 import jsoncPlugin, { configs as jsoncConfigs } from 'eslint-plugin-jsonc'
@@ -42,7 +43,6 @@ import pnpmPlugin, { configs as pnpmConfigs } from 'eslint-plugin-pnpm'
 import prettierRecommended from 'eslint-plugin-prettier/recommended'
 import * as regexpPlugin from 'eslint-plugin-regexp'
 import sveltePlugin from 'eslint-plugin-svelte'
-import tailwindPlugin from 'eslint-plugin-tailwindcss'
 import tomlPlugin, { configs as tomlConfigs } from 'eslint-plugin-toml'
 import unicornPlugin from 'eslint-plugin-unicorn'
 import unusedImportsPlugin from 'eslint-plugin-unused-imports'
@@ -392,9 +392,9 @@ const CATEGORIES = [
     label: 'tailwindcss',
     probe: 'probe.tsx',
     unicuteOptions: { tailwindcss: true },
-    enumerate: () => pluginRules(tailwindPlugin, 'tailwindcss'),
-    packages: ['eslint-plugin-tailwindcss'],
-    recommendedPreset: () => asArray(tailwindPlugin.configs?.['flat/recommended']),
+    enumerate: () => pluginRules(tailwindPlugin, 'better-tailwindcss'),
+    packages: ['eslint-plugin-better-tailwindcss'],
+    recommendedPreset: () => asArray(tailwindPlugin.configs?.recommended),
   },
   {
     id: 'jsonc',
@@ -1146,16 +1146,25 @@ async function probeCategory(category, refs) {
     const ownLevel = Array.isArray(ownValue) ? ownValue[0] : ownValue
     const ownOptions = Array.isArray(ownValue) ? ownValue.slice(1) : []
     let defeatKind = null
+    // If this rule has a superseder (via SUPERSEDED_BY or extendsBaseRule),
+    // the `superseded-by` chip already explains the off — don't double-flag
+    // the same off as a "defeated" downstream rewrite.
+    const hasSupersederExplanation = (SUPERSEDED_BY[id]?.length ?? 0) > 0 || (TS_EXTENDS_REVERSE[id]?.length ?? 0) > 0
     if (
       decision?.decision === 'enable'
       && ownLevel !== 'off'
       && ownLevel !== 0
       && ownLevel !== null
       && ownLevel !== undefined
+      && !hasSupersederExplanation
     ) {
       if (probedLevel === 'off') defeatKind = 'kill'
       else if (probedLevel !== ownLevel) defeatKind = 'level'
-      else if (!isOwnOptionsPreserved(ownOptions, probedOptions)) defeatKind = 'options'
+      // Only check options drift when the user actually supplied options.
+      // If ownOptions is empty ("enable" with no options block), any probed
+      // options come from ESLint auto-filling the rule's schema defaults
+      // or from an earlier preset — that's not a user-intent defeat.
+      else if (ownOptions.length > 0 && !isOwnOptionsPreserved(ownOptions, probedOptions)) defeatKind = 'options'
     }
     const defeatedByPreset = defeatKind !== null
     const refsForRule = {}

@@ -10,21 +10,27 @@ const FILES = [...GLOB_TS, ...GLOB_TSX, ...GLOB_VUE, ...GLOB_SVELTE]
 
 /**
  * typescript-eslint strictTypeChecked. Locked to `projectService: true` —
- * each linted file's tsconfig is auto-resolved. If you have a weird layout
- * (tsconfig not co-located, custom paths), add a userConfigs block with your
- * own parserOptions; don't fight the defaults here.
+ * each linted file's tsconfig is auto-resolved.
+ *
+ * @param {object} [opts]
+ * @param {string} [opts.tsconfigRootDir] - pin projectService's workspace
+ *   root when the default walk-up finds multiple candidate tsconfigs.
+ *   Use TypeScript project references to tie the tree into one graph
+ *   and pass this here (typically `import.meta.dirname`).
  */
-export function typescriptConfig() {
+export function typescriptConfig({ tsconfigRootDir } = {}) {
   const scoped = tseslint.configs.strictTypeChecked.map((block) => ({
     ...block,
     files: FILES,
   }))
   const autoOffs = presetAutoOffs(tseslint.configs.strictTypeChecked)
+  const parserOptions = { projectService: true }
+  if (tsconfigRootDir) parserOptions.tsconfigRootDir = tsconfigRootDir
   return [
     ...scoped,
     {
       files: FILES,
-      languageOptions: { parserOptions: { projectService: true } },
+      languageOptions: { parserOptions },
       name: 'unicute/typescript/parser',
     },
     ...(Object.keys(autoOffs).length > 0

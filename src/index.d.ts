@@ -1,5 +1,30 @@
 import type { Linter } from 'eslint'
 
+export interface TypeScriptOptions {
+  /**
+   * Pin the "single connected project" entry point. When set, both
+   * typescript-eslint's projectService and the import resolver treat
+   * `<tsconfigRootDir>/tsconfig.json` as THE root — projectService uses
+   * it as its workspace root (resolving "multiple candidate
+   * TSConfigRootDirs" ambiguity), and the resolver stops globbing for
+   * tsconfigs and just follows the references graph from that single
+   * entry. The resolver's "Multiple projects found" perf hint goes
+   * away as a side-effect.
+   *
+   * Required: your tsconfig tree should be **one connected graph via
+   * TypeScript project references** (root → sub-tsconfigs with
+   * `composite: true`). Without references, sub-projects won't be
+   * reachable and imports to them will fail to resolve.
+   *
+   * Typical value: `import.meta.dirname` in your eslint.config.js.
+   *
+   * Default: unset — projectService auto-detects per file and the
+   * resolver falls back to `**\/tsconfig.json` glob discovery (works
+   * fine for monorepos where each package has a plain `tsconfig.json`).
+   */
+  tsconfigRootDir?: string
+}
+
 export interface ReactOptions {
   /** Paths where React rules apply. Default: `**\/*.{jsx,tsx}`. */
   files?: string | string[]
@@ -50,7 +75,7 @@ export interface UnicuteOptions {
    * is locked in — add a custom `languageOptions.parserOptions` via
    * `userConfigs` if your layout needs something different.
    */
-  typescript?: boolean
+  typescript?: boolean | TypeScriptOptions
 
   /**
    * React rules + optional jsx-a11y. Default: auto-detect `react`.

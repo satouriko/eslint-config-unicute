@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-19T17:58:33.309Z",
+  "generatedAt": "2026-04-20T13:15:15.854Z",
   "plugins": {
     "eslint": {
       "version": "10.2.1"
@@ -55,8 +55,8 @@
     "eslint-plugin-svelte": {
       "version": "3.17.0"
     },
-    "eslint-plugin-tailwindcss": {
-      "version": "3.18.3"
+    "eslint-plugin-better-tailwindcss": {
+      "version": null
     },
     "eslint-plugin-jsonc": {
       "version": "3.1.2"
@@ -5761,35 +5761,59 @@
       }
     },
     "tailwind": {
-      "tailwindcss/classnames-order": {
+      "better-tailwindcss/enforce-canonical-classes": {
         "deprecated": false,
         "recommended": "warn"
       },
-      "tailwindcss/enforces-negative-arbitrary-values": {
+      "better-tailwindcss/enforce-consistent-class-order": {
         "deprecated": false,
         "recommended": "warn"
       },
-      "tailwindcss/enforces-shorthand": {
+      "better-tailwindcss/enforce-consistent-important-position": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "better-tailwindcss/enforce-consistent-line-wrapping": {
         "deprecated": false,
         "recommended": "warn"
       },
-      "tailwindcss/migration-from-tailwind-2": {
+      "better-tailwindcss/enforce-consistent-variable-syntax": {
         "deprecated": false,
-        "recommended": "off"
+        "recommended": null
       },
-      "tailwindcss/no-arbitrary-value": {
+      "better-tailwindcss/enforce-consistent-variant-order": {
         "deprecated": false,
-        "recommended": "off"
+        "recommended": null
       },
-      "tailwindcss/no-contradicting-classname": {
+      "better-tailwindcss/enforce-logical-properties": {
         "deprecated": false,
-        "recommended": "off"
+        "recommended": null
       },
-      "tailwindcss/no-custom-classname": {
+      "better-tailwindcss/enforce-shorthand-classes": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "better-tailwindcss/no-conflicting-classes": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "better-tailwindcss/no-deprecated-classes": {
         "deprecated": false,
         "recommended": "warn"
       },
-      "tailwindcss/no-unnecessary-arbitrary-value": {
+      "better-tailwindcss/no-duplicate-classes": {
+        "deprecated": false,
+        "recommended": "warn"
+      },
+      "better-tailwindcss/no-restricted-classes": {
+        "deprecated": false,
+        "recommended": null
+      },
+      "better-tailwindcss/no-unknown-classes": {
+        "deprecated": false,
+        "recommended": "error"
+      },
+      "better-tailwindcss/no-unnecessary-whitespace": {
         "deprecated": false,
         "recommended": "warn"
       }

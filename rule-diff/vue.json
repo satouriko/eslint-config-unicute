@@ -54,9 +54,16 @@
   "vue/eqeqeq": {
     "decision": "enable",
     "options": [
-      "always",
+      "always"
+    ]
+  },
+  "vue/html-button-has-type": {
+    "decision": "enable",
+    "options": [
       {
-        "null": "ignore"
+        "button": true,
+        "submit": true,
+        "reset": false
       }
     ]
   },
@@ -68,6 +75,15 @@
         "exceptions": [
           "-"
         ]
+      }
+    ]
+  },
+  "vue/no-constant-condition": {
+    "decision": "enable",
+    "level": "warn",
+    "options": [
+      {
+        "checkLoops": "allExceptWhileTrue"
       }
     ]
   },
@@ -83,6 +99,9 @@
     "decision": "enable"
   },
   "vue/no-loss-of-precision": {
+    "decision": "enable"
+  },
+  "vue/no-potential-component-option-typo": {
     "decision": "enable"
   },
   "vue/no-restricted-syntax": {
@@ -102,7 +121,19 @@
   "vue/no-sparse-arrays": {
     "decision": "enable"
   },
+  "vue/no-template-target-blank": {
+    "decision": "enable",
+    "options": [
+      {
+        "allowReferrer": true,
+        "enforceDynamicLinks": "always"
+      }
+    ]
+  },
   "vue/no-unused-refs": {
+    "decision": "enable"
+  },
+  "vue/no-useless-concat": {
     "decision": "enable"
   },
   "vue/no-useless-v-bind": {
@@ -128,40 +159,6 @@
     "decision": "enable"
   },
   "vue/prefer-template": {
-    "decision": "enable"
-  },
-  "vue/html-button-has-type": {
-    "decision": "enable",
-    "options": [
-      {
-        "button": true,
-        "submit": true,
-        "reset": false
-      }
-    ]
-  },
-  "vue/no-constant-condition": {
-    "decision": "enable",
-    "level": "warn",
-    "options": [
-      {
-        "checkLoops": "allExceptWhileTrue"
-      }
-    ]
-  },
-  "vue/no-potential-component-option-typo": {
-    "decision": "enable"
-  },
-  "vue/no-template-target-blank": {
-    "decision": "enable",
-    "options": [
-      {
-        "allowReferrer": true,
-        "enforceDynamicLinks": "always"
-      }
-    ]
-  },
-  "vue/no-useless-concat": {
     "decision": "enable"
   }
 }

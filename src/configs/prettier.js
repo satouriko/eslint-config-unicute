@@ -6,7 +6,7 @@ import prettierRecommended from 'eslint-plugin-prettier/recommended'
 import toml from 'eslint-plugin-toml'
 import { configs as ymlConfigs } from 'eslint-plugin-yml'
 
-import { GLOB_JSON, GLOB_JSONC, GLOB_TOML, GLOB_YAML } from '../utils.js'
+import { GLOB_JSON, GLOB_JSONC, GLOB_SVELTE, GLOB_TOML, GLOB_YAML } from '../utils.js'
 
 const require = createRequire(import.meta.url)
 
@@ -155,6 +155,25 @@ export function prettierConfig(userOptions = {}, { svelte = false } = {}) {
     },
   ]
 
+  // Same fix for .svelte — prettier's built-in `getFileInfo` doesn't
+  // recognize `.svelte` even with `prettier-plugin-svelte` loaded into
+  // our config (the API call is made without the plugin list). Without
+  // this override, eslint-plugin-prettier infers `babel`, reparses the
+  // whole SFC as JSX, and emits "Adjacent JSX elements…" parse warnings.
+  // Only emitted when the caller opted into svelte (so we don't override
+  // a prettier/prettier rule for files the project doesn't have).
+  const sveltePrettier = svelte
+    ? [
+        {
+          files: GLOB_SVELTE,
+          name: 'unicute/svelte/prettier',
+          rules: {
+            'prettier/prettier': ['warn', { ...options, parser: 'svelte' }, { usePrettierrc: false }],
+          },
+        },
+      ]
+    : []
+
   return [
     {
       ...prettierRecommended,
@@ -167,6 +186,7 @@ export function prettierConfig(userOptions = {}, { svelte = false } = {}) {
     ...jsoncPrettier,
     ...ymlPrettier,
     ...tomlPrettier,
+    ...sveltePrettier,
     // File types ESLint doesn't parse natively (CSS / HTML / XML / …).
     // parserPlain makes ESLint accept the file; overriding
     // `prettier/prettier` with an explicit `parser` per scope tells

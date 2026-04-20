@@ -932,6 +932,14 @@
   "prefer-reflect": {
     "decision": "ignore"
   },
+  "prefer-regex-literals": {
+    "decision": "enable",
+    "options": [
+      {
+        "disallowRedundantWrapping": true
+      }
+    ]
+  },
   "prefer-rest-params": {
     "decision": "enable"
   },

@@ -1,4 +1,5 @@
 <script lang="ts">
+  // Explicit `: string` + `let` never reassigned → double finding
   let name: string = 'world'
 </script>
 

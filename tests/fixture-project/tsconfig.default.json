@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.base.json",
+  "files": [
+    "fixtures/sample.ts",
+    "fixtures/sample.mts",
+    "fixtures/sample.cts",
+    "fixtures/sample.js",
+    "fixtures/sample.mjs",
+    "fixtures/sample.cjs",
+    "fixtures/sample.test.ts",
+    "fixtures/component.svelte"
+  ]
+}

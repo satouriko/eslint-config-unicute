@@ -11,6 +11,14 @@
       }
     ]
   },
+  "@typescript-eslint/ban-ts-comment": {
+    "decision": "enable",
+    "options": [
+      {
+        "ts-expect-error": "allow-with-description"
+      }
+    ]
+  },
   "@typescript-eslint/ban-tslint-comment": {
     "decision": "ignore"
   },
@@ -34,7 +42,8 @@
     "options": [
       {
         "assertionStyle": "as",
-        "objectLiteralTypeAssertions": "allow-as-parameter"
+        "objectLiteralTypeAssertions": "allow-as-parameter",
+        "arrayLiteralTypeAssertions": "allow-as-parameter"
       }
     ]
   },
@@ -321,7 +330,12 @@
     "decision": "enable"
   },
   "@typescript-eslint/parameter-properties": {
-    "decision": "enable"
+    "decision": "enable",
+    "options": [
+      {
+        "prefer": "parameter-property"
+      }
+    ]
   },
   "@typescript-eslint/prefer-destructuring": {
     "decision": "enable",

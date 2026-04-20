@@ -1,3 +1,9 @@
 <script setup lang="tsx">
-const render = () => <div>Hello</div>
+// Explicit `: string` → `@typescript-eslint/no-inferrable-types`
+const label: string = 'Hello'
+const Greeting = () => <div>{label}</div>
 </script>
+
+<template>
+  <Greeting />
+</template>

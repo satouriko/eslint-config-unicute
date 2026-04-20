@@ -1,14 +1,1 @@
-{
-  "tailwindcss/enforces-shorthand": {
-    "decision": "disable"
-  },
-  "tailwindcss/migration-from-tailwind-2": {
-    "decision": "disable"
-  },
-  "tailwindcss/no-custom-classname": {
-    "decision": "disable"
-  },
-  "tailwindcss/no-contradicting-classname": {
-    "decision": "enable"
-  }
-}
+{}

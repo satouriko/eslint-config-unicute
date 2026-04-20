@@ -1,4 +1,5 @@
 {
-  // jsonc sample
-  "name": "sample"
+  // duplicate key → jsonc/no-dupe-keys
+  "name": "sample",
+  "name": "oops"
 }

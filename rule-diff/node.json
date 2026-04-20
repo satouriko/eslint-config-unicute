@@ -38,6 +38,24 @@
   "n/no-path-concat": {
     "decision": "enable"
   },
+  "n/no-process-exit": {
+    "decision": "disable"
+  },
+  "n/no-unpublished-import": {
+    "decision": "disable"
+  },
+  "n/no-unpublished-require": {
+    "decision": "disable"
+  },
+  "n/no-unsupported-features/es-builtins": {
+    "decision": "disable"
+  },
+  "n/no-unsupported-features/es-syntax": {
+    "decision": "disable"
+  },
+  "n/no-unsupported-features/node-builtins": {
+    "decision": "disable"
+  },
   "n/prefer-global/buffer": {
     "decision": "enable",
     "options": [
@@ -100,23 +118,5 @@
   },
   "n/prefer-promises/fs": {
     "decision": "enable"
-  },
-  "n/no-process-exit": {
-    "decision": "disable"
-  },
-  "n/no-unpublished-import": {
-    "decision": "disable"
-  },
-  "n/no-unpublished-require": {
-    "decision": "disable"
-  },
-  "n/no-unsupported-features/es-syntax": {
-    "decision": "disable"
-  },
-  "n/no-unsupported-features/node-builtins": {
-    "decision": "disable"
-  },
-  "n/no-unsupported-features/es-builtins": {
-    "decision": "disable"
   }
 }

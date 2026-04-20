@@ -1,3 +1,5 @@
+import { join } from 'node:path'
+
 import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript'
 import { flatConfigs as importXFlatConfigs } from 'eslint-plugin-import-x'
 import perfectionist from 'eslint-plugin-perfectionist'
@@ -34,8 +36,13 @@ import { overridesBlock } from './_overrides.js'
  *
  * @param {object} [opts]
  * @param {boolean} [opts.typescript=false]
+ * @param {string} [opts.tsconfigRootDir] - when set, use
+ *   `<tsconfigRootDir>/tsconfig.json` as the single resolver entry point
+ *   (relies on TypeScript project references to reach sub-projects).
+ *   Unset → fall back to `**\/tsconfig.json` glob discovery.
  */
-export function imports({ typescript = false } = {}) {
+export function imports({ typescript = false, tsconfigRootDir } = {}) {
+  const project = tsconfigRootDir ? join(tsconfigRootDir, 'tsconfig.json') : '**/tsconfig.json'
   const files = GLOB_SRC
   const importXRec = importXFlatConfigs?.recommended ?? []
   const recBlocks = Array.isArray(importXRec) ? importXRec : [importXRec]
@@ -62,7 +69,7 @@ export function imports({ typescript = false } = {}) {
         'import-x/resolver-next': [
           createTypeScriptImportResolver({
             alwaysTryTypes: true,
-            project: ['**/tsconfig.json', '**/tsconfig.*.json'],
+            project,
           }),
         ],
       },
