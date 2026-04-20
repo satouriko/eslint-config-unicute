@@ -64,7 +64,7 @@ Shared — both are opinionated, batteries-included configs with broad core ESLi
 Different:
 
 - **Semicolons**: airbnb requires them; unicute doesn't.
-- **TypeScript**: airbnb barely uses type-aware rules; unicute uses strict + type-aware in full.
+- **TypeScript**: airbnb picks TS rules à la carte (~47 rules, ~15 of them type-aware); unicute ships `strictTypeChecked + stylisticTypeChecked` in full — every type-aware rule both presets offer.
 - **React plugin**: airbnb uses the legacy `eslint-plugin-react` (70+ rules covering prop-types, class-component patterns, etc.); unicute uses the modern `@eslint-react` (hooks-era).
 - **Formatting ownership**: airbnb via `@stylistic/*`; unicute via Prettier.
 - **Restrictions on harmless syntax**: airbnb bans `no-plusplus`, `no-bitwise`, `no-continue`, `no-await-in-loop`, `no-lonely-if`, `consistent-return`, etc.; unicute doesn't (see the "syntactic freedom" bullet above).
@@ -75,7 +75,7 @@ Shared — flat-config only, self-contained; **core code-style conventions are c
 
 Different:
 
-- **Scope**: neostandard stays deliberately minimal, focused on core JS style; unicute covers TS type-aware, modern frameworks, testing, docs, and multiple config-file types.
+- **Scope**: neostandard stays lightweight — a handful of TS rules (~8, none type-aware) and not much framework / testing / docs coverage. unicute covers the whole stack: type-aware TS, modern frameworks, testing, docs, multiple config-file types.
 - **Formatting ownership**: neostandard does it via `@stylistic/*`; unicute hands it to Prettier.
 - **Trailing comma**: unicute uses `trailingComma: 'all'`; Standard traditionally uses no-trailing-comma (neostandard currently doesn't enforce it).
 

@@ -64,7 +64,7 @@ unicute 的规则取舍、选项、例外清单等大量借鉴了以下四套配
 异：
 
 - **分号**：airbnb 用 semi-always；unicute 不加分号。
-- **TypeScript**：airbnb 几乎不用 type-aware 规则；unicute 用 strict + type-aware 全套。
+- **TypeScript**：airbnb 按需挑选 TS 规则（~47 条，其中 ~15 条是 type-aware）；unicute 直接上 `strictTypeChecked + stylisticTypeChecked` 全套，两个预设里的 type-aware 一条不落。
 - **React 插件**：airbnb 用传统 `eslint-plugin-react`（70+ 条规则覆盖 prop-types、class component 等历史用法）；unicute 用现代 `@eslint-react`（面向 hooks 时代）。
 - **Formatting 归属**：airbnb 通过 `@stylistic/*`；unicute 交给 Prettier。
 - **对明显无害语法的限制**：airbnb 禁止 `no-plusplus`、`no-bitwise`、`no-continue`、`no-await-in-loop`、`no-lonely-if`、`consistent-return` 等；unicute 不禁止这些（见上面的"语法自由度"条目）。
@@ -75,7 +75,7 @@ unicute 的规则取舍、选项、例外清单等大量借鉴了以下四套配
 
 异：
 
-- **覆盖面**：neostandard 刻意只管核心 JS 风格；unicute 覆盖 TS type-aware、现代框架、测试、文档、多类配置文件。
+- **覆盖面**：neostandard 轻量取向 —— 只有少数 TS 规则（~8 条，无 type-aware），框架 / 测试 / 文档面基本不覆盖。unicute 全栈覆盖：type-aware TS、现代框架、测试、文档、多类配置文件。
 - **Formatting 归属**：neostandard 通过 `@stylistic/*` 自己做；unicute 交给 Prettier。
 - **Trailing comma**：unicute 用 `trailingComma: 'all'`；Standard 传统是 no-trailing-comma（neostandard 当前不强制）。
 
