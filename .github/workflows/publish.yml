@@ -29,17 +29,15 @@ jobs:
 
       - uses: pnpm/action-setup@v4
 
+      # Node 24 ships npm >= 11 — required by npm's Trusted Publishers
+      # OIDC handshake. Node 22 ships npm v10, which fails the handshake
+      # and surfaces a misleading `404 PUT /<package>` after provenance
+      # signing. See https://github.com/npm/cli/issues/9088
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
           registry-url: https://registry.npmjs.org
-
-      # Trusted Publishers needs npm >= 11.5.1 for the new OIDC handshake.
-      # Node 22 ships npm v10, which fails the handshake and surfaces a
-      # misleading `404 PUT /<package>`. Force-upgrade npm here.
-      # See: https://github.com/npm/cli/issues/9088
-      - run: npm install -g npm@latest
 
       - run: pnpm install --frozen-lockfile
 
