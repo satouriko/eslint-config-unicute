@@ -1435,11 +1435,19 @@
           head.appendChild(c)
         }
         if (rule.defeatedByPreset) {
-          const c = chip('defeated', 'defeated')
+          const kindLabel = { kill: 'off\u2019d', level: 'level changed', options: 'options changed' }
+          const label = kindLabel[rule.defeatKind] ?? 'defeated'
+          const c = chip(`defeated: ${label}`, 'defeated')
+          const emitted = rule.decision?.level ?? 'error'
+          const explanations = {
+            kill: `What we emitted: ${emitted}. Effective level: off. Your enable is a no-op.`,
+            level: `What we emitted: ${emitted}. Effective level: ${rule.unicuteLevel}. Severity was changed by a later preset.`,
+            options: `Level still matches (${rule.unicuteLevel}) but the options were rewritten by a later preset. Compare rule-diff/*.json against the effective options.`,
+          }
           c.title =
-            `You set this rule to "enable" but a downstream preset (e.g. unicorn's recommended config, or eslint-config-prettier) flips it back to "off". `
-            + `Your enable is a no-op in the effective config. `
-            + `Switch to a non-defeated replacement (e.g. the unicorn/* variant) or just set this rule to "ignore" to make the dashboard stop nagging.`
+            `You set this rule to "enable" but a downstream preset (unicorn's recommended, eslint-config-prettier, \u2026) rewrote it after us.\n\n`
+            + (explanations[rule.defeatKind] ?? '')
+            + `\n\nSwitch to a non-defeated replacement, or set this rule to "ignore" to silence the chip.`
           head.appendChild(c)
         }
         el.appendChild(head)

@@ -115,6 +115,30 @@ function optionsOf(value) {
   return Array.isArray(value) ? value.slice(1) : []
 }
 
+/**
+ * "Are the options we emitted preserved, byte-for-byte, inside the probed
+ * options?" Subset-style comparison — extra keys on the probe side are
+ * treated as ESLint auto-filling schema defaults (e.g. import-x/order
+ * gets `distinctGroup: true` / `named: false` / … merged in) and are
+ * ignored. For arrays we still require element-wise equality, since
+ * array position typically has meaning (groups order, path segments …).
+ *
+ * Returns true iff every key of `own` appears in `probed` with an
+ * equivalent value. A full `canonicalStringify` check would flag those
+ * auto-filled defaults as a "defeat", which is a noisy false positive.
+ */
+function isOwnOptionsPreserved(own, probed) {
+  if (Array.isArray(own)) {
+    if (!Array.isArray(probed) || own.length !== probed.length) return false
+    return own.every((v, i) => isOwnOptionsPreserved(v, probed[i]))
+  }
+  if (own && typeof own === 'object') {
+    if (!probed || typeof probed !== 'object' || Array.isArray(probed)) return false
+    return Object.keys(own).every((k) => isOwnOptionsPreserved(own[k], probed[k]))
+  }
+  return own === probed
+}
+
 // ─── rule-meta extraction from plugins ────────────────────────────────────
 
 function normalizeSchema(schema) {
@@ -1068,14 +1092,33 @@ async function probeCategory(category, refs) {
     const recEntry = recRules[id]
     const decision = decisions[id] ?? null
 
-    // defeatedByPreset: user decision says enable, probe result says off, AND
-    // our own overrides compile doesn't off it. Means a later preset flipped
-    // it; the enable is a no-op in the effective config.
+    // Defeat detection: user decision is `enable` but the probe result
+    // disagrees with what our overrides block actually emitted. Three kinds:
+    //   - kill    — we asked for 'error'/'warn', probe shows 'off'
+    //   - level   — we asked for 'error', probe shows 'warn' (or reverse)
+    //   - options — level matches, but the options object differs
+    // In every case something downstream (a plugin's recommended preset,
+    // eslint-config-prettier, etc.) rewrote the rule after us. Our own
+    // overrides `'off'` is excluded — that's an intentional phase-2
+    // auto-off covered by the supersedes / ext chips.
     const probedLevel = level(unicuteEntry)
+    const probedOptions = optionsOf(unicuteEntry)
     const ownValue = ownOverridesRules[id]
     const ownLevel = Array.isArray(ownValue) ? ownValue[0] : ownValue
-    const defeatedByPreset =
-      decision?.decision === 'enable' && probedLevel === 'off' && ownLevel !== 'off' && ownLevel !== 0
+    const ownOptions = Array.isArray(ownValue) ? ownValue.slice(1) : []
+    let defeatKind = null
+    if (
+      decision?.decision === 'enable'
+      && ownLevel !== 'off'
+      && ownLevel !== 0
+      && ownLevel !== null
+      && ownLevel !== undefined
+    ) {
+      if (probedLevel === 'off') defeatKind = 'kill'
+      else if (probedLevel !== ownLevel) defeatKind = 'level'
+      else if (!isOwnOptionsPreserved(ownOptions, probedOptions)) defeatKind = 'options'
+    }
+    const defeatedByPreset = defeatKind !== null
     const refsForRule = {}
     for (const refName of Object.keys(refs)) {
       refsForRule[refName] = resolveRef(id, refRulesByName[refName])
@@ -1090,11 +1133,13 @@ async function probeCategory(category, refs) {
       // (e.g. no-restricted-globals fed by confusing-browser-globals). The
       // dashboard renders it read-only.
       codeManaged: CODE_MANAGED_RULES.has(id) || undefined,
-      // `defeatedByPreset: true` — user decision is `enable` but probe shows
-      // `off`, and our overrides block didn't off it, so something downstream
-      // (unicorn's recommended preset, eslint-config-prettier, …) flipped it.
+      // `defeatKind` — 'kill' | 'level' | 'options' | undefined. When set,
+      // the user's `enable` was silently rewritten by a downstream preset
+      // (unicorn's recommended, eslint-config-prettier, …). Our own `off`
+      // emissions are excluded — those already have their own chips.
       // Dashboard renders a chip + filter so you can sweep these in one click.
       defeatedByPreset: defeatedByPreset || undefined,
+      defeatKind: defeatKind ?? undefined,
       // `foreign: true` + `nativeCategory` means the rule was pulled into
       // this category's JSON by the user. Dashboard renders a badge + a
       // remove-from-here button.
