@@ -42,8 +42,11 @@ export const SUPERSEDES = {
   // catches strictly more and behaves differently on untyped code — but
   // in a TS codebase you want one or the other, not both.
 
-  // Identifier naming DSL — covers camelcase and friends at config level.
-  '@typescript-eslint/naming-convention': ['camelcase', 'id-denylist', 'id-length', 'id-match', 'no-underscore-dangle'],
+  // Identifier naming DSL — covers camelcase / denylist / regex-match /
+  // underscore-dangle at config level. Does NOT cover `id-length` — the
+  // DSL has no minimumLength / maximumLength options, length is a
+  // separate concern that stays owned by core `id-length`.
+  '@typescript-eslint/naming-convention': ['camelcase', 'id-denylist', 'id-match', 'no-underscore-dangle'],
 
   // Exhaustive switch on discriminated unions; in typed code the `default`
   // branch is usually undesirable (it defeats exhaustiveness).
