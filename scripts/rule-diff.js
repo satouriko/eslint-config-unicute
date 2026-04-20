@@ -1055,6 +1055,27 @@ const CODE_MANAGED_RULES = new Set([
   'vue/block-lang',
 ])
 
+/**
+ * Reverse index of TS's `extendsBaseRule` meta: core rule id → every
+ * `@typescript-eslint/*` rule that declares it as the base. The TS
+ * extension rules are strict-superset supersedes of their core
+ * counterparts (type-aware + everything the core rule catches), which
+ * `_overrides.js` phase-2 already uses for auto-off via `baseRuleFor()`.
+ * This index just surfaces the relationship on the dashboard so the core
+ * rule's card gets a `superseded-by: @typescript-eslint/<name>` chip
+ * without having to duplicate all 26 pairs into the SUPERSEDES table.
+ */
+const TS_EXTENDS_REVERSE = (() => {
+  const out = {}
+  for (const [id, rule] of Object.entries(tsPlugin.rules ?? {})) {
+    const ebr = rule?.meta?.docs?.extendsBaseRule
+    const base = ebr === true ? id : typeof ebr === 'string' ? ebr : null
+    if (!base) continue
+    ;(out[base] ??= []).push(`@typescript-eslint/${id}`)
+  }
+  return out
+})()
+
 async function probeCategory(category, refs) {
   // Two unicute probes: one with overrides (= current effective state), and
   // one with just the plugin's recommended preset (= plugin's own opinion,
@@ -1175,8 +1196,19 @@ async function probeCategory(category, refs) {
       refs: refsForRule,
       requiresTypeChecking: meta.requiresTypeChecking,
       schema: meta.schema,
-      supersededBy: SUPERSEDED_BY[id] ?? [],
-      supersedes: SUPERSEDES[id] ?? [],
+      // `supersedes` / `supersededBy` unify two sources:
+      //   - our hand-curated SUPERSEDES table (non-declared semantics), and
+      //   - TS's upstream `extendsBaseRule` meta (the 26 extension-rule
+      //     pairs — `@typescript-eslint/no-unused-vars` ⊃ `no-unused-vars`
+      //     and friends). phase-2 already uses extendsBaseRule for auto-off
+      //     inside `_overrides.js`; here we fold it into the dashboard
+      //     payload so the core rule's card gets a `superseded-by` chip
+      //     and the TS card gets the reverse — one vocabulary, two sources.
+      supersededBy: [...(SUPERSEDED_BY[id] ?? []), ...(TS_EXTENDS_REVERSE[id] ?? [])],
+      supersedes: [
+        ...(SUPERSEDES[id] ?? []),
+        ...(meta.extendsBaseRule && meta.baseRuleName ? [meta.baseRuleName] : []),
+      ],
       unicuteLevel: level(unicuteEntry),
       unicuteOptions: optionsOf(unicuteEntry),
       url: meta.url,

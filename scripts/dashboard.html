@@ -1414,7 +1414,9 @@
         head.appendChild(chip(`recommended: ${rule.recommended ?? 'n/a'}`, 'muted'))
         if (rule.deprecated) head.appendChild(chip('deprecated', 'deprecated'))
         if (rule.requiresTypeChecking) head.appendChild(chip('type-aware', 'type-aware'))
-        if (rule.extendsBaseRule && rule.baseRuleName) head.appendChild(chip(`ext: ${rule.baseRuleName}`, ''))
+        // `extendsBaseRule` pairs are now rendered as `supersedes` /
+        // `superseded-by` chips (unified vocabulary with the SUPERSEDES
+        // table); no separate `ext:` chip.
         if (rule.codeManaged) {
           // Don't render a "pending" chip for code-managed rules — the
           // decision is in src/configs/, surface that specifically.
