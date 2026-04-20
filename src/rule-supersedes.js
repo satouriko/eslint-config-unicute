@@ -122,6 +122,7 @@ export const SUPERSEDES = {
   'regexp/no-invalid-regexp': ['no-invalid-regexp'],
   'regexp/no-useless-backreference': ['no-useless-backreference'],
   'regexp/no-control-character': ['no-control-regex'],
+  'regexp/no-empty-character-class': ['no-empty-character-class'],
 }
 
 /**

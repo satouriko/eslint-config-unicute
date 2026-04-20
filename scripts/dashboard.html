@@ -469,6 +469,11 @@
         color: #92400e;
         cursor: help;
       }
+      .rule-head .chip.prettier-off {
+        background: #f1f5f9;
+        color: #475569;
+        cursor: help;
+      }
       @media (prefers-color-scheme: dark) {
         .rule-head .chip.level-error {
           background: #3f1d1d;
@@ -502,6 +507,10 @@
         .rule-head .chip.defeated {
           background: #451a03;
           color: #fcd34d;
+        }
+        .rule-head .chip.prettier-off {
+          background: #1e293b;
+          color: #94a3b8;
         }
       }
       .rule-desc {
@@ -1436,6 +1445,14 @@
           c.title =
             `This rule is typically superseded by:\n  ${rule.supersededBy.join('\n  ')}\n\n`
             + `If you enable any of those, this one gets auto-off'd in the same scope.`
+          head.appendChild(c)
+        }
+        if (rule.offByPrettier) {
+          const c = chip('prettier-off', 'prettier-off')
+          c.title =
+            `eslint-config-prettier explicitly sets this rule to "off" (its own list — 358 rules — is what the unicute prettier layer applies). `
+            + `Either Prettier already handles the same concern through formatting, or the rule would fight with Prettier's output. `
+            + `Enabling it anyway will likely end up defeated; keep it at "ignore" / "disable", or drop Prettier if you genuinely want this rule to fire.`
           head.appendChild(c)
         }
         if (rule.defeatedByPreset) {

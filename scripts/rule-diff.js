@@ -31,6 +31,7 @@ import tsPlugin from '@typescript-eslint/eslint-plugin'
 import vitestPlugin from '@vitest/eslint-plugin'
 import { ESLint } from 'eslint'
 import { builtinRules } from 'eslint/use-at-your-own-risk'
+import prettierConfig from 'eslint-config-prettier'
 import importXPlugin, { flatConfigs as importXFlatConfigs } from 'eslint-plugin-import-x'
 import jsdocPlugin from 'eslint-plugin-jsdoc'
 import jsoncPlugin, { configs as jsoncConfigs } from 'eslint-plugin-jsonc'
@@ -54,6 +55,15 @@ import unicute from '../src/index.js'
 import { SUPERSEDED_BY, SUPERSEDES } from '../src/rule-supersedes.js'
 
 import { resolveRef } from './rule-equivalence.js'
+
+/**
+ * Rule IDs that eslint-config-prettier turns off — the full list, as
+ * shipped. Every entry in its rules table is set to 'off' (verified at
+ * load time below), so we can safely collapse to a Set of ids. Dashboard
+ * renders a chip for any rule in this set so the reader can tell at a
+ * glance that enabling it would clash with Prettier.
+ */
+const PRETTIER_OFF_RULES = new Set(Object.keys(prettierConfig.rules ?? {}))
 
 const require = createRequire(import.meta.url)
 const HERE = dirname(fileURLToPath(import.meta.url))
@@ -1140,6 +1150,11 @@ async function probeCategory(category, refs) {
       // Dashboard renders a chip + filter so you can sweep these in one click.
       defeatedByPreset: defeatedByPreset || undefined,
       defeatKind: defeatKind ?? undefined,
+      // `offByPrettier: true` — eslint-config-prettier explicitly sets this
+      // rule to 'off'. Informational chip; doesn't depend on your decision.
+      // Useful when triaging pending rules: a recommended-error rule that
+      // reads 'off' in your effective config often comes from this list.
+      offByPrettier: PRETTIER_OFF_RULES.has(id) || undefined,
       // `foreign: true` + `nativeCategory` means the rule was pulled into
       // this category's JSON by the user. Dashboard renders a badge + a
       // remove-from-here button.
