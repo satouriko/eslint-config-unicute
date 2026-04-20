@@ -25,15 +25,15 @@ jobs:
     # Must match the `Environment name` set in the Trusted Publisher form.
     environment: npm
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v5
 
       # Node 24 ships npm >= 11 — required by npm's Trusted Publishers
       # OIDC handshake. Node 22 ships npm v10, which fails the handshake
       # and surfaces a misleading `404 PUT /<package>` after provenance
       # signing. See https://github.com/npm/cli/issues/9088
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: pnpm
