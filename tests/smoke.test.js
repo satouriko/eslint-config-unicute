@@ -180,6 +180,13 @@ describe('smoke: per-option branches', () => {
     await assertLinted(eslint, ['component-js.vue'])
   })
 
+  it('vue + standalone .tsx/.jsx (no react): JSX parses, TS rules fire, no react-only rules', async () => {
+    // Covers @vitejs/plugin-vue-jsx projects that write components as
+    // .tsx files (not Vue SFCs) and don't pull in React at all.
+    const eslint = makeEslint({ typescript: true, vue: true, react: false })
+    await assertLinted(eslint, ['sample.tsx', 'sample.jsx', 'component.vue'])
+  })
+
   // ── svelte: 2 variants ─────────────────────────────────────────────
   it('svelte: true', async () => {
     const eslint = makeEslint({ typescript: true, svelte: true })
