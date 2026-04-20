@@ -111,19 +111,19 @@ unicute(firstArg?, ...userConfigs)
 
 Every option is auto-detected from installed dependencies by default. Pass explicit values to override detection or tune behavior.
 
-| Option        | Default     | Notes                                                                 |
-| ------------- | ----------- | --------------------------------------------------------------------- |
+| Option        | Default     | Notes                                                                                            |
+| ------------- | ----------- | ------------------------------------------------------------------------------------------------ |
 | `typescript`  | auto-detect | strict + type-aware + `projectService: true`; pass `{ tsconfigRootDir }` to pin the project root |
-| `react`       | auto-detect | `true \| { files?, a11y? }`                                           |
-| `vue`         | auto-detect | `true \| { files?, sfcTsx?, a11y? }`                                  |
-| `svelte`      | auto-detect | `true \| { a11y? }`                                                   |
-| `tailwindcss` | auto-detect |                                                                       |
-| `vitest`      | auto-detect |                                                                       |
-| `node`        | `false`     | opt-in — `true \| glob \| glob[]`                                     |
-| `jsdoc`       | `false`     | opt-in — recommended rules fire on every `/** */`, not always desired |
-| `pnpm`        | auto-detect | triggered by `pnpm-workspace.yaml`                                    |
-| `prettier`    | `true`      | `boolean \| PrettierOptions`                                          |
-| `gitignore`   | `true`      | loads `.gitignore` into the ignore list                               |
+| `react`       | auto-detect | `true \| { files?, a11y? }`                                                                      |
+| `vue`         | auto-detect | `true \| { files?, sfcTsx?, a11y? }`                                                             |
+| `svelte`      | auto-detect | `true \| { a11y? }`                                                                              |
+| `tailwindcss` | auto-detect |                                                                                                  |
+| `vitest`      | auto-detect |                                                                                                  |
+| `node`        | `false`     | opt-in — `true \| glob \| glob[]`                                                                |
+| `jsdoc`       | `false`     | opt-in — recommended rules fire on every `/** */`, not always desired                            |
+| `pnpm`        | auto-detect | triggered by `pnpm-workspace.yaml`                                                               |
+| `prettier`    | `true`      | `boolean \| PrettierOptions`                                                                     |
+| `gitignore`   | `true`      | loads `.gitignore` into the ignore list                                                          |
 
 `firstArg` also accepts arbitrary flat-config keys — unknown keys form a user config block (antfu-style):
 

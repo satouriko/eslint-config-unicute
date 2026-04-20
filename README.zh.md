@@ -111,19 +111,19 @@ unicute(firstArg?, ...userConfigs)
 
 所有选项默认按已装的依赖自动探测；显式传入可覆盖探测结果或传入 options。
 
-| 选项          | 默认     | 说明                                                                  |
-| ------------- | -------- | --------------------------------------------------------------------- |
+| 选项          | 默认     | 说明                                                                                     |
+| ------------- | -------- | ---------------------------------------------------------------------------------------- |
 | `typescript`  | 自动探测 | strict + type-aware + `projectService: true`；传 `{ tsconfigRootDir }` 可锁定 project 根 |
-| `react`       | 自动探测 | `true \| { files?, a11y? }`                                           |
-| `vue`         | 自动探测 | `true \| { files?, sfcTsx?, a11y? }`                                  |
-| `svelte`      | 自动探测 | `true \| { a11y? }`                                                   |
-| `tailwindcss` | 自动探测 |                                                                       |
-| `vitest`      | 自动探测 |                                                                       |
-| `node`        | `false`  | 需显式 opt-in——`true \| glob \| glob[]`                               |
-| `jsdoc`       | `false`  | 需显式 opt-in——recommended 规则对每个 `/** */` 都触发，未必都是 JSDoc |
-| `pnpm`        | 自动探测 | 存在 `pnpm-workspace.yaml` 时启用                                     |
-| `prettier`    | `true`   | `boolean \| PrettierOptions`                                          |
-| `gitignore`   | `true`   | 读取 `.gitignore` 进忽略列表                                          |
+| `react`       | 自动探测 | `true \| { files?, a11y? }`                                                              |
+| `vue`         | 自动探测 | `true \| { files?, sfcTsx?, a11y? }`                                                     |
+| `svelte`      | 自动探测 | `true \| { a11y? }`                                                                      |
+| `tailwindcss` | 自动探测 |                                                                                          |
+| `vitest`      | 自动探测 |                                                                                          |
+| `node`        | `false`  | 需显式 opt-in——`true \| glob \| glob[]`                                                  |
+| `jsdoc`       | `false`  | 需显式 opt-in——recommended 规则对每个 `/** */` 都触发，未必都是 JSDoc                    |
+| `pnpm`        | 自动探测 | 存在 `pnpm-workspace.yaml` 时启用                                                        |
+| `prettier`    | `true`   | `boolean \| PrettierOptions`                                                             |
+| `gitignore`   | `true`   | 读取 `.gitignore` 进忽略列表                                                             |
 
 `firstArg` 里也可以混入 flat-config key——未识别的键会构成一个用户 config block（antfu 风格）：
 

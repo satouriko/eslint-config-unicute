@@ -117,7 +117,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3
       typescript:
-        specifier: '>=5.0.0'
+        specifier: '>=4.8.4'
         version: 6.0.3
       typescript-eslint:
         specifier: 8.58.2
