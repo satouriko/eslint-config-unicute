@@ -74,6 +74,7 @@ export const SUPERSEDES = {
   '@typescript-eslint/prefer-includes': ['unicorn/prefer-includes'],
   '@typescript-eslint/prefer-string-starts-ends-with': ['unicorn/prefer-string-starts-ends-with'],
   '@typescript-eslint/prefer-find': ['unicorn/prefer-array-find'],
+  '@typescript-eslint/prefer-for-of': ['unicorn/no-for-loop'],
 
   // ── Broader rule supersedes narrower one ───────────────────────────────
 
