@@ -118,11 +118,21 @@ export const SUPERSEDES = {
 
   // ── regexp plugin vs core ─────────────────────────────────────────────
   // eslint-plugin-regexp's AST-level regex analysis subsumes the core
-  // regex rules. Upstream doesn't declare the relationship.
+  // regex rules. Upstream doesn't declare the relationship, but its
+  // recommended preset already off's the core counterpart — encode it
+  // so enabling the plugin rule explicitly makes the supersede visible
+  // on the dashboard and is preserved across preset drift.
   'regexp/no-invalid-regexp': ['no-invalid-regexp'],
   'regexp/no-useless-backreference': ['no-useless-backreference'],
   'regexp/no-control-character': ['no-control-regex'],
   'regexp/no-empty-character-class': ['no-empty-character-class'],
+
+  // ── unicorn plugin vs core ────────────────────────────────────────────
+  // Same pattern — unicorn's recommended preset hard-offs these core
+  // rules because it provides smarter replacements (e.g. its
+  // no-nested-ternary allows a single level of nesting with parens).
+  'unicorn/no-nested-ternary': ['no-nested-ternary'],
+  'unicorn/no-negated-condition': ['no-negated-condition'],
 }
 
 /**
