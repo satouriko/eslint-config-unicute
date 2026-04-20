@@ -1,7 +1,7 @@
 {
   "name": "eslint-config-unicute",
   "type": "module",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.1-alpha.1",
   "description": "Unified and cute — a TypeScript-first, pragmatic ESLint flat config.",
   "keywords": [
     "eslint",
