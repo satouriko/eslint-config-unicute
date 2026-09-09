@@ -266,7 +266,13 @@ describe('smoke: per-option branches', () => {
 
 describe('smoke: default ignores', () => {
   for (const directory of ['', 'packages/app/']) {
-    for (const filename of ['package-lock.json', 'npm-shrinkwrap.json', 'pnpm-lock.yaml', 'yarn.lock']) {
+    for (const filename of [
+      'package-lock.json',
+      'npm-shrinkwrap.json',
+      'pnpm-lock.yaml',
+      'shrinkwrap.yaml',
+      'yarn.lock',
+    ]) {
       const filePath = `${directory}${filename}`
       it(`ignores ${filePath} with formatting enabled`, async () => {
         const eslint = makeEslint({ typescript: false, prettier: true })

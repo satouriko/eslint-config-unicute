@@ -15,6 +15,7 @@ const COMMON_IGNORES = [
   '**/*.min.*',
   '**/CHANGELOG*.md',
   '**/pnpm-lock.yaml',
+  '**/shrinkwrap.yaml',
   '**/yarn.lock',
   '**/package-lock.json',
   '**/npm-shrinkwrap.json',
