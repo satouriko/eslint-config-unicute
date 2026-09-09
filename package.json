@@ -45,7 +45,7 @@
     "decide": "node scripts/rule-diff.js",
     "build:static": "node scripts/rule-diff.js --static dist/index.html",
     "lint": "eslint .",
-    "test": "node --test tests/smoke.test.js"
+    "test": "node --test tests/*.test.js"
   },
   "peerDependencies": {
     "eslint": "^9.35.0 || ^10.0.0",
