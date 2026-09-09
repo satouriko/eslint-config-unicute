@@ -17,6 +17,7 @@ const COMMON_IGNORES = [
   '**/pnpm-lock.yaml',
   '**/yarn.lock',
   '**/package-lock.json',
+  '**/npm-shrinkwrap.json',
   '**/.decide-probe',
   'rule-diff/index.html',
 ]

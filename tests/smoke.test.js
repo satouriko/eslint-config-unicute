@@ -264,6 +264,23 @@ describe('smoke: per-option branches', () => {
   })
 })
 
+describe('smoke: default ignores', () => {
+  for (const directory of ['', 'packages/app/']) {
+    for (const filename of ['package-lock.json', 'npm-shrinkwrap.json', 'pnpm-lock.yaml', 'yarn.lock']) {
+      const filePath = `${directory}${filename}`
+      it(`ignores ${filePath} with formatting enabled`, async () => {
+        const eslint = makeEslint({ typescript: false, prettier: true })
+        assert.equal(await eslint.isPathIgnored(resolve(PROJECT, filePath)), true)
+      })
+    }
+
+    it(`keeps ${directory}package.json lintable`, async () => {
+      const eslint = makeEslint({ typescript: false, prettier: true })
+      assert.equal(await eslint.isPathIgnored(resolve(PROJECT, `${directory}package.json`)), false)
+    })
+  }
+})
+
 describe('smoke: always-on categories', () => {
   it('jsonc/yaml/toml lint under minimal config', async () => {
     const eslint = makeEslint({ typescript: false })
