@@ -12,10 +12,10 @@ export default unicute(
   { node: true, pnpm: false, typescript: { tsconfigRootDir: import.meta.dirname } },
   { ignores: ['rule-diff/**', 'tests/fixture-project/**'] },
   {
-    // Claude Code hooks have shebangs so the runtime can exec them directly;
+    // Claude Code and Codex hooks have shebangs so the runtime can exec them directly;
     // they aren't published `bin` entries in package.json. Suppress n/hashbang
     // here rather than inline-comment-per-file.
-    files: ['.claude/hooks/*.js'],
+    files: ['.claude/hooks/*.js', '.codex/hooks/*.js'],
     rules: { 'n/hashbang': 'off' },
   },
 )
